@@ -20,50 +20,6 @@
   max-width: 56ch;
 }
 
-/* --- Contatori --- */
-.intro__stats {
-  list-style: none;
-  padding: clamp(1.6rem, 3vw, 2.4rem) 0 0;
-  margin: clamp(2rem, 4vw, 3rem) 0 0;
-  border-top: 1px solid var(--hairline);
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-  gap: clamp(1.4rem, 3vw, 2.4rem);
-}
-
-.stat { display: grid; gap: 0.2rem; }
-
-.stat__num {
-  display: flex;
-  align-items: baseline;
-  font-family: var(--font-display);
-  font-size: clamp(2.4rem, 5vw, 3.4rem);
-  font-weight: 800;
-  line-height: 0.9;
-  letter-spacing: -0.03em;
-  color: var(--yellow);
-  font-variant-numeric: tabular-nums;
-}
-
-.stat__num em { font-style: normal; font-size: 0.5em; }
-
-.stat__label {
-  font-family: var(--font-display);
-  font-size: 1.05rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.03em;
-  margin-top: 0.35rem;
-}
-
-.stat__note {
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--line-faint);
-}
-
 /* --- Coppia di immagini mascherate --- */
 .intro__media {
   position: relative;
@@ -85,24 +41,26 @@
 
 .intro__shot > .figure__tag { z-index: 3; }
 
-.intro__stamp {
-  position: absolute;
-  top: clamp(0.8rem, 2vw, 1.4rem);
-  left: clamp(-0.6rem, -1.2vw, 0rem);
-  z-index: 3;
-  padding: 0.45rem 0.9rem;
-  background: var(--yellow);
-  color: var(--asphalt-900);
-  font-family: var(--font-mono);
-  font-size: 0.68rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-}
 
 @media (max-width: 900px) {
   .intro__grid { grid-template-columns: 1fr; }
-  .intro__media { margin-top: 1rem; }
+
+  .intro__media {
+    margin-top: 1.4rem;
+    padding-bottom: 0;
+  }
+
   .intro__shot--a { aspect-ratio: 4 / 3; }
-  .intro__shot--b { width: 52%; }
+
+  /* Niente sovrapposizione sul telefono: coprirebbe la didascalia
+     della foto grande. */
+  .intro__shot--b {
+    position: static;
+    width: 62%;
+    margin: 0.7rem 0 0 auto;
+    aspect-ratio: 4 / 3;
+    border: none;
+  }
+
+  .figure__tag { font-size: 0.62rem; padding: 0.42rem 0.7rem; }
 }

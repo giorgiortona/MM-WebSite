@@ -76,10 +76,6 @@ export default function Contact() {
     <section className="section contact" id="contatti" ref={root}>
       <div className="shell contact__grid">
         <div className="contact__intro">
-          <p className="eyebrow" data-reveal>
-            <span className="eyebrow__num">07</span> Contatti
-          </p>
-
           <h2 className="section-title" data-reveal>
             Un preventivo si fa in una telefonata
           </h2>

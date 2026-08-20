@@ -38,20 +38,13 @@ export const compliance = [
   },
 ];
 
-export const stats = [
-  { value: 3, suffix: '', label: 'Classi di pellicola', note: 'cl. 1 · cl. 2 · cl. 3' },
-  { value: 10, suffix: '', label: 'Famiglie a catalogo', note: 'dal segnale al cantiere' },
-  { value: 700, suffix: '+', label: 'Articoli codificati', note: 'alluminio e ferro' },
-  { value: 30, suffix: '/10', label: 'Spessori disponibili', note: 'da 10/10 a 30/10' },
-];
-
-/* Voci di navigazione: numerate come progressive chilometriche */
+/* Voci di navigazione */
 export const nav = [
-  { id: 'lavori', label: 'Lavori', km: '01' },
-  { id: 'servizi', label: 'Servizi', km: '02' },
-  { id: 'cantieri', label: 'Cantieri', km: '03' },
-  { id: 'showreel', label: 'In opera', km: '04' },
-  { id: 'catalogo', label: 'Catalogo', km: '05' },
-  { id: 'qualita', label: 'Qualità', km: '06' },
-  { id: 'contatti', label: 'Contatti', km: '07' },
+  { id: 'lavori', label: 'Lavori' },
+  { id: 'servizi', label: 'Servizi' },
+  { id: 'cantieri', label: 'Cantieri' },
+  { id: 'showreel', label: 'In opera' },
+  { id: 'catalogo', label: 'Catalogo' },
+  { id: 'qualita', label: 'Qualità' },
+  { id: 'contatti', label: 'Contatti' },
 ];

@@ -34,30 +34,46 @@
 .footer__nav a { font-size: 0.87rem; color: var(--line-dim); }
 
 /* --- Firma di chiusura --- */
+/* La firma di chiusura prende i colori dalla superficie su cui poggia:
+   pieno nel colore del testo, contorno ricavato dallo stesso colore. */
 .footer__big {
+  --sign: var(--fg);
   display: flex;
   flex-wrap: wrap;
+  justify-content: center;
+  align-items: baseline;
   gap: 0 clamp(0.6rem, 2vw, 2rem);
   margin-top: clamp(3rem, 7vw, 5rem);
   line-height: 0.8;
+  text-align: center;
+  /* Il corpo sta qui e non sulla parola: così la maschera può misurare in em
+     sulla dimensione reale del carattere. */
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 16vw, 13rem);
 }
 
-.footer__word-mask { overflow: hidden; display: block; }
+.footer__word-mask {
+  display: block;
+  overflow: hidden;
+  /* La finestra di taglio serve solo in verticale: allargata ai lati perché
+     il contorno dell'ultima lettera non venga tosato. */
+  padding-inline: 0.1em;
+  margin-inline: -0.1em;
+}
 
 .footer__word {
   display: block;
-  font-family: var(--font-display);
-  font-size: clamp(3.4rem, 15vw, 13rem);
+  font-size: inherit;
   font-weight: 800;
   letter-spacing: -0.04em;
   text-transform: uppercase;
   color: transparent;
-  -webkit-text-stroke: 1px rgba(242, 243, 239, 0.28);
+  -webkit-text-stroke: 1.2px color-mix(in srgb, var(--sign) 40%, transparent);
   will-change: transform;
 }
 
 .footer__word-mask:first-child .footer__word {
-  color: var(--line-white);
+  color: var(--sign);
   -webkit-text-stroke: 0;
 }
 

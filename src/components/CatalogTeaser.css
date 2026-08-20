@@ -1,0 +1,239 @@
+/* Il catalogo stacca dal resto del sito: fondo chiaro fra due bande sfumate
+   che scorrono con la pagina. */
+.teaser {
+  position: relative;
+  background: var(--paper-100);
+  color: var(--ink-900);
+}
+
+/* --- Raccordo fra l'asfalto e il fondo chiaro ---
+   L'immagine di sfondo è alta il 170% del riquadro: la finestra visibile ne
+   mostra il 58,8%, e la rampa di colore sta al centro. Comunque la si sposti
+   con lo scroll, in alto resta il colore della sezione precedente e in basso
+   quello della successiva: nessun gradino ai due bordi.
+   La rampa segue un passo dolce (variazione nulla agli estremi) e sopra corre
+   un velo di grana che rompe le fasce dei gradienti a 8 bit. */
+.teaser__fade {
+  position: relative;
+  height: clamp(190px, 32vh, 380px);
+  width: 100%;
+  background-size: 100% 140%;
+  background-repeat: no-repeat;
+  will-change: background-position;
+}
+
+.teaser__fade::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  opacity: 0.42;
+  mix-blend-mode: overlay;
+  pointer-events: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.28'/%3E%3C/svg%3E");
+}
+
+.teaser__fade--in {
+  background-image: linear-gradient(
+    to bottom,
+    #08090B 0%,
+    #08090B 28.57%,
+    rgb(9 10 12) 30.52%,
+    rgb(13 14 16) 32.47%,
+    rgb(20 21 23) 34.42%,
+    rgb(29 29 31) 36.36%,
+    rgb(39 40 41) 38.31%,
+    rgb(51 52 53) 40.26%,
+    rgb(64 65 66) 42.21%,
+    rgb(79 80 80) 44.16%,
+    rgb(94 95 95) 46.10%,
+    rgb(110 111 110) 48.05%,
+    rgb(126 126 126) 50.00%,
+    rgb(142 142 141) 51.95%,
+    rgb(158 158 156) 53.90%,
+    rgb(173 173 171) 55.84%,
+    rgb(188 188 185) 57.79%,
+    rgb(201 201 198) 59.74%,
+    rgb(213 213 210) 61.69%,
+    rgb(223 224 220) 63.64%,
+    rgb(232 232 228) 65.58%,
+    rgb(239 239 235) 67.53%,
+    rgb(243 243 239) 69.48%,
+    #F4F4F0 71.43%,
+    #F4F4F0 100%
+  );
+}
+
+.teaser__fade--out {
+  background-image: linear-gradient(
+    to bottom,
+    #F4F4F0 0%,
+    #F4F4F0 28.57%,
+    rgb(243 243 239) 30.52%,
+    rgb(239 239 235) 32.47%,
+    rgb(232 232 229) 34.42%,
+    rgb(224 224 220) 36.36%,
+    rgb(213 213 210) 38.31%,
+    rgb(201 202 199) 40.26%,
+    rgb(188 188 186) 42.21%,
+    rgb(174 174 172) 44.16%,
+    rgb(159 159 157) 46.10%,
+    rgb(143 144 142) 48.05%,
+    rgb(128 128 127) 50.00%,
+    rgb(112 112 112) 51.95%,
+    rgb(96 97 97) 53.90%,
+    rgb(81 82 82) 55.84%,
+    rgb(67 68 68) 57.79%,
+    rgb(54 54 55) 59.74%,
+    rgb(42 43 44) 61.69%,
+    rgb(31 32 34) 63.64%,
+    rgb(23 24 25) 65.58%,
+    rgb(16 17 19) 67.53%,
+    rgb(12 13 15) 69.48%,
+    #0B0C0E 71.43%,
+    #0B0C0E 100%
+  );
+}
+
+.teaser__body { padding-block: clamp(1.5rem, 4vw, 3rem) clamp(2.5rem, 6vw, 5rem); }
+
+.teaser__head {
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+  gap: clamp(1rem, 4vw, 4rem);
+  align-items: end;
+  padding-bottom: clamp(1.6rem, 3.5vw, 2.6rem);
+}
+
+.teaser__title {
+  font-size: var(--step-3);
+  color: var(--ink-900);
+  letter-spacing: -0.02em;
+}
+
+.teaser__sub { color: var(--ink-500); max-width: 54ch; }
+
+/* --- Le cinque aree: tre sopra e due sotto --- */
+.macro-grid {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: clamp(0.8rem, 1.6vw, 1.2rem);
+}
+
+.macro-card:nth-child(-n + 3) { grid-column: span 2; }
+.macro-card:nth-child(n + 4) { grid-column: span 3; }
+
+.macro-card {
+  position: relative;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  color: var(--ink-900);
+  background: var(--paper-200);
+  border: 1px solid rgba(20, 22, 26, 0.1);
+  overflow: hidden;
+  transition: background-color 0.4s var(--ease-out), border-color 0.4s var(--ease-out),
+    transform 0.5s var(--ease-out);
+}
+
+.macro-card::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: var(--ink-900);
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  transition: transform 0.55s var(--ease-out);
+}
+
+.macro-card:hover {
+  background: var(--paper-100);
+  border-color: rgba(20, 22, 26, 0.28);
+  transform: translateY(-4px);
+}
+
+.macro-card:hover::after { transform: scaleX(1); }
+
+.macro-card__shot {
+  display: block;
+  padding: clamp(1rem, 2vw, 1.6rem);
+  background: var(--paper-300);
+  border-bottom: 1px solid rgba(20, 22, 26, 0.08);
+}
+
+.macro-card__shot svg {
+  width: 100%;
+  height: auto;
+  max-height: 170px;
+  transition: transform 0.6s var(--ease-out);
+}
+
+.macro-card:hover .macro-card__shot svg { transform: translateY(-3px) scale(1.02); }
+
+.macro-card__text {
+  display: grid;
+  align-content: start;
+  gap: 0.5rem;
+  padding: clamp(1.1rem, 2vw, 1.5rem);
+}
+
+.macro-card__name {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 2.2vw, 1.85rem);
+  font-weight: 700;
+  line-height: 1.02;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+
+.macro-card__blurb { font-size: 0.86rem; line-height: 1.55; color: var(--ink-500); }
+
+.macro-card__foot {
+  margin-top: auto;
+  padding-top: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.macro-card__foot em {
+  font-style: normal;
+  font-size: 0.74rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-500);
+}
+
+.macro-card__foot svg {
+  width: 20px;
+  height: 20px;
+  transform: translateX(-6px);
+  opacity: 0;
+  transition: transform 0.45s var(--ease-out), opacity 0.35s var(--ease-out);
+}
+
+.macro-card:hover .macro-card__foot svg { transform: translateX(0); opacity: 1; }
+
+@media (max-width: 900px) {
+  .teaser__head { grid-template-columns: 1fr; align-items: start; gap: 0.9rem; }
+  .macro-grid { grid-template-columns: 1fr; }
+  .macro-card:nth-child(-n + 3),
+  .macro-card:nth-child(n + 4) { grid-column: span 1; }
+
+  .macro-card { grid-template-columns: 34% 1fr; grid-template-rows: 1fr; }
+  .macro-card__shot {
+    display: grid;
+    place-items: center;
+    padding: 0.9rem 0.7rem;
+    border-bottom: none;
+    border-right: 1px solid rgba(20, 22, 26, 0.08);
+  }
+  .macro-card__shot svg { max-height: 96px; }
+  .macro-card__text { padding: 1rem 1rem 1.1rem; }
+  .macro-card__name { font-size: 1.28rem; }
+  .macro-card__blurb { font-size: 0.8rem; }
+  .macro-card__foot { padding-top: 0.7rem; }
+  .macro-card__foot svg { opacity: 1; transform: none; }
+}

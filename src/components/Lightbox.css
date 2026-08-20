@@ -101,7 +101,25 @@
 .lightbox__close:hover { border-color: var(--yellow); color: var(--yellow); }
 
 @media (max-width: 640px) {
-  .lightbox { grid-template-columns: 1fr; }
+  .lightbox { grid-template-columns: minmax(0, 1fr); }
+
   .lightbox__nav--prev { position: absolute; left: 0.7rem; top: 50%; }
   .lightbox__nav--next { position: absolute; right: 0.7rem; top: 50%; }
+
+  .lightbox__nav,
+  .lightbox__close {
+    background: rgba(8, 9, 11, 0.6);
+    backdrop-filter: blur(6px);
+  }
+
+  /* La riga sotto l'immagine va su tre livelli, non tutta di fila */
+  .lightbox__bar {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: baseline;
+    gap: 0.2rem 0.8rem;
+  }
+  .lightbox__place { grid-column: 1; }
+  .lightbox__count { grid-column: 2; grid-row: 1; }
+  .lightbox__caption { grid-column: 1 / -1; }
 }

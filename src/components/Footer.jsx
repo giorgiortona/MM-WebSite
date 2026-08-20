@@ -22,8 +22,6 @@ export default function Footer({ onNavigate, onTop }) {
 
   return (
     <footer className="footer" ref={root}>
-      <div className="hazard-strip" aria-hidden="true" />
-
       <div className="shell footer__inner">
         <div className="footer__cols">
           <div className="footer__col">

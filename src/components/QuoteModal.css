@@ -19,9 +19,9 @@
   position: relative;
   width: min(100%, 540px);
   padding: clamp(1.6rem, 4vw, 2.6rem);
-  padding-bottom: clamp(2rem, 4.5vw, 3rem);
   background: var(--asphalt-700);
   border: 1px solid var(--hairline);
+  border-top: 2px solid var(--yellow);
   overflow: hidden;
   will-change: clip-path;
 }
@@ -131,12 +131,6 @@
   line-height: 1.5;
 }
 
-.quote__strip {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  height: 8px;
-}
 
 @media (max-width: 460px) {
   .quote__alts { grid-template-columns: 1fr; }

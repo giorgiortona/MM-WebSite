@@ -140,8 +140,6 @@ export default function QuoteModal({ open, product, onClose }) {
           {site.legal} — {site.address.street}, {site.address.zip} {site.address.city} (
           {site.address.province}) · P. IVA {site.vat}
         </p>
-
-        <div className="hazard-strip quote__strip" aria-hidden="true" />
       </div>
     </div>
   );

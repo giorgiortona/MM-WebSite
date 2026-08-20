@@ -1,18 +1,52 @@
-/* Catalogo prodotti — nessun prezzo esposto.
-   Dimensioni, materiali e classi pellicola provengono dal listino aziendale.
-   Ogni articolo si preventiva a voce: la scheda apre la richiesta telefonica. */
+/* Catalogo su tre livelli: macro area -> famiglia -> articolo.
+   Nessun prezzo esposto: dimensioni, materiali e classi di pellicola
+   provengono dal listino aziendale, il prezzo si concorda a voce. */
 
-export const categories = [
-  { id: 'segnali', label: 'Segnali di pericolo e prescrizione', glyph: 'triangle' },
-  { id: 'targhe', label: 'Targhe e pannelli', glyph: 'plate' },
-  { id: 'direzione', label: 'Direzione e identificazione', glyph: 'arrow' },
-  { id: 'delineatori', label: 'Delineatori e margine', glyph: 'delineator' },
-  { id: 'barriere', label: 'Barriere e transenne', glyph: 'barrier' },
-  { id: 'cantiere', label: 'Cantiere e sicurezza', glyph: 'cone' },
-  { id: 'sostegni', label: 'Sostegni e fissaggi', glyph: 'pole' },
-  { id: 'urbano', label: 'Arredo urbano e specchi', glyph: 'mirror' },
-  { id: 'orizzontale', label: 'Vernici per orizzontale', glyph: 'paint' },
-  { id: 'pellicole', label: 'Pellicole e adesivi', glyph: 'film' },
+export const macros = [
+  {
+    id: 'verticale',
+    name: 'Segnaletica verticale',
+    blurb: 'Segnali, targhe e pannelli in alluminio e ferro, con pellicole di classe 1, 2 e 3.',
+    photo: 'a27-belluno',
+  },
+  {
+    id: 'orizzontale',
+    name: 'Segnaletica orizzontale',
+    blurb: 'Tracciamento su strada e su pavimento industriale, vernici, pellicole e adesivi.',
+    photo: 'napoli-autostrada',
+  },
+  {
+    id: 'sicurezza',
+    name: 'Delineatori e barriere',
+    blurb: 'Guida ottica, delimitazione e protezione lungo la carreggiata.',
+    photo: 'rotatoria-frecce',
+  },
+  {
+    id: 'cantiere',
+    name: 'Cantiere',
+    blurb: 'Segnaletica temporanea, impianti semaforici e attrezzatura per il cantiere mobile.',
+    photo: 'casello-autostradale',
+  },
+  {
+    id: 'sostegni',
+    name: 'Sostegni e arredo urbano',
+    blurb: 'Pali, staffe e bulloneria, dissuasori, paletti parapedonali e specchi.',
+    photo: 'corsia-ciclabile',
+  },
+];
+
+export const families = [
+  { id: 'segnali', macro: 'verticale', label: 'Pericolo e prescrizione' },
+  { id: 'targhe', macro: 'verticale', label: 'Targhe e pannelli' },
+  { id: 'direzione', macro: 'verticale', label: 'Direzione e identificazione' },
+  { id: 'tracciamento', macro: 'orizzontale', label: 'Tracciamento' },
+  { id: 'vernici', macro: 'orizzontale', label: 'Vernici e diluenti' },
+  { id: 'pellicole', macro: 'orizzontale', label: 'Pellicole e adesivi' },
+  { id: 'delineatori', macro: 'sicurezza', label: 'Delineatori e margine' },
+  { id: 'barriere', macro: 'sicurezza', label: 'Barriere e transenne' },
+  { id: 'cantiere', macro: 'cantiere', label: 'Cantiere e sicurezza' },
+  { id: 'sostegni', macro: 'sostegni', label: 'Sostegni e fissaggi' },
+  { id: 'urbano', macro: 'sostegni', label: 'Arredo urbano e specchi' },
 ];
 
 export const products = [
@@ -693,7 +727,7 @@ export const products = [
   /* ---------------- ORIZZONTALE ---------------- */
   {
     id: 'vernice',
-    cat: 'orizzontale',
+    cat: 'vernici',
     name: 'Vernice spartitraffico',
     fig: 'Rifrangente e non rifrangente',
     desc: 'Vernici spartitraffico per segnaletica orizzontale, fornite a peso, con diluente dedicato.',
@@ -704,6 +738,92 @@ export const products = [
       ['Diluente', 'diluente spartitraffico al litro'],
     ],
     tags: ['vernice', 'orizzontale'],
+  },
+
+  /* ---------------- TRACCIAMENTO ---------------- */
+  {
+    id: 'mezzeria',
+    cat: 'tracciamento',
+    name: 'Linee di mezzeria e margine',
+    fig: 'Tracciamento e ripasso',
+    desc: 'Tracciamento ex novo su tappeto nuovo e ripasso della segnaletica esistente, su strade urbane, extraurbane e autostrade.',
+    specs: [
+      ['Lavorazione', 'ex novo · ripasso'],
+      ['Linee', 'continue · tratteggiate · doppie'],
+      ['Vernice', 'rifrangente bianca e gialla'],
+      ['Cantiere', 'diurno e notturno'],
+    ],
+    tags: ['mezzeria', 'margine', 'linee'],
+  },
+  {
+    id: 'iscrizioni',
+    cat: 'tracciamento',
+    name: 'Iscrizioni e frecce direzionali',
+    fig: 'Preselezione',
+    desc: 'Frecce di preselezione, iscrizioni di località e simboli su corsia, realizzati con sagome secondo le misure previste.',
+    specs: [
+      ['Tipi', 'frecce · iscrizioni · simboli'],
+      ['Ambito', 'corsie di preselezione e svincoli'],
+      ['Vernice', 'rifrangente bianca'],
+      ['Cantiere', 'diurno e notturno'],
+    ],
+    tags: ['frecce', 'iscrizioni', 'preselezione'],
+  },
+  {
+    id: 'attraversamenti',
+    cat: 'tracciamento',
+    name: 'Attraversamenti pedonali',
+    fig: 'Anche ad alta visibilità',
+    desc: 'Strisce pedonali standard e attraversamenti ad alta visibilità con campiture colorate, per zone scolastiche e centri abitati.',
+    specs: [
+      ['Tipi', 'standard · alta visibilità colorata'],
+      ['Colori', 'bianco · rosso · giallo'],
+      ['Complementi', 'linee di arresto e avvicinamento'],
+      ['Ambito', 'centro abitato e zone scolastiche'],
+    ],
+    tags: ['pedonale', 'strisce', 'alta visibilità'],
+  },
+  {
+    id: 'zebrature',
+    cat: 'tracciamento',
+    name: 'Zebrature, isole e cuspidi',
+    fig: 'Canalizzazione',
+    desc: 'Isole di canalizzazione, cuspidi di uscita e zebrature per la separazione dei flussi in rotatorie e svincoli.',
+    specs: [
+      ['Elementi', 'zebrature · isole · cuspidi'],
+      ['Ambito', 'rotatorie, svincoli, intersezioni'],
+      ['Vernice', 'rifrangente bianca'],
+      ['Complementi', 'delineatori e segnaletica verticale'],
+    ],
+    tags: ['rotatoria', 'isola', 'zebratura'],
+  },
+  {
+    id: 'stalli',
+    cat: 'tracciamento',
+    name: 'Stalli di sosta e ricarica',
+    fig: 'Aree di sosta',
+    desc: 'Delimitazione di stalli di sosta, posti riservati e stalli per la ricarica elettrica con simbolo dedicato.',
+    specs: [
+      ['Tipi', 'sosta · riservati · ricarica elettrica'],
+      ['Colori', 'bianco · giallo · blu'],
+      ['Simboli', 'disabili, carico, ricarica'],
+      ['Ambito', 'aree di sosta e parcheggi'],
+    ],
+    tags: ['stalli', 'parcheggio', 'ricarica'],
+  },
+  {
+    id: 'industriale',
+    cat: 'tracciamento',
+    name: 'Segnaletica industriale interna',
+    fig: 'Capannoni e piazzali',
+    desc: 'Corsie di transito, stalli, percorsi pedonali e aree di manovra su pavimento di capannoni e piazzali logistici.',
+    specs: [
+      ['Elementi', 'corsie · stalli · percorsi pedonali'],
+      ['Supporto', 'cemento, resina, asfalto'],
+      ['Vernice', 'a bassa manutenzione'],
+      ['Studio', 'tracciato sui flussi dei mezzi'],
+    ],
+    tags: ['capannone', 'logistica', 'industriale'],
   },
 
   /* ---------------- PELLICOLE ---------------- */
@@ -751,5 +871,14 @@ export const products = [
   },
 ];
 
-export const countByCategory = (catId) =>
-  products.filter((p) => p.cat === catId).length;
+export const familiesOf = (macroId) => families.filter((f) => f.macro === macroId);
+
+export const productsOfFamily = (familyId) => products.filter((p) => p.cat === familyId);
+
+export const productsOfMacro = (macroId) => {
+  const ids = familiesOf(macroId).map((f) => f.id);
+  return products.filter((p) => ids.includes(p.cat));
+};
+
+export const findFamily = (id) => families.find((f) => f.id === id);
+export const findMacro = (id) => macros.find((m) => m.id === id);

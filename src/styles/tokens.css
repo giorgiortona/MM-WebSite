@@ -22,6 +22,14 @@
   --sign-blue: #0B5FA5;
   --sign-green: #0E7A3C;
 
+  /* --- Superfici chiare: usate dal catalogo per staccare dal resto --- */
+  --paper-100: #F4F4F0;
+  --paper-200: #E9E9E3;
+  --paper-300: #DCDCD4;
+  --ink-900: #14161A;
+  --ink-700: #3A4048;
+  --ink-500: #6B717A;
+
   /* --- Semantici --- */
   --bg: var(--asphalt-800);
   --bg-alt: var(--asphalt-700);

@@ -75,3 +75,14 @@
   .quotebar__phone span { display: none; }
   .quotebar__inner { padding-block: 0.55rem; }
 }
+
+/* Sotto i 430px la dicitura andava a capo e alzava la barra */
+@media (max-width: 430px) {
+  .quotebar__text strong {
+    font-size: 1.02rem;
+    white-space: nowrap;
+  }
+  .quotebar__inner { gap: 0.6rem; }
+  .quotebar__actions { gap: 0.45rem; }
+  .quotebar__btn { padding: 0.6rem 1rem; font-size: 0.95rem; }
+}

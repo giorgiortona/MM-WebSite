@@ -47,13 +47,6 @@ function ClipCard({ clip, index }) {
           preload="none"
           aria-label={`${clip.title} — ${clip.note}`}
         />
-        <span className="clip__badge">
-          <i aria-hidden="true" />
-          00:08
-        </span>
-        <span className="clip__index" aria-hidden="true">
-          {String(index + 1).padStart(2, '0')}
-        </span>
       </div>
       <figcaption className="clip__caption">
         <strong>{clip.title}</strong>
@@ -101,10 +94,7 @@ export default function Showreel() {
       <div className="shell">
         <div className="showreel__head">
           <div>
-            <p className="eyebrow">
-              <span className="eyebrow__num">04</span> In opera
-            </p>
-            <h2 className="section-title">Otto secondi per volta</h2>
+            <h2 className="section-title">In opera</h2>
           </div>
           <p className="showreel__head-text">
             Spezzoni brevi girati durante le lavorazioni: la macchina spartitraffico al lavoro,

@@ -38,22 +38,10 @@ export default function NavOverlay({ open, onClose, onNavigate }) {
           0
         )
         .fromTo(
-          q('.nav-overlay__bar'),
-          { scaleX: 0, transformOrigin: '0 50%' },
-          { scaleX: 1, duration: 0.7 },
-          0.1
-        )
-        .fromTo(
           split.chars,
           { yPercent: 115 },
           { yPercent: 0, duration: 0.75, stagger: 0.014 },
           0.32
-        )
-        .fromTo(
-          q('.nav-link__km'),
-          { opacity: 0, x: -12 },
-          { opacity: 1, x: 0, duration: 0.5, stagger: 0.05 },
-          0.45
         )
         .fromTo(
           q('[data-nav-fade]'),
@@ -119,7 +107,6 @@ export default function NavOverlay({ open, onClose, onNavigate }) {
                       onNavigate(item.id);
                     }}
                   >
-                    <span className="nav-link__km">km {item.km}</span>
                     <span className="nav-link__text">{item.label}</span>
                     <svg className="nav-link__arrow" viewBox="0 0 24 24" aria-hidden="true">
                       <path d="M4 12h15m0 0-6-6m6 6-6 6" stroke="currentColor" strokeWidth="2" fill="none" />
@@ -147,8 +134,7 @@ export default function NavOverlay({ open, onClose, onNavigate }) {
             </div>
 
             <div className="nav-overlay__contact" data-nav-fade>
-              <span className="nav-overlay__label">Preventivi</span>
-              <a className="nav-overlay__phone" href={`tel:${PHONE_TEL}`}>
+                  <a className="nav-overlay__phone" href={`tel:${PHONE_TEL}`}>
                 {site.phoneDisplay}
               </a>
               <a className="nav-overlay__mail" href={`mailto:${site.email}`}>
@@ -161,7 +147,6 @@ export default function NavOverlay({ open, onClose, onNavigate }) {
           </div>
         </div>
 
-        <div className="nav-overlay__bar hazard-strip" aria-hidden="true" />
       </div>
     </div>
   );

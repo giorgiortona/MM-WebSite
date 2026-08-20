@@ -1,6 +1,5 @@
 import { useRef } from 'react';
 import { gsap, useGSAP, SplitText, prefersReducedMotion } from '../lib/gsap';
-import { stats } from '../data/site';
 import Figure from './Figure';
 import './Intro.css';
 
@@ -52,21 +51,6 @@ export default function Intro() {
         );
       });
 
-      /* Contatori */
-      q('.stat__value').forEach((el) => {
-        const target = Number(el.dataset.to);
-        const obj = { v: 0 };
-        gsap.to(obj, {
-          v: target,
-          duration: 1.6,
-          ease: 'brake',
-          scrollTrigger: { trigger: el, start: 'top 92%' },
-          onUpdate: () => {
-            el.textContent = Math.round(obj.v);
-          },
-        });
-      });
-
       return () => split.revert();
     },
     { scope: root }
@@ -76,10 +60,6 @@ export default function Intro() {
     <section className="section intro" id="lavori" ref={root}>
       <div className="shell intro__grid">
         <div className="intro__copy">
-          <p className="eyebrow" data-reveal>
-            <span className="eyebrow__num">01</span> L’azienda
-          </p>
-
           <h2 className="intro__title section-title">
             Teniamo la strada leggibile, di giorno e di notte.
           </h2>
@@ -97,20 +77,6 @@ export default function Intro() {
             banditi da enti pubblici e privati e seguiamo l’opera dalla progettazione al collaudo.
           </p>
 
-          <ul className="intro__stats">
-            {stats.map((s) => (
-              <li className="stat" key={s.label} data-reveal>
-                <span className="stat__num">
-                  <span className="stat__value" data-to={s.value}>
-                    0
-                  </span>
-                  <em>{s.suffix}</em>
-                </span>
-                <strong className="stat__label">{s.label}</strong>
-                <span className="stat__note">{s.note}</span>
-              </li>
-            ))}
-          </ul>
         </div>
 
         <div className="intro__media">
@@ -122,9 +88,6 @@ export default function Intro() {
             <Figure slug="strada-nuova" sizes="(max-width: 900px) 60vw, 26vw" speed={1.07} />
             <span className="figure__tag">Mezzeria su nuovo tappeto</span>
           </div>
-          <span className="intro__stamp" aria-hidden="true">
-            EN 12899-1
-          </span>
         </div>
       </div>
     </section>

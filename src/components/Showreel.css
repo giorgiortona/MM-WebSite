@@ -40,7 +40,7 @@
 }
 
 .clip--v .clip__frame { aspect-ratio: 9 / 16; }
-.clip--h .clip__frame { aspect-ratio: 16 / 8.15; }
+.clip--h .clip__frame { aspect-ratio: 26 / 15; }
 
 .clip__frame video {
   width: 100%;
@@ -60,48 +60,7 @@
   pointer-events: none;
 }
 
-.clip__badge {
-  position: absolute;
-  left: 0.6rem;
-  bottom: 0.6rem;
-  z-index: 2;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.4rem;
-  padding: 0.3rem 0.55rem;
-  background: rgba(8, 9, 11, 0.75);
-  backdrop-filter: blur(6px);
-  font-family: var(--font-mono);
-  font-size: 0.62rem;
-  letter-spacing: 0.14em;
-  color: var(--line-dim);
-}
 
-.clip__badge i {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
-  background: var(--line-faint);
-  transition: background-color 0.3s var(--ease-out);
-}
-
-.clip.is-playing .clip__badge i {
-  background: var(--orange);
-  animation: clipPulse 1.4s ease-in-out infinite;
-}
-
-@keyframes clipPulse { 50% { opacity: 0.25; } }
-
-.clip__index {
-  position: absolute;
-  top: 0.6rem;
-  right: 0.7rem;
-  z-index: 2;
-  font-family: var(--font-mono);
-  font-size: 0.66rem;
-  letter-spacing: 0.14em;
-  color: var(--yellow);
-}
 
 .clip__caption {
   display: grid;

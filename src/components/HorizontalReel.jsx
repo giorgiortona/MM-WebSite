@@ -78,20 +78,11 @@ export default function HorizontalReel({ onOpenPhoto }) {
       <div className="reel__viewport">
         <div className="reel__track">
           <div className="reel__intro">
-            <p className="eyebrow">
-              <span className="eyebrow__num">03</span> Cantieri
-            </p>
             <h2 className="section-title">Lavori<br />consegnati</h2>
             <p className="reel__intro-text">
               Tratti autostradali, intersezioni urbane, piazzali e aree di sosta.
               Ogni immagine è un cantiere concluso e riaperto al traffico.
             </p>
-            <span className="reel__hint">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M4 12h15m0 0-6-6m6 6-6 6" stroke="currentColor" strokeWidth="2" fill="none" />
-              </svg>
-              Scorri per percorrere
-            </span>
           </div>
 
           {cantieriReel.map((slug, i) => {
@@ -113,10 +104,6 @@ export default function HorizontalReel({ onOpenPhoto }) {
             );
           })}
 
-          <div className="reel__end">
-            <span>Fine tratto</span>
-            <div className="hazard-strip" />
-          </div>
         </div>
       </div>
 

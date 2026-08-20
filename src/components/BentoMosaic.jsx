@@ -10,7 +10,6 @@ import './BentoMosaic.css';
 const cells = [
   { type: 'photo', slug: 'bari-notturna', area: 'a', speed: 0.95 },
   { type: 'photo', slug: 'cerignola-notte', area: 'b', speed: 1.05 },
-  { type: 'note', area: 'c' },
   { type: 'photo', slug: 'stallo-ricarica', area: 'd', speed: 1.05 },
   { type: 'photo', slug: 'attraversamento-colorato', area: 'e', speed: 0.97 },
   { type: 'classes', area: 'f' },
@@ -50,9 +49,6 @@ export default function BentoMosaic({ onOpenPhoto }) {
       <div className="shell">
         <div className="bento__head">
           <div>
-            <p className="eyebrow">
-              <span className="eyebrow__num">03·b</span> Rifrangenza
-            </p>
             <h2 className="section-title">La segnaletica si giudica al buio</h2>
           </div>
           <p className="bento__head-text">

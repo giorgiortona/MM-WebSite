@@ -26,7 +26,7 @@ export default function Hero({ onQuote, onExplore }) {
         .from(q('.hero__lead'), { opacity: 0, y: 26, duration: 0.8 }, 0.55)
         .from(q('.hero__cta > *'), { opacity: 0, y: 22, duration: 0.7, stagger: 0.08 }, 0.68)
         .from(q('.hero__meta > *'), { opacity: 0, y: 18, duration: 0.7, stagger: 0.08 }, 0.8)
-        .from(q('.hero__scroll'), { opacity: 0, duration: 0.6 }, 0.95);
+        .from(q('.hero__meta > *'), { opacity: 0, duration: 0.01 }, 0.95);
 
       /* Il fondo si scurisce e scivola mentre si esce dalla hero */
       if (!reduced) {
@@ -65,11 +65,7 @@ export default function Hero({ onQuote, onExplore }) {
 
       <div className="hero__content shell">
         <p className="hero__eyebrow">
-          <span>{site.legal}</span>
-          <span className="hero__dot" aria-hidden="true" />
-          <span>
-            {site.address.city} ({site.address.province})
-          </span>
+          {site.legal} — {site.address.city} ({site.address.province})
         </p>
 
         <h1 className="hero__title">
@@ -115,10 +111,6 @@ export default function Hero({ onQuote, onExplore }) {
         </ul>
       </div>
 
-      <a className="hero__scroll" href="#lavori" aria-label="Scorri ai lavori">
-        <span className="hero__scroll-line" aria-hidden="true" />
-        <span className="hero__scroll-text">Scorri</span>
-      </a>
     </section>
   );
 }
