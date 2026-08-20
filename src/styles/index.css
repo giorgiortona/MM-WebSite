@@ -1,0 +1,9 @@
+@import './tokens.css';
+@import './base.css';
+
+/* ScrollSmoother avvolge la pagina: il wrapper resta fisso e il contenuto
+   viene traslato. Tutto ciò che è position:fixed vive fuori da qui. */
+#smooth-wrapper { position: relative; }
+#smooth-content { will-change: transform; }
+
+main { display: block; }

@@ -1,0 +1,113 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 130;
+  transition: background-color 0.45s var(--ease-out), backdrop-filter 0.45s var(--ease-out);
+}
+
+.header.is-scrolled {
+  background: rgba(8, 9, 11, 0.72);
+  backdrop-filter: blur(14px) saturate(120%);
+}
+
+.header__inner {
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding: clamp(0.7rem, 1.6vw, 1.1rem) var(--gutter);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.header__rule {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    var(--hairline) 15%,
+    var(--hairline) 85%,
+    transparent
+  );
+  opacity: 0;
+  transition: opacity 0.4s var(--ease-out);
+}
+
+.header.is-scrolled .header__rule { opacity: 1; }
+
+/* --- Logo --- */
+.logo {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.logo__mark {
+  width: 34px;
+  height: 34px;
+  flex: none;
+  transition: transform 0.5s var(--ease-out);
+}
+
+.logo:hover .logo__mark { transform: rotate(-8deg) scale(1.06); }
+
+.logo__text {
+  display: grid;
+  line-height: 1;
+}
+
+.logo__text strong {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  text-transform: uppercase;
+}
+
+.logo__text em {
+  font-family: var(--font-mono);
+  font-style: normal;
+  font-size: 0.58rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+  color: var(--line-faint);
+  margin-top: 3px;
+}
+
+/* --- Azioni --- */
+.header__actions {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.6rem, 1.5vw, 1.1rem);
+}
+
+.header__phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  border: 1px solid var(--hairline);
+  border-radius: 2px;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  transition: background-color 0.3s var(--ease-out), color 0.3s var(--ease-out), border-color 0.3s var(--ease-out);
+}
+
+.header__phone svg { width: 16px; height: 16px; color: var(--yellow); flex: none; }
+
+.header__phone:hover {
+  background: var(--yellow);
+  border-color: var(--yellow);
+  color: var(--asphalt-900);
+}
+
+.header__phone:hover svg { color: var(--asphalt-900); }
+
+@media (max-width: 720px) {
+  .header__phone span { display: none; }
+  .header__phone { padding: 0.65rem; }
+}

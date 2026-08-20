@@ -1,0 +1,143 @@
+.quote {
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  display: grid;
+  place-items: center;
+  padding: var(--gutter);
+  visibility: hidden;
+}
+
+.quote__scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(4, 5, 6, 0.82);
+  backdrop-filter: blur(6px);
+}
+
+.quote__box {
+  position: relative;
+  width: min(100%, 540px);
+  padding: clamp(1.6rem, 4vw, 2.6rem);
+  padding-bottom: clamp(2rem, 4.5vw, 3rem);
+  background: var(--asphalt-700);
+  border: 1px solid var(--hairline);
+  overflow: hidden;
+  will-change: clip-path;
+}
+
+.quote__close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--hairline);
+  transition: border-color 0.3s var(--ease-out), transform 0.3s var(--ease-out);
+}
+
+.quote__close span {
+  position: absolute;
+  width: 16px;
+  height: 2px;
+  background: var(--line-white);
+}
+
+.quote__close span:first-child { transform: rotate(45deg); }
+.quote__close span:last-child { transform: rotate(-45deg); }
+.quote__close:hover { border-color: var(--yellow); transform: rotate(90deg); }
+
+.quote__eyebrow {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--yellow);
+}
+
+.quote__title {
+  margin-top: 0.6rem;
+  font-size: clamp(1.7rem, 4vw, 2.4rem);
+  line-height: 1;
+}
+
+.quote__title em { font-style: normal; color: var(--yellow); }
+
+.quote__text {
+  margin-top: 0.9rem;
+  color: var(--fg-soft);
+  font-size: 0.92rem;
+}
+
+.quote__phone {
+  display: grid;
+  gap: 0.15rem;
+  margin-top: 1.6rem;
+  padding: 1rem 1.3rem;
+  background: var(--yellow);
+  color: var(--asphalt-900);
+  transition: transform 0.35s var(--ease-out);
+}
+
+.quote__phone:hover { transform: translateY(-2px); }
+
+.quote__phone-label {
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  opacity: 0.7;
+}
+
+.quote__phone-num {
+  font-family: var(--font-display);
+  font-size: clamp(1.8rem, 5vw, 2.5rem);
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.01em;
+}
+
+.quote__alts {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem;
+  margin-top: 0.6rem;
+}
+
+.quote__alt {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.8rem;
+  border: 1px solid var(--hairline);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: border-color 0.3s var(--ease-out), color 0.3s var(--ease-out);
+}
+
+.quote__alt svg { width: 18px; height: 18px; }
+.quote__alt:hover { border-color: var(--yellow); color: var(--yellow); }
+
+.quote__foot {
+  margin-top: 1.4rem;
+  font-size: 0.72rem;
+  color: var(--line-faint);
+  line-height: 1.5;
+}
+
+.quote__strip {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  height: 8px;
+}
+
+@media (max-width: 460px) {
+  .quote__alts { grid-template-columns: 1fr; }
+}

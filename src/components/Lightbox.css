@@ -1,0 +1,107 @@
+.lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 160;
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: clamp(0.5rem, 2vw, 1.5rem);
+  padding: clamp(3.5rem, 8vh, 6rem) clamp(0.7rem, 3vw, 3rem);
+}
+
+.lightbox__scrim {
+  position: absolute;
+  inset: 0;
+  background: rgba(4, 5, 6, 0.93);
+  backdrop-filter: blur(4px);
+}
+
+.lightbox__stage {
+  position: relative;
+  margin: 0;
+  max-height: 100%;
+  display: grid;
+  justify-items: center;
+  gap: 0;
+}
+
+.lightbox__stage img {
+  max-height: calc(100svh - clamp(8rem, 18vh, 13rem));
+  max-width: 100%;
+  width: auto;
+  object-fit: contain;
+}
+
+.lightbox__bar {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
+  flex-wrap: wrap;
+  padding: 0.8rem 0 0;
+  border-top: 1px solid var(--hairline);
+  margin-top: 0.8rem;
+}
+
+.lightbox__place {
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--yellow);
+}
+
+.lightbox__caption {
+  flex: 1;
+  font-family: var(--font-display);
+  font-size: clamp(1rem, 2vw, 1.4rem);
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.lightbox__count {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  color: var(--line-faint);
+}
+
+.lightbox__nav,
+.lightbox__close {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  place-items: center;
+  width: clamp(38px, 5vw, 52px);
+  height: clamp(38px, 5vw, 52px);
+  border: 1px solid var(--hairline);
+  color: var(--line-white);
+  transition: border-color 0.3s var(--ease-out), color 0.3s var(--ease-out);
+}
+
+.lightbox__nav svg { width: 22px; height: 22px; }
+.lightbox__nav:hover { border-color: var(--yellow); color: var(--yellow); }
+
+.lightbox__close {
+  position: absolute;
+  top: clamp(1rem, 3vh, 2rem);
+  right: clamp(1rem, 3vw, 2.5rem);
+}
+
+.lightbox__close span {
+  position: absolute;
+  width: 18px;
+  height: 2px;
+  background: currentColor;
+}
+
+.lightbox__close span:first-child { transform: rotate(45deg); }
+.lightbox__close span:last-child { transform: rotate(-45deg); }
+.lightbox__close:hover { border-color: var(--yellow); color: var(--yellow); }
+
+@media (max-width: 640px) {
+  .lightbox { grid-template-columns: 1fr; }
+  .lightbox__nav--prev { position: absolute; left: 0.7rem; top: 50%; }
+  .lightbox__nav--next { position: absolute; right: 0.7rem; top: 50%; }
+}

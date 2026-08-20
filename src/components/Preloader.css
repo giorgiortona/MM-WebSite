@@ -1,0 +1,137 @@
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+}
+
+/* Le cinque corsie che si sollevano in uscita */
+.preloader__lanes {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+}
+
+.preloader__lane {
+  background: var(--asphalt-900);
+  border-right: 1px solid rgba(242, 243, 239, 0.03);
+  will-change: transform;
+}
+
+.preloader__inner {
+  position: relative;
+  z-index: 2;
+  width: min(92vw, 760px);
+  max-height: 92svh;
+  display: grid;
+  gap: clamp(0.6rem, 3vh, 2rem);
+  justify-items: center;
+  align-content: center;
+}
+
+.preloader__hud {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--line-faint);
+}
+
+.preloader__brand { color: var(--yellow); }
+
+.preloader__job::before {
+  content: '';
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  margin-right: 0.6rem;
+  background: var(--orange);
+  animation: plBlink 0.9s steps(1) infinite;
+}
+
+@keyframes plBlink { 50% { opacity: 0; } }
+
+.pl-scene {
+  width: 100%;
+  height: auto;
+  max-height: 44svh;
+  will-change: transform, opacity;
+}
+
+.pl-dash { will-change: transform, opacity; }
+
+.preloader__meter {
+  width: 100%;
+  display: grid;
+  gap: 0.85rem;
+  justify-items: center;
+}
+
+.preloader__count {
+  display: flex;
+  align-items: baseline;
+  gap: 0.35rem;
+  font-family: var(--font-display);
+  line-height: 0.8;
+}
+
+.preloader__num {
+  font-size: clamp(2.6rem, 9vh, 7rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  font-variant-numeric: tabular-nums;
+  color: var(--line-white);
+}
+
+.preloader__pct {
+  font-size: clamp(1rem, 3vw, 1.6rem);
+  font-weight: 700;
+  color: var(--yellow);
+}
+
+.preloader__bar {
+  width: min(100%, 460px);
+  height: 8px;
+  background: rgba(242, 243, 239, 0.08);
+  overflow: hidden;
+}
+
+.preloader__bar-fill {
+  height: 100%;
+  width: 100%;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  background-image: repeating-linear-gradient(
+    -45deg,
+    var(--yellow) 0 10px,
+    var(--asphalt-900) 10px 20px
+  );
+}
+
+.preloader__legend {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--line-faint);
+}
+
+/* Velo giallo che si ritrae nell'ultimo movimento */
+.preloader__sweep {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(180deg, rgba(255, 212, 0, 0.06), transparent 55%);
+  pointer-events: none;
+}
+
+@media (max-width: 640px) {
+  .preloader__inner { gap: 1.4rem; }
+  .preloader__hud { flex-direction: column; gap: 0.4rem; text-align: center; }
+}

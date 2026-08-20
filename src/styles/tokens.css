@@ -1,0 +1,61 @@
+:root {
+  /* --- Superfici: asfalto --- */
+  --asphalt-900: #08090B;
+  --asphalt-800: #0B0C0E;
+  --asphalt-700: #111316;
+  --asphalt-600: #171A1E;
+  --asphalt-500: #1F2328;
+  --asphalt-400: #2A2F35;
+  --asphalt-300: #3A4048;
+
+  /* --- Vernice / pellicola --- */
+  --line-white: #F2F3EF;
+  --line-dim: rgba(242, 243, 239, 0.62);
+  --line-faint: rgba(242, 243, 239, 0.34);
+  --line-ghost: rgba(242, 243, 239, 0.12);
+
+  /* --- Accenti da codice della strada --- */
+  --yellow: #FFD400;
+  --yellow-deep: #E8B800;
+  --orange: #FF6A00;
+  --sign-red: #C8102E;
+  --sign-blue: #0B5FA5;
+  --sign-green: #0E7A3C;
+
+  /* --- Semantici --- */
+  --bg: var(--asphalt-800);
+  --bg-alt: var(--asphalt-700);
+  --fg: var(--line-white);
+  --fg-soft: var(--line-dim);
+  --accent: var(--yellow);
+  --hairline: rgba(242, 243, 239, 0.10);
+
+  /* --- Tipografia --- */
+  --font-display: 'Barlow Condensed', 'Oswald', 'Haettenschweiler', 'Arial Narrow', sans-serif;
+  --font-body: 'Barlow', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-mono: ui-monospace, 'SF Mono', 'JetBrains Mono', Menlo, monospace;
+
+  --step--1: clamp(0.78rem, 0.75rem + 0.15vw, 0.86rem);
+  --step-0:  clamp(0.95rem, 0.90rem + 0.25vw, 1.06rem);
+  --step-1:  clamp(1.15rem, 1.05rem + 0.5vw, 1.4rem);
+  --step-2:  clamp(1.5rem, 1.25rem + 1.2vw, 2.2rem);
+  --step-3:  clamp(2.1rem, 1.5rem + 3vw, 4rem);
+  --step-4:  clamp(2.8rem, 1.6rem + 6vw, 7rem);
+  --step-5:  clamp(3rem, 1.2rem + 8vw, 8.6rem);
+
+  /* --- Spazio & layout --- */
+  --gutter: clamp(1.15rem, 4vw, 4.5rem);
+  --section-y: clamp(4.5rem, 10vw, 11rem);
+  --maxw: 1560px;
+  --radius: 3px;
+  --radius-lg: 6px;
+
+  /* --- Motion --- */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.76, 0, 0.24, 1);
+  --dur: 0.65s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root { --dur: 0.001s; }
+}

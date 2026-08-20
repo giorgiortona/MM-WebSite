@@ -1,0 +1,77 @@
+.quotebar {
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  z-index: 110;
+  background: rgba(8, 9, 11, 0.92);
+  backdrop-filter: blur(14px);
+  border-top: 1px solid var(--hairline);
+  padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+.quotebar__inner {
+  max-width: var(--maxw);
+  margin-inline: auto;
+  padding: 0.7rem var(--gutter);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.quotebar__text { display: grid; line-height: 1.2; }
+
+.quotebar__text strong {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
+}
+
+.quotebar__text em {
+  font-family: var(--font-mono);
+  font-style: normal;
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--line-faint);
+}
+
+.quotebar__actions { display: flex; align-items: center; gap: 0.6rem; }
+
+.quotebar__phone {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1rem;
+  border: 1px solid var(--hairline);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  transition: border-color 0.3s var(--ease-out), color 0.3s var(--ease-out);
+}
+
+.quotebar__phone svg { width: 15px; height: 15px; color: var(--yellow); }
+.quotebar__phone:hover { border-color: var(--yellow); color: var(--yellow); }
+
+.quotebar__btn {
+  padding: 0.65rem 1.3rem;
+  background: var(--yellow);
+  color: var(--asphalt-900);
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  transition: filter 0.3s var(--ease-out);
+}
+
+.quotebar__btn:hover { filter: brightness(1.12); }
+
+@media (max-width: 620px) {
+  .quotebar__text em { display: none; }
+  .quotebar__phone span { display: none; }
+  .quotebar__inner { padding-block: 0.55rem; }
+}

@@ -1,0 +1,183 @@
+.reel {
+  position: relative;
+  background: var(--asphalt-900);
+  border-top: 1px solid var(--hairline);
+  overflow: hidden;
+}
+
+.reel__viewport {
+  min-height: 100svh;
+  display: flex;
+  align-items: center;
+  padding-block: clamp(4rem, 10vh, 8rem);
+}
+
+.reel__track {
+  display: flex;
+  align-items: center;
+  gap: clamp(1rem, 2.4vw, 2.2rem);
+  padding-inline: var(--gutter);
+  will-change: transform;
+}
+
+/* --- Pannello introduttivo --- */
+.reel__intro {
+  flex: none;
+  width: min(78vw, 420px);
+  padding-right: clamp(1rem, 3vw, 3rem);
+}
+
+.reel__intro .section-title { font-size: var(--step-3); }
+
+.reel__intro-text {
+  margin-top: 1.2rem;
+  color: var(--fg-soft);
+  max-width: 34ch;
+}
+
+.reel__hint {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 1.8rem;
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--line-faint);
+}
+
+.reel__hint svg { width: 20px; height: 20px; color: var(--yellow); }
+
+/* --- Schede --- */
+.reel__card {
+  position: relative;
+  flex: none;
+  overflow: hidden;
+  text-align: left;
+  background: var(--asphalt-600);
+}
+
+.reel__card--wide { width: min(84vw, 640px); aspect-ratio: 16 / 10; }
+.reel__card--tall { width: min(64vw, 400px); aspect-ratio: 3 / 4; }
+
+.reel__card .figure { height: 100%; }
+
+/* L'immagine e' piu' larga della scheda: la parallasse orizzontale
+   la sposta senza mai scoprire il bordo. */
+.reel__card .figure img {
+  width: 112%;
+  max-width: none;
+  margin-left: -6%;
+}
+
+.reel__card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(8, 9, 11, 0.9) 2%, transparent 52%);
+  pointer-events: none;
+}
+
+.reel__card-meta {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 2;
+  display: grid;
+  gap: 0.15rem;
+  padding: clamp(1rem, 2vw, 1.6rem);
+}
+
+.reel__card-n {
+  font-family: var(--font-mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.18em;
+  color: var(--yellow);
+}
+
+.reel__card-caption {
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 2vw, 1.6rem);
+  font-weight: 700;
+  text-transform: uppercase;
+  line-height: 1.05;
+}
+
+.reel__card-place {
+  font-family: var(--font-mono);
+  font-size: 0.64rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--line-faint);
+}
+
+.reel__card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  border: 2px solid transparent;
+  transition: border-color 0.4s var(--ease-out);
+  pointer-events: none;
+}
+
+.reel__card:hover::before,
+.reel__card:focus-visible::before { border-color: var(--yellow); }
+
+/* --- Coda --- */
+.reel__end {
+  flex: none;
+  width: min(50vw, 260px);
+  display: grid;
+  gap: 0.9rem;
+  padding-left: clamp(1rem, 2vw, 2rem);
+}
+
+.reel__end span {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--line-faint);
+}
+
+.reel__end .hazard-strip { height: 8px; }
+
+/* --- Avanzamento --- */
+.reel__progress {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 4px;
+  background: rgba(242, 243, 239, 0.06);
+}
+
+.reel__progress-fill {
+  height: 100%;
+  transform: scaleX(0);
+  transform-origin: 0 50%;
+  background-image: repeating-linear-gradient(
+    to right,
+    var(--yellow) 0 42px,
+    transparent 42px 68px
+  );
+}
+
+@media (max-width: 999px) {
+  .reel__viewport {
+    min-height: 0;
+    overflow-x: auto;
+    scroll-snap-type: x proximity;
+    scroll-padding-inline: var(--gutter);
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-block: clamp(2.5rem, 7vh, 4rem);
+  }
+  .reel__viewport::-webkit-scrollbar { display: none; }
+  .reel__card,
+  .reel__intro { scroll-snap-align: start; }
+  .reel__intro { width: min(84vw, 380px); }
+  .reel__progress { display: none; }
+}
