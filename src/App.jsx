@@ -39,21 +39,28 @@ function Shell() {
     document.body.classList.toggle('is-locked', loading);
   }, [loading]);
 
+  /* Le navigazioni provenienti da una pagina interna arrivano alla sezione
+     richiesta prima del nuovo fotogramma, senza mostrare lo scorrimento. */
+  useLayoutEffect(() => {
+    const section = location.state?.instantSection;
+    if (isHome && section) scrollToSection(section, { instant: true });
+  }, [isHome, location.key, location.state]);
+
   /* Uscendo dalla home lo smoother va spento: vive solo su quella pagina. */
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (!isHome) ScrollSmoother.get()?.kill();
-    window.scrollTo(0, 0);
-  }, [isHome, location.pathname]);
+    const restoresCatalogPosition = Number.isFinite(location.state?.restoreCatalogScrollY);
+    if (!location.state?.instantSection && !restoresCatalogPosition) window.scrollTo(0, 0);
+  }, [isHome, location.pathname, location.state]);
 
   /* Le voci di menu portano a una sezione della home, da qualunque pagina. */
   const goToSection = useCallback(
     (id) => {
       setMenuOpen(false);
       if (isHome) {
-        setTimeout(() => scrollToSection(id), 480);
+        setTimeout(() => scrollToSection(id, { instant: true }), 0);
       } else {
-        navigate('/');
-        setTimeout(() => scrollToSection(id), 700);
+        navigate('/', { state: { instantSection: id } });
       }
     },
     [isHome, navigate]

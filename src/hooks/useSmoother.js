@@ -32,11 +32,20 @@ export function useSmoother(scope, enabled) {
   return smoother;
 }
 
-/* Scroll verso una sezione, con o senza smoother attivo. */
-export function scrollToSection(id) {
+/* Spostamento verso una sezione, animato oppure immediato. */
+export function scrollToSection(id, { instant = false } = {}) {
   const el = document.getElementById(id);
   if (!el) return;
   const smoother = ScrollSmoother.get();
+  if (instant) {
+    if (smoother) {
+      smoother.scrollTo(el, false, 'top 64px');
+    } else {
+      const top = el.getBoundingClientRect().top + window.scrollY - 64;
+      window.scrollTo({ top: Math.max(0, top), behavior: 'auto' });
+    }
+    return;
+  }
   if (smoother) {
     smoother.scrollTo(el, true, 'top 64px');
   } else {

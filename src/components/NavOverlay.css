@@ -93,41 +93,60 @@
   transform: translateX(0);
 }
 
-/* --- Colonna destra: anteprima + contatti --- */
+/* --- Colonna destra: marchio + contatti --- */
 .nav-overlay__aside {
   display: grid;
   gap: clamp(1.4rem, 3vh, 2.4rem);
   align-content: center;
 }
 
-.nav-overlay__preview {
+.nav-overlay__brand {
   position: relative;
-  aspect-ratio: 4 / 3;
-  overflow: hidden;
-  border: 1px solid var(--hairline);
+  min-height: clamp(17rem, 43vh, 32rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  padding: clamp(1.5rem, 3vw, 3rem);
+  border-block: 1px solid var(--hairline);
+  isolation: isolate;
 }
 
-.nav-preview__item {
+.nav-overlay__brand::after {
+  content: '';
   position: absolute;
-  inset: 0;
-  opacity: 0;
-  transition: opacity 0.6s var(--ease-out);
-}
-
-.nav-preview__item.is-active { opacity: 1; }
-
-.nav-overlay__preview-tag {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  z-index: 3;
-  padding: 0.55rem 1rem;
+  right: 0;
+  bottom: clamp(1.5rem, 3vw, 3rem);
+  width: clamp(2rem, 5vw, 4rem);
+  height: 4px;
   background: var(--yellow);
-  color: var(--asphalt-900);
+}
+
+.nav-overlay__brand-mm,
+.nav-overlay__brand-group {
   font-family: var(--font-display);
-  font-size: 0.95rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
+  font-size: clamp(5.3rem, 10.5vw, 10.5rem);
+  font-weight: 800;
+  line-height: 0.72;
+  letter-spacing: -0.055em;
+  text-transform: uppercase;
+}
+
+.nav-overlay__brand-mm { color: var(--yellow); }
+
+.nav-overlay__brand-group {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--line-white);
+  text-stroke: 1.5px var(--line-white);
+}
+
+.nav-overlay__brand-sub {
+  margin-top: clamp(1.4rem, 3vh, 2rem);
+  color: var(--fg-soft);
+  font-family: var(--font-display);
+  font-size: clamp(0.9rem, 1.35vw, 1.15rem);
+  font-weight: 600;
+  letter-spacing: 0.11em;
   text-transform: uppercase;
 }
 
@@ -166,8 +185,17 @@
     align-content: safe center;
     gap: 2rem;
   }
-  .nav-overlay__preview { display: none; }
   .nav-overlay__aside { align-content: start; }
+  .nav-overlay__brand {
+    min-height: 0;
+    padding: 1.4rem 0;
+  }
+  .nav-overlay__brand-mm,
+  .nav-overlay__brand-group {
+    font-size: clamp(3.4rem, 17vw, 6rem);
+  }
+  .nav-overlay__brand-sub { margin-top: 1rem; }
+  .nav-overlay__brand::after { bottom: 1.4rem; }
 }
 
 @media (max-height: 720px) and (min-width: 981px) {

@@ -1,16 +1,13 @@
-import { useRef, useState, useEffect } from 'react';
+import { useRef, useEffect } from 'react';
 import { gsap, useGSAP, SplitText } from '../lib/gsap';
 import { nav, site, PHONE_TEL } from '../data/site';
-import { services } from '../data/services';
-import Figure from './Figure';
 import './NavOverlay.css';
 
 /* Menu a tutto schermo: il pannello si apre con un taglio diagonale,
-   le voci salgono in sequenza e l'anteprima a destra segue il puntatore. */
+   le voci salgono in sequenza e il marchio accompagna la navigazione. */
 export default function NavOverlay({ open, onClose, onNavigate }) {
   const root = useRef(null);
   const tl = useRef(null);
-  const [hovered, setHovered] = useState(0);
 
   useGSAP(
     () => {
@@ -50,8 +47,8 @@ export default function NavOverlay({ open, onClose, onNavigate }) {
           0.5
         )
         .fromTo(
-          q('.nav-overlay__preview'),
-          { opacity: 0, scale: 1.08 },
+          q('.nav-overlay__brand'),
+          { opacity: 0, scale: 0.94 },
           { opacity: 1, scale: 1, duration: 0.9 },
           0.4
         );
@@ -79,8 +76,6 @@ export default function NavOverlay({ open, onClose, onNavigate }) {
     };
   }, [open, onClose]);
 
-  const previewSlug = services[hovered % services.length]?.photo || 'rotatoria-aerea';
-
   return (
     <div
       className="nav-overlay"
@@ -95,13 +90,11 @@ export default function NavOverlay({ open, onClose, onNavigate }) {
         <div className="nav-overlay__grid">
           <nav className="nav-overlay__nav" aria-label="Navigazione principale">
             <ul>
-              {nav.map((item, i) => (
+              {nav.map((item) => (
                 <li key={item.id}>
                   <a
                     className="nav-link"
                     href={`#${item.id}`}
-                    onMouseEnter={() => setHovered(i)}
-                    onFocus={() => setHovered(i)}
                     onClick={(e) => {
                       e.preventDefault();
                       onNavigate(item.id);
@@ -118,19 +111,10 @@ export default function NavOverlay({ open, onClose, onNavigate }) {
           </nav>
 
           <div className="nav-overlay__aside">
-            <div className="nav-overlay__preview" aria-hidden="true">
-              {services.map((s, i) => (
-                <Figure
-                  key={s.photo}
-                  slug={s.photo}
-                  size={900}
-                  sizes="34vw"
-                  className={`nav-preview__item ${i === hovered ? 'is-active' : ''}`}
-                />
-              ))}
-              <span className="nav-overlay__preview-tag">
-                {services[hovered % services.length]?.title}
-              </span>
+            <div className="nav-overlay__brand" aria-label="M.M. Group">
+              <span className="nav-overlay__brand-mm">M.M.</span>
+              <span className="nav-overlay__brand-group">Group</span>
+              <span className="nav-overlay__brand-sub">Segnaletica stradale completa</span>
             </div>
 
             <div className="nav-overlay__contact" data-nav-fade>

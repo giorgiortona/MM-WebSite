@@ -1,3 +1,5 @@
+import { signSeriesFamilies, signSeriesProducts } from './signSeries';
+
 /* Catalogo su tre livelli: macro area -> famiglia -> articolo.
    Nessun prezzo esposto: dimensioni, materiali e classi di pellicola
    provengono dal listino aziendale, il prezzo si concorda a voce. */
@@ -47,9 +49,11 @@ export const families = [
   { id: 'cantiere', macro: 'cantiere', label: 'Cantiere e sicurezza' },
   { id: 'sostegni', macro: 'sostegni', label: 'Sostegni e fissaggi' },
   { id: 'urbano', macro: 'sostegni', label: 'Arredo urbano e specchi' },
+  ...signSeriesFamilies,
 ];
 
 export const products = [
+  ...signSeriesProducts,
   /* ---------------- SEGNALI ---------------- */
   {
     id: 'triangolo',
@@ -882,3 +886,8 @@ export const productsOfMacro = (macroId) => {
 
 export const findFamily = (id) => families.find((f) => f.id === id);
 export const findMacro = (id) => macros.find((m) => m.id === id);
+
+export const countCatalogItems = (items) =>
+  items.reduce((total, product) => total + (product.variants?.length || 1), 0);
+
+export const catalogItemCount = countCatalogItems(products);

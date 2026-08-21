@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { gsap, useGSAP, prefersReducedMotion } from '../lib/gsap';
-import { macros, productsOfMacro, products } from '../data/catalog';
+import { macros, productsOfMacro, countCatalogItems, catalogItemCount } from '../data/catalog';
 import MacroFigure from './MacroFigure';
 import './CatalogTeaser.css';
 
@@ -59,7 +59,7 @@ export default function CatalogTeaser() {
           <header className="teaser__head">
             <h2 className="teaser__title">Catalogo</h2>
             <p className="teaser__sub">
-              {products.length} articoli in cinque aree, con materiali, misure e classi di
+              {catalogItemCount} segnali e articoli in cinque aree, con materiali, misure e classi di
               pellicola. Il prezzo dipende da quantità, finitura e posa: si concorda per telefono.
             </p>
           </header>
@@ -74,7 +74,7 @@ export default function CatalogTeaser() {
                   <span className="macro-card__name">{m.name}</span>
                   <span className="macro-card__blurb">{m.blurb}</span>
                   <span className="macro-card__foot">
-                    <em>{productsOfMacro(m.id).length} articoli</em>
+                    <em>{countCatalogItems(productsOfMacro(m.id))} articoli</em>
                     <svg viewBox="0 0 24 24" aria-hidden="true">
                       <path d="M4 12h15m0 0-6-6m6 6-6 6" stroke="currentColor" strokeWidth="2" fill="none" />
                     </svg>

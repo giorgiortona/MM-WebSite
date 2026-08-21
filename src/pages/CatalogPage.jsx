@@ -1,5 +1,5 @@
-import { useRef, useState, useEffect, useMemo } from 'react';
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { useRef, useState, useEffect, useLayoutEffect, useMemo } from 'react';
+import { Link, useParams, useNavigate, useLocation } from 'react-router-dom';
 import { gsap, useGSAP, Flip, ScrollTrigger, prefersReducedMotion } from '../lib/gsap';
 import {
   macros,
@@ -7,18 +7,148 @@ import {
   productsOfFamily,
   productsOfMacro,
   findMacro,
-  findFamily,
   products,
+  countCatalogItems,
+  catalogItemCount,
+  findFamily,
 } from '../data/catalog';
 import ProductFigure from '../components/ProductFigure';
+import VariantFigure from '../components/VariantFigure';
 import MacroFigure from '../components/MacroFigure';
 import Footer from '../components/Footer';
-import { scrollToSection } from '../hooks/useSmoother';
 import './CatalogPage.css';
+
+const normalizeSearch = (value = '') =>
+  value
+    .toLocaleLowerCase('it-IT')
+    .normalize('NFD')
+    .replace(/\p{Diacritic}/gu, '')
+    .trim();
+
+const catalogSearchEntries = products.flatMap((product) => {
+  const family = findFamily(product.cat);
+  const productMacro = macros.find((item) => item.id === family?.macro);
+  if (!family || !productMacro) return [];
+
+  const route = `/catalogo/${productMacro.id}/${product.id}`;
+  const context = `${productMacro.name} ${family.label} ${product.fig || ''}`;
+  const productEntry = {
+    key: product.id,
+    label: product.name,
+    detail: `${productMacro.name} · ${family.label}`,
+    route,
+    macroId: productMacro.id,
+    haystack: normalizeSearch(
+      [product.name, product.fig, product.desc, ...(product.tags || [])].filter(Boolean).join(' ')
+    ),
+  };
+
+  const variantEntries = (product.variants || []).map((variant, index) => ({
+    key: `${product.id}-variant-${index}`,
+    label: variant.name,
+    detail: `${product.name} · ${productMacro.name}`,
+    route,
+    macroId: productMacro.id,
+    haystack: normalizeSearch(`${variant.name} ${variant.desc || ''} ${product.name} ${context}`),
+  }));
+
+  return [productEntry, ...variantEntries];
+});
+
+function CatalogSearch({ currentMacroId }) {
+  const navigate = useNavigate();
+  const [query, setQuery] = useState('');
+  const [isOpen, setIsOpen] = useState(false);
+  const normalizedQuery = normalizeSearch(query);
+
+  const results = useMemo(() => {
+    if (normalizedQuery.length < 2) return [];
+
+    return catalogSearchEntries
+      .map((entry) => {
+        const label = normalizeSearch(entry.label);
+        let rank = 4;
+        if (label === normalizedQuery) rank = 0;
+        else if (label.startsWith(normalizedQuery)) rank = 1;
+        else if (label.includes(normalizedQuery)) rank = 2;
+        else if (entry.haystack.includes(normalizedQuery)) rank = 3;
+        else return null;
+
+        if (entry.macroId === currentMacroId) rank -= 0.25;
+        return { ...entry, rank };
+      })
+      .filter(Boolean)
+      .sort((a, b) => a.rank - b.rank || a.label.localeCompare(b.label, 'it'))
+      .slice(0, 8);
+  }, [currentMacroId, normalizedQuery]);
+
+  const openResult = (result) => {
+    if (!result) return;
+    setQuery('');
+    setIsOpen(false);
+    navigate(result.route);
+  };
+
+  return (
+    <form
+      className="catalog-search"
+      role="search"
+      onSubmit={(event) => {
+        event.preventDefault();
+        openResult(results[0]);
+      }}
+      onBlur={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) setIsOpen(false);
+      }}
+    >
+      <label className="catalog-search__label" htmlFor={`catalog-search-${currentMacroId || 'all'}`}>
+        Cerca nel catalogo
+      </label>
+      <div className="catalog-search__field">
+        <input
+          id={`catalog-search-${currentMacroId || 'all'}`}
+          type="search"
+          value={query}
+          placeholder="Cerca segnali e articoli…"
+          autoComplete="off"
+          aria-controls="catalog-search-results"
+          aria-expanded={isOpen && normalizedQuery.length >= 2}
+          onChange={(event) => {
+            setQuery(event.target.value);
+            setIsOpen(true);
+          }}
+          onFocus={() => setIsOpen(true)}
+          onKeyDown={(event) => {
+            if (event.key === 'Escape') setIsOpen(false);
+          }}
+        />
+        <button type="submit" aria-label="Avvia la ricerca" disabled={!results.length}>
+          <span aria-hidden="true" />
+        </button>
+      </div>
+
+      {isOpen && normalizedQuery.length >= 2 && (
+        <div className="catalog-search__results" id="catalog-search-results" aria-live="polite">
+          {results.length > 0 ? (
+            results.map((result) => (
+              <button type="button" key={result.key} onClick={() => openResult(result)}>
+                <strong>{result.label}</strong>
+                <span>{result.detail}</span>
+              </button>
+            ))
+          ) : (
+            <p>Nessun articolo trovato</p>
+          )}
+        </div>
+      )}
+    </form>
+  );
+}
 
 export default function CatalogPage({ onQuote, notFound }) {
   const { macroId, articleId } = useParams();
   const navigate = useNavigate();
+  const location = useLocation();
   const root = useRef(null);
   const grid = useRef(null);
   const flip = useRef(null);
@@ -36,6 +166,14 @@ export default function CatalogPage({ onQuote, notFound }) {
   useEffect(() => {
     ScrollTrigger.refresh();
   }, [macroId, articleId]);
+
+  /* Tornando da una scheda articolo, ripristina il punto esatto della
+     categoria prima che la pagina venga mostrata: nessun salto verso l'alto. */
+  useLayoutEffect(() => {
+    const scrollY = location.state?.restoreCatalogScrollY;
+    if (articleId || !Number.isFinite(scrollY)) return;
+    window.scrollTo({ top: scrollY, behavior: 'auto' });
+  }, [articleId, location.key, location.state]);
 
   /* Ingresso della pagina */
   useGSAP(
@@ -62,13 +200,22 @@ export default function CatalogPage({ onQuote, notFound }) {
     setFamily(id);
   };
 
+  const returnToHomeCatalog = () => {
+    navigate('/', { state: { instantSection: 'catalogo' } });
+  };
+
+  const returnToFamily = () => {
+    const scrollY = location.state?.catalogScrollY ?? 0;
+    navigate(`/catalogo/${macro.id}`, { state: { restoreCatalogScrollY: scrollY } });
+  };
+
   useGSAP(
     () => {
       if (!flip.current) return;
       Flip.from(flip.current, {
         duration: 0.5,
         ease: 'panel',
-        scale: true,
+        scale: false,
         absolute: true,
         onEnter: (els) =>
           gsap.fromTo(els, { opacity: 0, y: 22 }, { opacity: 1, y: 0, duration: 0.45, stagger: 0.03, ease: 'panel' }),
@@ -112,13 +259,16 @@ export default function CatalogPage({ onQuote, notFound }) {
           {/* ---------- indice delle aree ---------- */}
           {!macro && (
             <>
-              <header className="catpage__head" data-enter>
-                <h1 className="catpage__title">Catalogo</h1>
-                <p className="catpage__sub">
-                  {notFound
-                    ? 'La pagina cercata non esiste. Riparti da qui: il catalogo è diviso in cinque aree.'
-                    : `${products.length} articoli in cinque aree, con materiali, misure e classi di pellicola.`}
-                </p>
+              <header className="catpage__head catpage__head--with-search" data-enter>
+                <div className="catpage__head-copy">
+                  <h1 className="catpage__title">Catalogo</h1>
+                  <p className="catpage__sub">
+                    {notFound
+                      ? 'La pagina cercata non esiste. Riparti da qui: il catalogo è diviso in cinque aree.'
+                      : `${catalogItemCount} segnali e articoli in cinque aree, con materiali, misure e classi di pellicola.`}
+                  </p>
+                </div>
+                <CatalogSearch />
               </header>
 
               <div className="catpage__areas" data-enter>
@@ -128,7 +278,9 @@ export default function CatalogPage({ onQuote, notFound }) {
                       <MacroFigure id={m.id} />
                     </span>
                     <span className="area-card__name">{m.name}</span>
-                    <span className="area-card__count">{productsOfMacro(m.id).length} articoli</span>
+                    <span className="area-card__count">
+                      {countCatalogItems(productsOfMacro(m.id))} articoli
+                    </span>
                   </Link>
                 ))}
               </div>
@@ -138,14 +290,17 @@ export default function CatalogPage({ onQuote, notFound }) {
           {/* ---------- famiglie e articoli ---------- */}
           {macro && !article && (
             <>
-              <header className="catpage__head" data-enter>
-                <p className="catpage__crumb">
-                  <Link to="/catalogo">Catalogo</Link>
-                  <span aria-hidden="true">/</span>
-                  <strong>{macro.name}</strong>
-                </p>
-                <h1 className="catpage__title">{macro.name}</h1>
-                <p className="catpage__sub">{macro.blurb}</p>
+              <header className="catpage__head catpage__head--with-search" data-enter>
+                <div className="catpage__head-copy">
+                  <p className="catpage__crumb">
+                    <Link to="/catalogo">Catalogo</Link>
+                    <span aria-hidden="true">/</span>
+                    <strong>{macro.name}</strong>
+                  </p>
+                  <h1 className="catpage__title">{macro.name}</h1>
+                  <p className="catpage__sub">{macro.blurb}</p>
+                </div>
+                <CatalogSearch currentMacroId={macro.id} />
               </header>
 
               <div className="catpage__grid">
@@ -158,7 +313,7 @@ export default function CatalogPage({ onQuote, notFound }) {
                           onClick={() => pickFamily(f.id)}
                         >
                           <span>{f.label}</span>
-                          <em>{productsOfFamily(f.id).length}</em>
+                          <em>{countCatalogItems(productsOfFamily(f.id))}</em>
                         </button>
                       </li>
                     ))}
@@ -172,9 +327,15 @@ export default function CatalogPage({ onQuote, notFound }) {
                       key={p.id}
                       data-flip-id={p.id}
                       to={`/catalogo/${macro.id}/${p.id}`}
+                      onClick={(event) => {
+                        event.preventDefault();
+                        navigate(`/catalogo/${macro.id}/${p.id}`, {
+                          state: { catalogScrollY: window.scrollY },
+                        });
+                      }}
                     >
                       <span className="art-card__shot">
-                        <ProductFigure id={p.id} />
+                        <ProductFigure id={p.visual || p.id} />
                       </span>
                       <span className="art-card__body">
                         <span className="art-card__name">{p.name}</span>
@@ -202,7 +363,7 @@ export default function CatalogPage({ onQuote, notFound }) {
 
               <article className="sheet">
                 <div className="sheet__shot" data-enter>
-                  <ProductFigure id={article.id} />
+                  <ProductFigure id={article.visual || article.id} />
                 </div>
 
                 <div className="sheet__body" data-enter>
@@ -230,12 +391,41 @@ export default function CatalogPage({ onQuote, notFound }) {
                         <path d="M4 12h15m0 0-6-6m6 6-6 6" stroke="currentColor" strokeWidth="2.2" fill="none" />
                       </svg>
                     </button>
-                    <button className="sheet__back" type="button" onClick={() => navigate(-1)}>
+                    <button className="sheet__back" type="button" onClick={returnToFamily}>
                       Torna indietro
+                    </button>
+                    <button className="sheet__back" type="button" onClick={returnToHomeCatalog}>
+                      Torna al catalogo
                     </button>
                   </div>
                 </div>
               </article>
+
+              {article.variants?.length > 0 && (
+                <section className="sheet__variants" aria-labelledby="varianti-title" data-enter>
+                  <div className="sheet__variants-head">
+                    <h2 id="varianti-title">Segnali disponibili</h2>
+                    <span>{article.variants.length} varianti</span>
+                  </div>
+                  <div className="sheet__variants-list">
+                    {article.variants.map((variant) => (
+                      <article className="sheet__variant" key={variant.name}>
+                        <span className="sheet__variant-shot">
+                          <VariantFigure
+                            name={variant.name}
+                            family={article.id}
+                            visual={article.visual}
+                          />
+                        </span>
+                        <span className="sheet__variant-copy">
+                          <h3>{variant.name}</h3>
+                          <p>{variant.desc}</p>
+                        </span>
+                      </article>
+                    ))}
+                  </div>
+                </section>
+              )}
 
               <section className="sheet__siblings" data-enter>
                 <h2>Altri articoli della famiglia</h2>
@@ -244,9 +434,14 @@ export default function CatalogPage({ onQuote, notFound }) {
                     .filter((p) => p.id !== article.id)
                     .slice(0, 4)
                     .map((p) => (
-                      <Link className="art-card" key={p.id} to={`/catalogo/${macro.id}/${p.id}`}>
+                      <Link
+                        className="art-card"
+                        key={p.id}
+                        to={`/catalogo/${macro.id}/${p.id}`}
+                        state={{ catalogScrollY: location.state?.catalogScrollY ?? 0 }}
+                      >
                         <span className="art-card__shot">
-                          <ProductFigure id={p.id} />
+                          <ProductFigure id={p.visual || p.id} />
                         </span>
                         <span className="art-card__body">
                           <span className="art-card__name">{p.name}</span>
@@ -263,8 +458,7 @@ export default function CatalogPage({ onQuote, notFound }) {
 
       <Footer
         onNavigate={(id) => {
-          navigate('/');
-          setTimeout(() => scrollToSection(id), 700);
+          navigate('/', { state: { instantSection: id } });
         }}
         onTop={() => navigate('/')}
       />
