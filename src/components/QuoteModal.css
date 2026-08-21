@@ -11,7 +11,7 @@
 .quote__scrim {
   position: absolute;
   inset: 0;
-  background: rgba(4, 5, 6, 0.82);
+  background: rgba(11, 38, 61, 0.78);
   backdrop-filter: blur(6px);
 }
 
@@ -19,8 +19,9 @@
   position: relative;
   width: min(100%, 540px);
   padding: clamp(1.6rem, 4vw, 2.6rem);
-  background: var(--asphalt-700);
-  border: 1px solid var(--hairline);
+  background: var(--surface-card);
+  color: var(--ink-900);
+  border: 1px solid rgba(16, 42, 67, 0.14);
   border-top: 2px solid var(--yellow);
   overflow: hidden;
   will-change: clip-path;
@@ -34,7 +35,7 @@
   height: 34px;
   display: grid;
   place-items: center;
-  border: 1px solid var(--hairline);
+  border: 1px solid rgba(16, 42, 67, 0.16);
   transition: border-color 0.3s var(--ease-out), transform 0.3s var(--ease-out);
 }
 
@@ -42,19 +43,19 @@
   position: absolute;
   width: 16px;
   height: 2px;
-  background: var(--line-white);
+  background: var(--ink-900);
 }
 
 .quote__close span:first-child { transform: rotate(45deg); }
 .quote__close span:last-child { transform: rotate(-45deg); }
-.quote__close:hover { border-color: var(--yellow); transform: rotate(90deg); }
+.quote__close:hover { border-color: var(--sign-blue); transform: rotate(90deg); }
 
 .quote__eyebrow {
   font-family: var(--font-mono);
   font-size: 0.66rem;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--yellow);
+  color: var(--sign-blue);
 }
 
 .quote__title {
@@ -63,11 +64,11 @@
   line-height: 1;
 }
 
-.quote__title em { font-style: normal; color: var(--yellow); }
+.quote__title em { font-style: normal; color: var(--sign-blue); }
 
 .quote__text {
   margin-top: 0.9rem;
-  color: var(--fg-soft);
+  color: var(--ink-700);
   font-size: 0.92rem;
 }
 
@@ -76,12 +77,13 @@
   gap: 0.15rem;
   margin-top: 1.6rem;
   padding: 1rem 1.3rem;
-  background: var(--yellow);
-  color: var(--asphalt-900);
-  transition: transform 0.35s var(--ease-out);
+  background: var(--sign-blue);
+  color: var(--line-white);
+  border-left: 5px solid var(--yellow);
+  transition: transform 0.35s var(--ease-out), background-color 0.35s var(--ease-out);
 }
 
-.quote__phone:hover { transform: translateY(-2px); }
+.quote__phone:hover { background: var(--asphalt-900); transform: translateY(-2px); }
 
 .quote__phone-label {
   font-family: var(--font-mono);
@@ -112,7 +114,7 @@
   justify-content: center;
   gap: 0.5rem;
   padding: 0.8rem;
-  border: 1px solid var(--hairline);
+  border: 1px solid rgba(16, 42, 67, 0.16);
   font-family: var(--font-display);
   font-size: 1rem;
   font-weight: 700;
@@ -122,12 +124,12 @@
 }
 
 .quote__alt svg { width: 18px; height: 18px; }
-.quote__alt:hover { border-color: var(--yellow); color: var(--yellow); }
+.quote__alt:hover { border-color: var(--sign-blue); color: var(--sign-blue); }
 
 .quote__foot {
   margin-top: 1.4rem;
   font-size: 0.72rem;
-  color: var(--line-faint);
+  color: var(--ink-500);
   line-height: 1.5;
 }
 

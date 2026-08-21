@@ -77,14 +77,19 @@ export default function Footer({ onNavigate, onTop }) {
           </div>
         </div>
 
-        <div className="footer__big" aria-hidden="true">
+        <button
+          className="footer__big"
+          type="button"
+          onClick={onTop}
+          aria-label="Torna all’inizio della pagina"
+        >
           <span className="footer__word-mask">
             <span className="footer__word">M.M.</span>
           </span>
           <span className="footer__word-mask">
             <span className="footer__word">Group</span>
           </span>
-        </div>
+        </button>
 
         <div className="footer__bottom">
           <span>
@@ -97,6 +102,17 @@ export default function Footer({ onNavigate, onTop }) {
             </svg>
           </button>
         </div>
+
+        <p className="footer__credit">
+          created by{' '}
+          <a
+            href="https://www.instagram.com/dimana.digitalcreations/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Dimana.DigitalCreations
+          </a>
+        </p>
       </div>
     </footer>
   );

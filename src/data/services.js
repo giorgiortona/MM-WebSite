@@ -1,5 +1,5 @@
 /* Servizi ricavati dall'oggetto sociale della società.
-   Ogni voce è agganciata a una foto: la lista li rivela al passaggio del cursore. */
+   Ogni voce è agganciata a una foto mostrata come anteprima al passaggio del cursore. */
 export const services = [
   {
     id: 'orizzontale',

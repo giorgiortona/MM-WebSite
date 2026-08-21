@@ -6,6 +6,15 @@
   padding-block: clamp(6rem, 12vh, 8.5rem) clamp(3rem, 6vh, 5rem);
   overflow: hidden;
   isolation: isolate;
+  color: var(--line-white);
+  --fg: var(--line-white);
+  --fg-soft: var(--line-dim);
+  --hairline: var(--line-ghost);
+}
+
+.hero .btn--ghost {
+  --btn-fg: var(--line-white);
+  border-color: var(--line-faint);
 }
 
 .hero__bg {
@@ -21,8 +30,8 @@
   position: absolute;
   inset: 0;
   background:
-    linear-gradient(to top, var(--asphalt-800) 2%, rgba(8, 9, 11, 0.55) 42%, rgba(8, 9, 11, 0.3) 72%),
-    linear-gradient(to right, rgba(8, 9, 11, 0.86), rgba(8, 9, 11, 0.18) 62%);
+    linear-gradient(to top, var(--asphalt-800) 2%, rgba(11, 38, 61, 0.62) 42%, rgba(11, 38, 61, 0.28) 72%),
+    linear-gradient(to right, rgba(11, 38, 61, 0.88), rgba(11, 38, 61, 0.16) 62%);
 }
 
 .hero__veil {
@@ -53,12 +62,23 @@
   font-weight: 800;
   line-height: 0.86;
   letter-spacing: -0.035em;
-  max-width: 15ch;
+  max-width: 12ch;
 }
 
 .hero__title span { display: block; }
 
-.hero__title em {
+.hero__subtitle {
+  margin-top: clamp(0.65rem, 1.5vh, 1rem);
+  font-family: var(--font-display);
+  font-size: clamp(1.55rem, 1.15rem + 2vw, 3rem);
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 0.015em;
+  text-transform: uppercase;
+  color: var(--line-white);
+}
+
+.hero__subtitle em {
   font-style: normal;
   color: var(--yellow);
 }
@@ -136,8 +156,8 @@
 
   .hero__bg::after {
     background:
-      linear-gradient(to top, var(--asphalt-800) 6%, rgba(8, 9, 11, 0.82) 46%, rgba(8, 9, 11, 0.5)),
-      linear-gradient(to right, rgba(8, 9, 11, 0.55), rgba(8, 9, 11, 0.25));
+      linear-gradient(to top, var(--asphalt-800) 6%, rgba(11, 38, 61, 0.84) 46%, rgba(11, 38, 61, 0.5)),
+      linear-gradient(to right, rgba(11, 38, 61, 0.55), rgba(11, 38, 61, 0.24));
   }
 
   .hero__title { max-width: 100%; }

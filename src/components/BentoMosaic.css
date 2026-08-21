@@ -1,5 +1,5 @@
 .bento {
-  background: var(--asphalt-800);
+  background: var(--surface);
   border-top: 1px solid var(--hairline);
 }
 
@@ -23,7 +23,7 @@
 .bento__cell {
   position: relative;
   overflow: hidden;
-  background: var(--asphalt-600);
+  background: var(--paper-300);
   border: 1px solid var(--hairline);
 }
 
@@ -58,6 +58,7 @@
   font-weight: 700;
   text-transform: uppercase;
   line-height: 1.1;
+  color: var(--line-white);
 }
 
 .bento__caption em {
@@ -131,7 +132,7 @@
   align-content: center;
   gap: 0.9rem;
   padding: clamp(1.2rem, 3vw, 2rem);
-  background: var(--asphalt-700);
+  background: var(--surface-alt);
 }
 
 .bento__classes-label {
@@ -139,7 +140,7 @@
   font-size: 0.64rem;
   letter-spacing: 0.2em;
   text-transform: uppercase;
-  color: var(--line-faint);
+  color: var(--ink-500);
 }
 
 .bento__class { display: grid; gap: 0.4rem; }
@@ -160,11 +161,11 @@
 
 .bento__class-top span {
   font-size: 0.72rem;
-  color: var(--line-faint);
+  color: var(--ink-500);
   text-align: right;
 }
 
-.bento__track { height: 6px; background: rgba(242, 243, 239, 0.07); }
+.bento__track { height: 6px; background: rgba(16, 42, 67, 0.10); }
 
 .bento__bar {
   height: 100%;

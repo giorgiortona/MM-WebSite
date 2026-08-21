@@ -22,11 +22,12 @@ export default function Hero({ onQuote, onExplore }) {
 
       tl.from(q('.hero__eyebrow'), { opacity: 0, y: 20, duration: 0.7 }, 0)
         .from(split.lines, { yPercent: 118, duration: 1.05, stagger: 0.09 }, 0.1)
-        .from(q('.hero__rule'), { scaleX: 0, transformOrigin: '0 50%', duration: 0.9 }, 0.5)
-        .from(q('.hero__lead'), { opacity: 0, y: 26, duration: 0.8 }, 0.55)
-        .from(q('.hero__cta > *'), { opacity: 0, y: 22, duration: 0.7, stagger: 0.08 }, 0.68)
-        .from(q('.hero__meta > *'), { opacity: 0, y: 18, duration: 0.7, stagger: 0.08 }, 0.8)
-        .from(q('.hero__meta > *'), { opacity: 0, duration: 0.01 }, 0.95);
+        .from(q('.hero__subtitle'), { opacity: 0, y: 24, duration: 0.8 }, 0.38)
+        .from(q('.hero__rule'), { scaleX: 0, transformOrigin: '0 50%', duration: 0.9 }, 0.52)
+        .from(q('.hero__lead'), { opacity: 0, y: 26, duration: 0.8 }, 0.6)
+        .from(q('.hero__cta > *'), { opacity: 0, y: 22, duration: 0.7, stagger: 0.08 }, 0.73)
+        .from(q('.hero__meta > *'), { opacity: 0, y: 18, duration: 0.7, stagger: 0.08 }, 0.85)
+        .from(q('.hero__meta > *'), { opacity: 0, duration: 0.01 }, 1);
 
       /* Il fondo si scurisce e scivola mentre si esce dalla hero */
       if (!reduced) {
@@ -69,11 +70,12 @@ export default function Hero({ onQuote, onExplore }) {
         </p>
 
         <h1 className="hero__title">
-          <span>Segnaletica</span>
-          <span>
-            stradale <em>completa</em>
-          </span>
+          <span>M.M. Group</span>
         </h1>
+
+        <p className="hero__subtitle">
+          Segnaletica stradale <em>completa</em>
+        </p>
 
         <div className="hero__rule" aria-hidden="true" />
 

@@ -94,6 +94,15 @@
   );
 }
 
+/* Il raccordo accompagna il blu del video verso le superfici minerali chiare. */
+.teaser__fade--in {
+  background-image: linear-gradient(to bottom, var(--asphalt-900), var(--paper-100));
+}
+
+.teaser__fade--out {
+  background-image: linear-gradient(to bottom, var(--paper-100), var(--surface-alt));
+}
+
 .teaser__body { padding-block: clamp(1.5rem, 4vw, 3rem) clamp(2.5rem, 6vw, 5rem); }
 
 .teaser__head {

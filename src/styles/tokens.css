@@ -1,42 +1,50 @@
 :root {
-  /* --- Superfici: asfalto --- */
-  --asphalt-900: #08090B;
-  --asphalt-800: #0B0C0E;
-  --asphalt-700: #111316;
-  --asphalt-600: #171A1E;
-  --asphalt-500: #1F2328;
-  --asphalt-400: #2A2F35;
-  --asphalt-300: #3A4048;
+  /* --- Superfici profonde: blu tecnico da segnaletica --- */
+  --asphalt-900: #0B263D;
+  --asphalt-800: #10314B;
+  --asphalt-700: #173D59;
+  --asphalt-600: #24516D;
+  --asphalt-500: #35647E;
+  --asphalt-400: #557C91;
+  --asphalt-300: #7D9AAA;
 
   /* --- Vernice / pellicola --- */
-  --line-white: #F2F3EF;
-  --line-dim: rgba(242, 243, 239, 0.62);
-  --line-faint: rgba(242, 243, 239, 0.34);
-  --line-ghost: rgba(242, 243, 239, 0.12);
+  --line-white: #F8FAF8;
+  --line-dim: rgba(248, 250, 248, 0.72);
+  --line-faint: rgba(248, 250, 248, 0.48);
+  --line-ghost: rgba(248, 250, 248, 0.16);
 
   /* --- Accenti da codice della strada --- */
-  --yellow: #FFD400;
-  --yellow-deep: #E8B800;
-  --orange: #FF6A00;
+  --yellow: #FFCC24;
+  --yellow-deep: #DFAE00;
+  --orange: #F36C21;
   --sign-red: #C8102E;
-  --sign-blue: #0B5FA5;
+  --sign-blue: #1769AA;
   --sign-green: #0E7A3C;
 
   /* --- Superfici chiare: usate dal catalogo per staccare dal resto --- */
-  --paper-100: #F4F4F0;
-  --paper-200: #E9E9E3;
-  --paper-300: #DCDCD4;
-  --ink-900: #14161A;
-  --ink-700: #3A4048;
-  --ink-500: #6B717A;
+  --paper-100: #FAF9F5;
+  --paper-200: #F0F2F1;
+  --paper-300: #DFE7E9;
+  --ink-900: #102A43;
+  --ink-700: #334E68;
+  --ink-500: #64798A;
+
+  /* --- Superfici luminose: calce, cemento e metallo zincato --- */
+  --surface: #FAF9F5;
+  --surface-alt: #EEF2F2;
+  --surface-card: #FFFFFF;
+  --text: var(--ink-900);
+  --text-soft: var(--ink-700);
+  --border-light: rgba(16, 42, 67, 0.13);
 
   /* --- Semantici --- */
-  --bg: var(--asphalt-800);
-  --bg-alt: var(--asphalt-700);
-  --fg: var(--line-white);
-  --fg-soft: var(--line-dim);
+  --bg: var(--surface);
+  --bg-alt: var(--surface-alt);
+  --fg: var(--text);
+  --fg-soft: var(--text-soft);
   --accent: var(--yellow);
-  --hairline: rgba(242, 243, 239, 0.10);
+  --hairline: var(--border-light);
 
   /* --- Tipografia --- */
   --font-display: 'Barlow Condensed', 'Oswald', 'Haettenschweiler', 'Arial Narrow', sans-serif;

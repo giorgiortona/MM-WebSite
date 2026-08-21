@@ -1,6 +1,8 @@
 .footer {
   background: var(--asphalt-900);
   padding-bottom: clamp(4.5rem, 8vw, 5.5rem);
+  color: var(--line-white);
+  --hairline: var(--line-ghost);
 }
 
 .footer__inner { padding-top: clamp(3rem, 7vw, 5rem); }
@@ -37,7 +39,8 @@
 /* La firma di chiusura prende i colori dalla superficie su cui poggia:
    pieno nel colore del testo, contorno ricavato dallo stesso colore. */
 .footer__big {
-  --sign: var(--fg);
+  --sign: var(--line-white);
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -50,7 +53,10 @@
      sulla dimensione reale del carattere. */
   font-family: var(--font-display);
   font-size: clamp(4rem, 16vw, 13rem);
+  cursor: pointer;
 }
+
+.footer__big:hover { --sign: var(--yellow); }
 
 .footer__word-mask {
   display: block;
@@ -104,3 +110,25 @@
 
 .footer__top svg { width: 15px; height: 15px; color: var(--yellow); }
 .footer__top:hover { color: var(--yellow); }
+
+.footer__credit {
+  margin-top: clamp(2rem, 4vw, 3rem);
+  text-align: center;
+  font-family: var(--font-mono);
+  font-size: clamp(0.92rem, 1.7vw, 1.15rem);
+  line-height: 1.5;
+  letter-spacing: 0.08em;
+  color: var(--line-faint);
+}
+
+.footer__credit a {
+  color: var(--line-white);
+  border-bottom: 1px solid var(--yellow);
+  transition: color 0.3s var(--ease-out), border-color 0.3s var(--ease-out);
+}
+
+.footer__credit a:hover,
+.footer__credit a:focus-visible {
+  color: var(--yellow);
+  border-color: transparent;
+}

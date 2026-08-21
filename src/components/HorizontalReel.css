@@ -3,6 +3,10 @@
   background: var(--asphalt-900);
   border-top: 1px solid var(--hairline);
   overflow: hidden;
+  color: var(--line-white);
+  --fg: var(--line-white);
+  --fg-soft: var(--line-dim);
+  --hairline: var(--line-ghost);
 }
 
 .reel__viewport {

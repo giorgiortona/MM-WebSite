@@ -9,7 +9,9 @@ import './ServicesList.css';
    Niente immagini agganciate al cursore: la posizione è sempre la stessa. */
 export default function ServicesList() {
   const root = useRef(null);
-  const [open, setOpen] = useState(0);
+  const [open, setOpen] = useState(null);
+  const [hovered, setHovered] = useState(null);
+  const visiblePhoto = hovered ?? open ?? 0;
 
   useGSAP(
     () => {
@@ -47,7 +49,7 @@ export default function ServicesList() {
                   slug={s.photo}
                   size={900}
                   sizes="(max-width: 900px) 92vw, 40vw"
-                  className={`srv-media__shot ${i === open ? 'is-active' : ''}`}
+                  className={`srv-media__shot ${i === visiblePhoto ? 'is-active' : ''}`}
                 />
               ))}
             </div>
@@ -58,8 +60,11 @@ export default function ServicesList() {
               <li className={`srv-row ${open === i ? 'is-open' : ''}`} key={s.id}>
                 <button
                   className="srv-row__head"
-                  onClick={() => setOpen(i)}
-                  onMouseEnter={() => setOpen(i)}
+                  onClick={() => setOpen((current) => (current === i ? null : i))}
+                  onMouseEnter={() => setHovered(i)}
+                  onMouseLeave={() => setHovered(null)}
+                  onFocus={() => setHovered(i)}
+                  onBlur={() => setHovered(null)}
                   aria-expanded={open === i}
                   aria-controls={`srv-panel-${s.id}`}
                 >
@@ -67,13 +72,19 @@ export default function ServicesList() {
                   <span className="srv-row__mark" aria-hidden="true" />
                 </button>
 
-                <div className="srv-row__panel" id={`srv-panel-${s.id}`} hidden={open !== i}>
-                  <p className="srv-row__excerpt">{s.excerpt}</p>
-                  <ul className="srv-row__bullets">
-                    {s.bullets.map((b) => (
-                      <li key={b}>{b}</li>
-                    ))}
-                  </ul>
+                <div
+                  className="srv-row__panel"
+                  id={`srv-panel-${s.id}`}
+                  aria-hidden={open !== i}
+                >
+                  <div className="srv-row__panel-inner">
+                    <p className="srv-row__excerpt">{s.excerpt}</p>
+                    <ul className="srv-row__bullets">
+                      {s.bullets.map((b) => (
+                        <li key={b}>{b}</li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
               </li>
             ))}

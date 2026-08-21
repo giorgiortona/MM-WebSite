@@ -1,4 +1,4 @@
-.intro { background: var(--asphalt-800); }
+.intro { background: var(--surface); }
 
 .intro__grid {
   display: grid;
@@ -16,7 +16,7 @@
 
 .intro__text {
   margin-top: 1.2rem;
-  color: var(--line-faint);
+  color: var(--text-soft);
   max-width: 56ch;
 }
 
@@ -36,7 +36,7 @@
   bottom: 0;
   width: 46%;
   aspect-ratio: 3 / 4;
-  border: 6px solid var(--asphalt-800);
+  border: 6px solid var(--surface);
 }
 
 .intro__shot > .figure__tag { z-index: 3; }

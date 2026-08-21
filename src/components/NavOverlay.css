@@ -11,6 +11,10 @@
   background: var(--asphalt-900);
   overflow: hidden;
   will-change: clip-path;
+  color: var(--line-white);
+  --fg: var(--line-white);
+  --fg-soft: var(--line-dim);
+  --hairline: var(--line-ghost);
 }
 
 .nav-overlay__grid {

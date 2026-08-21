@@ -40,6 +40,7 @@
   letter-spacing: 0.09em;
   text-transform: uppercase;
   white-space: nowrap;
+  transition: color 0.35s var(--ease-out);
 }
 
 .logo__rule {
@@ -58,6 +59,8 @@
 }
 
 .logo:hover .logo__sub { color: rgba(242, 243, 239, 0.75); }
+.logo:hover .logo__name,
+.logo:focus-visible .logo__name { color: var(--yellow); }
 
 /* --- Azioni --- */
 .header__actions {

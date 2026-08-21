@@ -4,10 +4,13 @@
   bottom: 0;
   width: 100%;
   z-index: 110;
-  background: rgba(8, 9, 11, 0.92);
+  background: rgba(250, 249, 245, 0.94);
   backdrop-filter: blur(14px);
-  border-top: 1px solid var(--hairline);
+  border-top: 1px solid var(--border-light);
+  box-shadow: 0 -10px 30px rgba(16, 42, 67, 0.08);
   padding-bottom: env(safe-area-inset-bottom, 0);
+  color: var(--ink-900);
+  --hairline: var(--border-light);
 }
 
 .quotebar__inner {
@@ -36,7 +39,7 @@
   font-size: 0.62rem;
   letter-spacing: 0.16em;
   text-transform: uppercase;
-  color: var(--line-faint);
+  color: var(--ink-500);
 }
 
 .quotebar__actions { display: flex; align-items: center; gap: 0.6rem; }
@@ -53,22 +56,22 @@
   transition: border-color 0.3s var(--ease-out), color 0.3s var(--ease-out);
 }
 
-.quotebar__phone svg { width: 15px; height: 15px; color: var(--yellow); }
-.quotebar__phone:hover { border-color: var(--yellow); color: var(--yellow); }
+.quotebar__phone svg { width: 15px; height: 15px; color: var(--sign-blue); }
+.quotebar__phone:hover { border-color: var(--sign-blue); color: var(--sign-blue); }
 
 .quotebar__btn {
   padding: 0.65rem 1.3rem;
-  background: var(--yellow);
-  color: var(--asphalt-900);
+  background: var(--sign-blue);
+  color: var(--line-white);
   font-family: var(--font-display);
   font-size: 1rem;
   font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-  transition: filter 0.3s var(--ease-out);
+  transition: background-color 0.3s var(--ease-out), transform 0.3s var(--ease-out);
 }
 
-.quotebar__btn:hover { filter: brightness(1.12); }
+.quotebar__btn:hover { background: var(--asphalt-900); transform: translateY(-1px); }
 
 @media (max-width: 620px) {
   .quotebar__text em { display: none; }

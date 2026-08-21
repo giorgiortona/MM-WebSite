@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react';
+import { useState, useCallback, useEffect, useLayoutEffect, useRef } from 'react';
 import { HashRouter, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { ScrollSmoother } from './lib/gsap';
 import { scrollToSection } from './hooks/useSmoother';
@@ -17,11 +17,23 @@ function Shell() {
   const location = useLocation();
   const isHome = location.pathname === '/';
 
-  /* L'animazione di caricamento si vede una volta per sessione. */
-  const [loading, setLoading] = useState(() => !sessionStorage.getItem('mm-visited'));
+  /* Il caricamento appare a ogni ricarica e quando si entra nel catalogo. */
+  const [loading, setLoading] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
   const [quote, setQuote] = useState({ open: false, product: null });
   const [photo, setPhoto] = useState(null);
+  const previousPath = useRef(location.pathname);
+
+  useLayoutEffect(() => {
+    const wasCatalog = previousPath.current.startsWith('/catalogo');
+    const entersCatalog = location.pathname.startsWith('/catalogo') && !wasCatalog;
+    previousPath.current = location.pathname;
+
+    if (entersCatalog) {
+      setMenuOpen(false);
+      setLoading(true);
+    }
+  }, [location.pathname]);
 
   useEffect(() => {
     document.body.classList.toggle('is-locked', loading);
@@ -54,21 +66,23 @@ function Shell() {
     else navigate('/');
   }, [isHome, navigate]);
 
+  const onLogoClick = useCallback(() => {
+    setMenuOpen(false);
+    setLoading(true);
+    if (isHome) scrollToSection('top');
+    else navigate('/');
+  }, [isHome, navigate]);
+
   return (
     <>
       {loading && (
-        <Preloader
-          onDone={() => {
-            sessionStorage.setItem('mm-visited', '1');
-            setLoading(false);
-          }}
-        />
+        <Preloader onDone={() => setLoading(false)} />
       )}
 
       <Header
         menuOpen={menuOpen}
         onToggleMenu={() => setMenuOpen((v) => !v)}
-        onLogoClick={toTop}
+        onLogoClick={onLogoClick}
         solid={!isHome}
       />
       <NavOverlay open={menuOpen} onClose={() => setMenuOpen(false)} onNavigate={goToSection} />
