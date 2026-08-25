@@ -37,7 +37,7 @@ Il catalogo è una pagina a sé, raggiungibile anche da un collegamento diretto:
 | Indirizzo | Cosa mostra |
 |---|---|
 | `/` | la home |
-| `/#/catalogo` | le cinque aree |
+| `/#/catalogo` | le quattro aree |
 | `/#/catalogo/verticale` | famiglie e articoli di un'area |
 | `/#/catalogo/verticale/disco` | la scheda di un articolo |
 

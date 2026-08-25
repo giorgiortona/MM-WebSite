@@ -54,8 +54,6 @@ export default function Hero({ onQuote, onExplore }) {
       <div className="hero__bg">
         <Figure
           slug="rotatoria-aerea"
-          size={1800}
-          sizes="100vw"
           loading="eager"
           speed={0.82}
           className="hero__image"

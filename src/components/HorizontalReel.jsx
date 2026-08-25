@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { gsap, useGSAP, ScrollTrigger } from '../lib/gsap';
+import { gsap, useGSAP } from '../lib/gsap';
 import { cantieriReel, photos } from '../data/gallery';
 import Figure from './Figure';
 import './HorizontalReel.css';
@@ -32,25 +32,6 @@ export default function HorizontalReel({ onOpenPhoto }) {
             invalidateOnRefresh: true,
             anticipatePin: 1,
           },
-        });
-
-        /* Ogni foto si muove leggermente in controtendenza dentro la sua cornice */
-        q('.reel__card').forEach((card) => {
-          gsap.fromTo(
-            card.querySelector('img'),
-            { xPercent: -4.5 },
-            {
-              xPercent: 4.5,
-              ease: 'none',
-              scrollTrigger: {
-                trigger: card,
-                containerAnimation: tween,
-                start: 'left right',
-                end: 'right left',
-                scrub: true,
-              },
-            }
-          );
         });
 
         /* Barra di avanzamento in stile linea di mezzeria */
@@ -94,7 +75,7 @@ export default function HorizontalReel({ onOpenPhoto }) {
                 onClick={() => onOpenPhoto(slug)}
                 aria-label={`Apri l’immagine: ${meta.caption}`}
               >
-                <Figure slug={slug} sizes="(max-width: 999px) 78vw, 34vw" />
+                <Figure slug={slug} />
                 <span className="reel__card-meta">
                   <span className="reel__card-n">{String(i + 1).padStart(2, '0')}</span>
                   <span className="reel__card-caption">{meta.caption}</span>

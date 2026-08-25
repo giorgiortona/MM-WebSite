@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react';
 import { gsap, useGSAP } from '../lib/gsap';
 import { services } from '../data/services';
+import { photos } from '../data/gallery';
 import Figure from './Figure';
 import './ServicesList.css';
 
@@ -12,6 +13,7 @@ export default function ServicesList() {
   const [open, setOpen] = useState(null);
   const [hovered, setHovered] = useState(null);
   const visiblePhoto = hovered ?? open ?? 0;
+  const visiblePhotoMeta = photos[services[visiblePhoto].photo];
 
   useGSAP(
     () => {
@@ -47,11 +49,13 @@ export default function ServicesList() {
                 <Figure
                   key={s.photo}
                   slug={s.photo}
-                  size={900}
-                  sizes="(max-width: 900px) 92vw, 40vw"
                   className={`srv-media__shot ${i === visiblePhoto ? 'is-active' : ''}`}
                 />
               ))}
+            </div>
+            <div className="srv-media__meta" aria-hidden="true">
+              <span>{visiblePhotoMeta.place}</span>
+              <strong>{visiblePhotoMeta.caption}</strong>
             </div>
           </div>
 

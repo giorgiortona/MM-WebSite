@@ -1,14 +1,15 @@
 .services {
   background: var(--surface-alt);
   border-top: 1px solid var(--hairline);
+  padding-block: clamp(4.5rem, 7vw, 6.5rem);
 }
 
 .srv-grid {
   display: grid;
-  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr);
-  gap: clamp(2rem, 5vw, 5rem);
+  grid-template-columns: minmax(0, 1.14fr) minmax(0, 0.86fr);
+  gap: clamp(1.5rem, 3vw, 3rem);
   align-items: start;
-  margin-top: clamp(2rem, 4.5vw, 3.4rem);
+  margin-top: clamp(1.8rem, 3.2vw, 2.8rem);
 }
 
 /* --- Pannello fotografico, resta a fianco mentre si scorre l'elenco --- */
@@ -19,9 +20,9 @@
 
 .srv-media__inner {
   position: relative;
-  aspect-ratio: 4 / 5;
+  aspect-ratio: 16 / 10;
   overflow: hidden;
-  background: var(--paper-300);
+  background: var(--asphalt-900);
 }
 
 .srv-media__shot {
@@ -32,6 +33,42 @@
 }
 
 .srv-media__shot.is-active { opacity: 1; }
+
+/* Le fotografie di servizio hanno rapporti molto diversi tra loro. Mostrarle
+   intere evita il forte ingrandimento causato da "cover" nei riquadri verticali. */
+.srv-media__shot img { object-fit: contain; }
+
+.srv-media__meta {
+  min-height: 62px;
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  background: var(--ink-900);
+  color: var(--line-white);
+}
+
+.srv-media__meta span {
+  font-family: var(--font-mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--yellow);
+  white-space: nowrap;
+}
+
+.srv-media__meta strong {
+  overflow: hidden;
+  font-family: var(--font-display);
+  font-size: clamp(0.9rem, 1.25vw, 1.08rem);
+  font-weight: 700;
+  line-height: 1.1;
+  text-align: right;
+  text-transform: uppercase;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
 
 /* --- Elenco --- */
 .srv-list {
@@ -89,7 +126,7 @@
 
 .srv-row__title {
   font-family: var(--font-display);
-  font-size: clamp(1.35rem, 2.6vw, 2.1rem);
+  font-size: clamp(1.25rem, 2.25vw, 1.9rem);
   font-weight: 700;
   line-height: 1.05;
   text-transform: uppercase;
@@ -168,7 +205,13 @@
 @media (max-width: 900px) {
   .srv-grid { grid-template-columns: 1fr; }
   .srv-media { position: static; }
-  .srv-media__inner { aspect-ratio: 16 / 10; }
+
+  .srv-media__meta {
+    min-height: 56px;
+    padding-inline: 0.8rem;
+  }
+
+  .srv-media__meta strong { font-size: 0.82rem; }
 }
 
 @media (hover: none) {

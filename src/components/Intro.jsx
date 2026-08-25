@@ -33,7 +33,7 @@ export default function Intro() {
         duration: 0.9,
         ease: 'brake',
         stagger: 0.08,
-        scrollTrigger: { trigger: q('.intro__copy'), start: 'top 78%' },
+        scrollTrigger: { trigger: q('.intro__layout')[0], start: 'top 78%' },
       });
 
       /* Maschere: da riquadro chiuso a immagine intera */
@@ -58,37 +58,42 @@ export default function Intro() {
 
   return (
     <section className="section intro" id="lavori" ref={root}>
-      <div className="shell intro__grid">
-        <div className="intro__copy">
+      <div className="shell intro__layout">
+        <header className="intro__headline">
+          <span className="intro__kicker" data-reveal>Segnaletica stradale</span>
           <h2 className="intro__title section-title">
             Teniamo la strada leggibile, di giorno e di notte.
           </h2>
+        </header>
 
+        <div className="intro__shot intro__shot--night">
+          <Figure slug="bari-notturna" />
+          <span className="figure__tag">Tracciamento notturno</span>
+        </div>
+
+        <div className="intro__copy intro__copy--primary" data-reveal>
           <p className="section-lead" data-reveal>
             M.M. Group costruisce, fornisce, posa e mantiene segnaletica stradale orizzontale e
-            verticale, barriere e protezioni, verde pubblico e arredo urbano. Dalla vernice
+            verticale, barriere e protezioni e verde pubblico. Dalla vernice
             spartitraffico al pannello di preavviso, dal cantiere temporaneo all’impianto
             semaforico: un solo interlocutore per l’intera opera.
           </p>
+          <span className="intro__road-rule" aria-hidden="true" />
+        </div>
 
-          <p className="intro__text" data-reveal>
+        <div className="intro__shot intro__shot--road">
+          <Figure slug="strada-nuova" />
+          <span className="figure__tag">Mezzeria su nuovo tappeto</span>
+        </div>
+
+        <aside className="intro__copy intro__copy--secondary" data-reveal>
+          <span className="intro__aside-label">Dalla progettazione al collaudo</span>
+          <p className="intro__text">
             Lavoriamo per enti pubblici e imprese private, su strade urbane ed extraurbane,
             autostrade, aree industriali e piazzali logistici. Partecipiamo a gare e appalti
             banditi da enti pubblici e privati e seguiamo l’opera dalla progettazione al collaudo.
           </p>
-
-        </div>
-
-        <div className="intro__media">
-          <div className="intro__shot parallax-frame intro__shot--a">
-            <Figure slug="bari-notturna" sizes="(max-width: 900px) 100vw, 46vw" speed={0.94} />
-            <span className="figure__tag">Tracciamento notturno</span>
-          </div>
-          <div className="intro__shot parallax-frame intro__shot--b">
-            <Figure slug="strada-nuova" sizes="(max-width: 900px) 60vw, 26vw" speed={1.07} />
-            <span className="figure__tag">Mezzeria su nuovo tappeto</span>
-          </div>
-        </div>
+        </aside>
       </div>
     </section>
   );

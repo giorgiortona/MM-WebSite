@@ -264,8 +264,8 @@ export default function CatalogPage({ onQuote, notFound }) {
                   <h1 className="catpage__title">Catalogo</h1>
                   <p className="catpage__sub">
                     {notFound
-                      ? 'La pagina cercata non esiste. Riparti da qui: il catalogo è diviso in cinque aree.'
-                      : `${catalogItemCount} segnali e articoli in cinque aree, con materiali, misure e classi di pellicola.`}
+                      ? 'La pagina cercata non esiste. Riparti da qui: il catalogo è diviso in quattro aree.'
+                      : `${catalogItemCount} segnali e articoli in quattro aree, con materiali, misure e classi di pellicola.`}
                   </p>
                 </div>
                 <CatalogSearch />

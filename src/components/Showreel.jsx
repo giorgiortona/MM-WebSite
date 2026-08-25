@@ -97,7 +97,7 @@ export default function Showreel() {
             <h2 className="section-title">In opera</h2>
           </div>
           <p className="showreel__head-text">
-            Spezzoni brevi girati durante le lavorazioni: la macchina spartitraffico al lavoro,
+            Spezzoni brevi girati durante le lavorazioni: la macchina traccialinee al lavoro,
             la resa notturna della vernice, la percorrenza a cantiere concluso.
           </p>
         </div>

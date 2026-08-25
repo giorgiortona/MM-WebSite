@@ -126,6 +126,8 @@ export default function NavOverlay({ open, onClose, onNavigate }) {
               </a>
               <p className="nav-overlay__addr">
                 {site.address.street} — {site.address.zip} {site.address.city} ({site.address.province})
+                <br />
+                {site.nardoAddress.street} — {site.nardoAddress.zip} {site.nardoAddress.city} ({site.nardoAddress.province})
               </p>
             </div>
           </div>

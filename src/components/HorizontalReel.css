@@ -54,14 +54,6 @@
 
 .reel__card .figure { height: 100%; }
 
-/* L'immagine e' piu' larga della scheda: la parallasse orizzontale
-   la sposta senza mai scoprire il bordo. */
-.reel__card .figure img {
-  width: 112%;
-  max-width: none;
-  margin-left: -6%;
-}
-
 .reel__card::after {
   content: '';
   position: absolute;

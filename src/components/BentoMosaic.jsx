@@ -32,12 +32,12 @@ export default function BentoMosaic({ onOpenPhoto }) {
         scrollTrigger: { trigger: q('.bento__grid'), start: 'top 80%' },
       });
 
-      gsap.from(q('.bento__bar'), {
-        scaleX: 0,
-        transformOrigin: '0 50%',
-        duration: 1.1,
-        ease: 'brake',
-        stagger: 0.12,
+      gsap.from(q('.bento__class'), {
+        opacity: 0,
+        y: 20,
+        duration: 0.75,
+        ease: 'panel',
+        stagger: 0.09,
         scrollTrigger: { trigger: q('.bento__classes'), start: 'top 85%' },
       });
     },
@@ -64,12 +64,12 @@ export default function BentoMosaic({ onOpenPhoto }) {
               const meta = photos[cell.slug];
               return (
                 <button
-                  className={`bento__cell bento__cell--${cell.area} bento__cell--photo parallax-frame`}
+                  className={`bento__cell bento__cell--${cell.area} bento__cell--photo`}
                   key={cell.area}
                   onClick={() => onOpenPhoto(cell.slug)}
                   aria-label={`Apri l’immagine: ${meta.caption}`}
                 >
-                  <Figure slug={cell.slug} sizes="(max-width: 900px) 92vw, 42vw" speed={cell.speed} />
+                  <Figure slug={cell.slug} />
                   <span className="bento__caption">
                     <em>{meta.place}</em>
                     {meta.caption}
@@ -100,21 +100,16 @@ export default function BentoMosaic({ onOpenPhoto }) {
             return (
               <div className={`bento__cell bento__cell--${cell.area} bento__classes`} key={cell.area}>
                 <span className="bento__classes-label">Classi di pellicola</span>
-                {[
-                  { n: 'cl. 1', use: 'Strade urbane e complementari', w: 34 },
-                  { n: 'cl. 2', use: 'Extraurbane e alta visibilità', w: 68 },
-                  { n: 'cl. 3', use: 'Autostrade e punti critici', w: 100 },
-                ].map((c) => (
-                  <div className="bento__class" key={c.n}>
-                    <div className="bento__class-top">
-                      <strong>{c.n}</strong>
-                      <span>{c.use}</span>
+                <div className="bento__class-grid">
+                  {['1', '2', '3'].map((classNumber) => (
+                    <div className="bento__class" key={classNumber}>
+                      <span className="bento__film" aria-hidden="true">
+                        <span className="bento__film-core" />
+                      </span>
+                      <strong>Cl. {classNumber}</strong>
                     </div>
-                    <div className="bento__track">
-                      <div className="bento__bar" style={{ width: `${c.w}%` }} />
-                    </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
             );
           })}

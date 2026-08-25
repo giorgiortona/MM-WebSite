@@ -25,13 +25,24 @@ export default function Footer({ onNavigate, onTop }) {
       <div className="shell footer__inner">
         <div className="footer__cols">
           <div className="footer__col">
-            <span className="footer__label">Sede operativa</span>
+            <span className="footer__label">Sede di Grosseto</span>
             <p>
               {site.legal}
               <br />
               {site.address.street}
               <br />
               {site.address.zip} {site.address.city} ({site.address.province})
+            </p>
+          </div>
+
+          <div className="footer__col">
+            <span className="footer__label">Sede di Nardò</span>
+            <p>
+              {site.legal}
+              <br />
+              {site.nardoAddress.street}
+              <br />
+              {site.nardoAddress.zip} {site.nardoAddress.city} ({site.nardoAddress.province})
             </p>
           </div>
 

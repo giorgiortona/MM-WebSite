@@ -1,109 +1,72 @@
-/* Il catalogo stacca dal resto del sito: fondo chiaro fra due bande sfumate
-   che scorrono con la pagina. */
+/* Il catalogo stacca dal resto del sito con un raccordo cromatico continuo. */
 .teaser {
   position: relative;
   background: var(--paper-100);
   color: var(--ink-900);
 }
 
-/* --- Raccordo fra l'asfalto e il fondo chiaro ---
-   L'immagine di sfondo è alta il 170% del riquadro: la finestra visibile ne
-   mostra il 58,8%, e la rampa di colore sta al centro. Comunque la si sposti
-   con lo scroll, in alto resta il colore della sezione precedente e in basso
-   quello della successiva: nessun gradino ai due bordi.
-   La rampa segue un passo dolce (variazione nulla agli estremi) e sopra corre
-   un velo di grana che rompe le fasce dei gradienti a 8 bit. */
+/* --- Raccordo fra l'asfalto e il fondo chiaro --- */
 .teaser__fade {
   position: relative;
-  height: clamp(190px, 32vh, 380px);
+  height: clamp(160px, 26vh, 300px);
   width: 100%;
-  background-size: 100% 140%;
+  background-size: 100% 100%;
   background-repeat: no-repeat;
-  will-change: background-position;
 }
 
 .teaser__fade::after {
   content: '';
   position: absolute;
   inset: 0;
-  opacity: 0.42;
+  opacity: 0.26;
   mix-blend-mode: overlay;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);
+  mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);
   pointer-events: none;
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.28'/%3E%3C/svg%3E");
 }
 
 .teaser__fade--in {
-  background-image: linear-gradient(
-    to bottom,
-    #08090B 0%,
-    #08090B 28.57%,
-    rgb(9 10 12) 30.52%,
-    rgb(13 14 16) 32.47%,
-    rgb(20 21 23) 34.42%,
-    rgb(29 29 31) 36.36%,
-    rgb(39 40 41) 38.31%,
-    rgb(51 52 53) 40.26%,
-    rgb(64 65 66) 42.21%,
-    rgb(79 80 80) 44.16%,
-    rgb(94 95 95) 46.10%,
-    rgb(110 111 110) 48.05%,
-    rgb(126 126 126) 50.00%,
-    rgb(142 142 141) 51.95%,
-    rgb(158 158 156) 53.90%,
-    rgb(173 173 171) 55.84%,
-    rgb(188 188 185) 57.79%,
-    rgb(201 201 198) 59.74%,
-    rgb(213 213 210) 61.69%,
-    rgb(223 224 220) 63.64%,
-    rgb(232 232 228) 65.58%,
-    rgb(239 239 235) 67.53%,
-    rgb(243 243 239) 69.48%,
-    #F4F4F0 71.43%,
-    #F4F4F0 100%
-  );
-}
-
-.teaser__fade--out {
-  background-image: linear-gradient(
-    to bottom,
-    #F4F4F0 0%,
-    #F4F4F0 28.57%,
-    rgb(243 243 239) 30.52%,
-    rgb(239 239 235) 32.47%,
-    rgb(232 232 229) 34.42%,
-    rgb(224 224 220) 36.36%,
-    rgb(213 213 210) 38.31%,
-    rgb(201 202 199) 40.26%,
-    rgb(188 188 186) 42.21%,
-    rgb(174 174 172) 44.16%,
-    rgb(159 159 157) 46.10%,
-    rgb(143 144 142) 48.05%,
-    rgb(128 128 127) 50.00%,
-    rgb(112 112 112) 51.95%,
-    rgb(96 97 97) 53.90%,
-    rgb(81 82 82) 55.84%,
-    rgb(67 68 68) 57.79%,
-    rgb(54 54 55) 59.74%,
-    rgb(42 43 44) 61.69%,
-    rgb(31 32 34) 63.64%,
-    rgb(23 24 25) 65.58%,
-    rgb(16 17 19) 67.53%,
-    rgb(12 13 15) 69.48%,
-    #0B0C0E 71.43%,
-    #0B0C0E 100%
-  );
-}
-
-/* Il raccordo accompagna il blu del video verso le superfici minerali chiare. */
-.teaser__fade--in {
   background-image: linear-gradient(to bottom, var(--asphalt-900), var(--paper-100));
+  background-image: linear-gradient(
+    to bottom,
+    var(--asphalt-900) 0%,
+    color-mix(in srgb, var(--asphalt-900) 82%, var(--paper-100)) 22%,
+    color-mix(in srgb, var(--asphalt-900) 58%, var(--paper-100)) 48%,
+    color-mix(in srgb, var(--asphalt-900) 28%, var(--paper-100)) 73%,
+    color-mix(in srgb, var(--asphalt-900) 8%, var(--paper-100)) 91%,
+    var(--paper-100) 100%
+  );
 }
 
 .teaser__fade--out {
   background-image: linear-gradient(to bottom, var(--paper-100), var(--surface-alt));
 }
 
-.teaser__body { padding-block: clamp(1.5rem, 4vw, 3rem) clamp(2.5rem, 6vw, 5rem); }
+.teaser__body {
+  position: relative;
+  isolation: isolate;
+  padding-block: clamp(1.5rem, 4vw, 3rem) clamp(2.5rem, 6vw, 5rem);
+}
+
+/* La velatura invade entrambe le sezioni e nasconde il punto di giunzione. */
+.teaser__body::before {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: clamp(62px, 8vw, 112px);
+  transform: translateY(-50%);
+  background: linear-gradient(to bottom, transparent 0%, var(--paper-100) 52%, var(--paper-100) 100%);
+  pointer-events: none;
+}
+
+.teaser__body > .shell {
+  position: relative;
+  z-index: 1;
+}
 
 .teaser__head {
   display: grid;
@@ -121,15 +84,12 @@
 
 .teaser__sub { color: var(--ink-500); max-width: 54ch; }
 
-/* --- Le cinque aree: tre sopra e due sotto --- */
+/* --- Le quattro aree --- */
 .macro-grid {
   display: grid;
-  grid-template-columns: repeat(6, 1fr);
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: clamp(0.8rem, 1.6vw, 1.2rem);
 }
-
-.macro-card:nth-child(-n + 3) { grid-column: span 2; }
-.macro-card:nth-child(n + 4) { grid-column: span 3; }
 
 .macro-card {
   position: relative;
@@ -228,8 +188,6 @@
 @media (max-width: 900px) {
   .teaser__head { grid-template-columns: 1fr; align-items: start; gap: 0.9rem; }
   .macro-grid { grid-template-columns: 1fr; }
-  .macro-card:nth-child(-n + 3),
-  .macro-card:nth-child(n + 4) { grid-column: span 1; }
 
   .macro-card { grid-template-columns: 34% 1fr; grid-template-rows: 1fr; }
   .macro-card__shot {

@@ -7,7 +7,14 @@ export const services = [
     title: 'Segnaletica orizzontale',
     excerpt:
       'Tracciamento e rifacimento su strade urbane, extraurbane e autostrade: mezzerie, margini, frecce direzionali, attraversamenti, isole e zebrature.',
-    bullets: ['Vernice spartitraffico rifrangente', 'Premiscelati e colate a freddo', 'Tracciamento ex novo e ripasso'],
+    bullets: [
+      'Vernice spartitraffico rifrangente e non',
+      'Premiscelati e non',
+      'Colato a freddo',
+      'Colato a caldo',
+      'Bicomponente',
+      'Gocciato',
+    ],
     photo: 'napoli-autostrada',
   },
   {
@@ -15,8 +22,8 @@ export const services = [
     n: '02',
     title: 'Segnaletica verticale',
     excerpt:
-      'Produzione, fornitura e posa in opera di segnali in alluminio e ferro, con pellicole di classe 1, 2 e 3 e marcatura CE su ogni fornitura.',
-    bullets: ['Costruzione interna in alluminio 25/10', 'Pellicole 3M cl. 1 · 2 · 3', 'Posa, manutenzione e sostituzione'],
+      'Produzione, fornitura e posa in opera di segnali in alluminio e ferro e portali per la grande segnaletica, con pellicole di classe 1, 2 e 3 e marcatura CE su ogni fornitura.',
+    bullets: ['Costruzione interna in alluminio 25/10', 'Pellicole 3M cl. 1 · 2 · 3', 'Portali per grandi segnalazioni', 'Posa, manutenzione e sostituzione'],
     photo: 'a27-belluno',
   },
   {
@@ -45,24 +52,6 @@ export const services = [
       'Fornitura, posa e manutenzione sistematica di impianti semaforici, segnaletica luminosa, pubblica illuminazione e sistemi di rilevazione.',
     bullets: ['Semaforica e segnaletica luminosa', 'Pubblica illuminazione', 'Rilevazione elettronica infrazioni'],
     photo: 'cerignola-notte',
-  },
-  {
-    id: 'urbano',
-    n: '06',
-    title: 'Arredo urbano e verde',
-    excerpt:
-      'Dissuasori, paletti parapedonali, specchi, arredo urbano e verde pubblico, con manutenzione programmata del patrimonio.',
-    bullets: ['Dissuasori e paletti parapedonali', 'Specchi parabolici e INOX', 'Manutenzione del patrimonio'],
-    photo: 'corsia-ciclabile',
-  },
-  {
-    id: 'strade',
-    n: '07',
-    title: 'Costruzione e manutenzione strade',
-    excerpt:
-      'Costruzione e manutenzione di strade pubbliche e private, lavori edili connessi, scavi, movimento terra e pavimentazioni.',
-    bullets: ['Strade pubbliche e private', 'Scavi e movimento terra', 'Pavimentazioni e finiture'],
-    photo: 'strada-nuova',
   },
   {
     id: 'tecnici',

@@ -6,8 +6,6 @@ import './Figure.css';
    che riempie il riquadro finché la webp definitiva non è decodificata. */
 export default function Figure({
   slug,
-  size = 1800,
-  sizes = '100vw',
   className = '',
   speed,
   loading = 'lazy',
@@ -26,9 +24,9 @@ export default function Figure({
       data-speed={speed}
     >
       <img
-        src={src(slug, size)}
-        srcSet={`${src(slug, 900)} 900w, ${src(slug, 1800)} 1800w`}
-        sizes={sizes}
+        src={src(slug, 1800)}
+        width={meta.width}
+        height={meta.height}
         alt={meta.alt}
         loading={loading}
         decoding="async"

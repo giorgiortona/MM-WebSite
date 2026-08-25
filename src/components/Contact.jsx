@@ -89,11 +89,19 @@ export default function Contact() {
 
           <dl className="contact__details">
             <div data-reveal>
-              <dt>Sede</dt>
+              <dt>Sede di Grosseto</dt>
               <dd>
                 {site.address.street}
                 <br />
                 {site.address.zip} {site.address.city} ({site.address.province})
+              </dd>
+            </div>
+            <div data-reveal>
+              <dt>Sede di Nardò</dt>
+              <dd>
+                {site.nardoAddress.street}
+                <br />
+                {site.nardoAddress.zip} {site.nardoAddress.city} ({site.nardoAddress.province})
               </dd>
             </div>
             <div data-reveal>
@@ -114,20 +122,27 @@ export default function Contact() {
             </div>
           </dl>
 
-          <a
-            className="contact__map"
-            href={`https://maps.google.com/?q=${encodeURIComponent(
-              `${site.address.street} ${site.address.zip} ${site.address.city}`
-            )}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            data-reveal
-          >
-            Apri la mappa
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M7 17 17 7m0 0H9m8 0v8" stroke="currentColor" strokeWidth="2" fill="none" />
-            </svg>
-          </a>
+          <div className="contact__maps" data-reveal>
+            {[
+              { label: 'Grosseto', address: site.address },
+              { label: 'Nardò', address: site.nardoAddress },
+            ].map(({ label, address }) => (
+              <a
+                className="contact__map"
+                href={`https://maps.google.com/?q=${encodeURIComponent(
+                  `${address.street} ${address.zip} ${address.city}`
+                )}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                key={label}
+              >
+                Mappa {label}
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                  <path d="M7 17 17 7m0 0H9m8 0v8" stroke="currentColor" strokeWidth="2" fill="none" />
+                </svg>
+              </a>
+            ))}
+          </div>
         </div>
 
         <div className="contact__form" data-reveal>

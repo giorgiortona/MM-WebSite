@@ -17,6 +17,12 @@ export const site = {
     city: 'Grosseto',
     province: 'GR',
   },
+  nardoAddress: {
+    street: 'Zona Industriale, Lotto 20',
+    zip: '73048',
+    city: 'Nardò',
+    province: 'LE',
+  },
 };
 
 /* Riferimenti normativi dichiarati nel listino */

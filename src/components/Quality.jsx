@@ -60,7 +60,7 @@ export default function Quality() {
         </div>
 
         <div className="quality__band" data-reveal>
-          <Figure slug="a27-belluno" sizes="100vw" />
+          <Figure slug="a27-belluno" />
         </div>
 
         <div className="quality__cards">

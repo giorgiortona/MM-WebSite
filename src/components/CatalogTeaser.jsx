@@ -1,11 +1,11 @@
 import { useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { gsap, useGSAP, prefersReducedMotion } from '../lib/gsap';
+import { gsap, useGSAP } from '../lib/gsap';
 import { macros, productsOfMacro, countCatalogItems, catalogItemCount } from '../data/catalog';
 import MacroFigure from './MacroFigure';
 import './CatalogTeaser.css';
 
-/* Anteprima del catalogo sulla home: le cinque aree, ognuna porta alla
+/* Anteprima del catalogo sulla home: le quattro aree, ognuna porta alla
    pagina dedicata. La sfumatura che porta dal fondo scuro a quello chiaro
    scorre insieme alla pagina. */
 export default function CatalogTeaser() {
@@ -25,27 +25,6 @@ export default function CatalogTeaser() {
         scrollTrigger: { trigger: q('.macro-grid')[0], start: 'top 84%' },
       });
 
-      if (prefersReducedMotion()) return;
-
-      /* La banda sfumata è alta il triplo del suo riquadro: lo scroll la fa
-         scorrere, così il passaggio di colore segue il movimento invece di
-         restare fermo sulla pagina. */
-      q('.teaser__fade').forEach((band) => {
-        gsap.fromTo(
-          band,
-          { backgroundPositionY: '0%' },
-          {
-            backgroundPositionY: '100%',
-            ease: 'none',
-            scrollTrigger: {
-              trigger: band,
-              start: 'top bottom',
-              end: 'bottom top',
-              scrub: 0.4,
-            },
-          }
-        );
-      });
     },
     { scope: root }
   );
@@ -59,7 +38,7 @@ export default function CatalogTeaser() {
           <header className="teaser__head">
             <h2 className="teaser__title">Catalogo</h2>
             <p className="teaser__sub">
-              {catalogItemCount} segnali e articoli in cinque aree, con materiali, misure e classi di
+              {catalogItemCount} segnali e articoli in quattro aree, con materiali, misure e classi di
               pellicola. Il prezzo dipende da quantità, finitura e posa: si concorda per telefono.
             </p>
           </header>

@@ -8,13 +8,13 @@ export const macros = [
   {
     id: 'verticale',
     name: 'Segnaletica verticale',
-    blurb: 'Segnali, targhe e pannelli in alluminio e ferro, con pellicole di classe 1, 2 e 3.',
+    blurb: 'Segnali, targhe, pannelli, sostegni e arredo urbano, con pellicole di classe 1, 2 e 3.',
     photo: 'a27-belluno',
   },
   {
     id: 'orizzontale',
     name: 'Segnaletica orizzontale',
-    blurb: 'Tracciamento su strada e su pavimento industriale, vernici, pellicole e adesivi.',
+    blurb: 'Tracciamento su strada e su pavimento industriale, vernici e lavorazioni speciali.',
     photo: 'napoli-autostrada',
   },
   {
@@ -29,26 +29,20 @@ export const macros = [
     blurb: 'Segnaletica temporanea, impianti semaforici e attrezzatura per il cantiere mobile.',
     photo: 'casello-autostradale',
   },
-  {
-    id: 'sostegni',
-    name: 'Sostegni e arredo urbano',
-    blurb: 'Pali, staffe e bulloneria, dissuasori, paletti parapedonali e specchi.',
-    photo: 'corsia-ciclabile',
-  },
 ];
 
 export const families = [
   { id: 'segnali', macro: 'verticale', label: 'Pericolo e prescrizione' },
   { id: 'targhe', macro: 'verticale', label: 'Targhe e pannelli' },
   { id: 'direzione', macro: 'verticale', label: 'Direzione e identificazione' },
+  { id: 'pellicole', macro: 'verticale', label: 'Pellicole e adesivi' },
   { id: 'tracciamento', macro: 'orizzontale', label: 'Tracciamento' },
   { id: 'vernici', macro: 'orizzontale', label: 'Vernici e diluenti' },
-  { id: 'pellicole', macro: 'orizzontale', label: 'Pellicole e adesivi' },
   { id: 'delineatori', macro: 'sicurezza', label: 'Delineatori e margine' },
   { id: 'barriere', macro: 'sicurezza', label: 'Barriere e transenne' },
   { id: 'cantiere', macro: 'cantiere', label: 'Cantiere e sicurezza' },
-  { id: 'sostegni', macro: 'sostegni', label: 'Sostegni e fissaggi' },
-  { id: 'urbano', macro: 'sostegni', label: 'Arredo urbano e specchi' },
+  { id: 'sostegni', macro: 'verticale', label: 'Sostegni e fissaggi' },
+  { id: 'urbano', macro: 'verticale', label: 'Arredo urbano e specchi' },
   ...signSeriesFamilies,
 ];
 
@@ -732,16 +726,31 @@ export const products = [
   {
     id: 'vernice',
     cat: 'vernici',
-    name: 'Vernice spartitraffico',
-    fig: 'Rifrangente e non rifrangente',
-    desc: 'Vernici spartitraffico per segnaletica orizzontale, fornite a peso, con diluente dedicato.',
+    name: 'Vernici per segnaletica orizzontale',
+    fig: 'Quattro formulazioni',
+    desc: 'Vernici per segnaletica orizzontale disponibili nelle formulazioni acrilica, alchidica, all’acqua e bicomponente.',
     specs: [
-      ['Rifrangente', 'bianco · giallo'],
-      ['Non rifrangente', 'blu · nero'],
-      ['Acrilica', 'bianco · giallo non rifrangente'],
-      ['Diluente', 'diluente spartitraffico al litro'],
+      ['Acrilica', 'rifrangente · non rifrangente'],
+      ['Alchidica', 'rifrangente · non rifrangente'],
+      ['All’acqua', 'per segnaletica orizzontale'],
+      ['Bicomponente', 'per segnaletica orizzontale'],
     ],
-    tags: ['vernice', 'orizzontale'],
+    tags: ['vernice', 'orizzontale', 'acrilica', 'alchidica', 'all’acqua', 'bicomponente'],
+  },
+  {
+    id: 'spartitraffico-rifrangente',
+    cat: 'vernici',
+    visual: 'vernice',
+    name: 'Spartitraffico rifrangente',
+    fig: 'Vernice e diluente dedicato',
+    desc: 'Vernice spartitraffico rifrangente per la realizzazione e il ripasso della segnaletica orizzontale.',
+    specs: [
+      ['Tipo', 'rifrangente'],
+      ['Uso', 'segnaletica orizzontale'],
+      ['Fornitura', 'vernice a peso'],
+      ['Diluente', 'dedicato'],
+    ],
+    tags: ['vernice', 'spartitraffico', 'rifrangente', 'diluente'],
   },
 
   /* ---------------- TRACCIAMENTO ---------------- */
@@ -758,6 +767,30 @@ export const products = [
       ['Cantiere', 'diurno e notturno'],
     ],
     tags: ['mezzeria', 'margine', 'linee'],
+  },
+  {
+    id: 'colato',
+    cat: 'tracciamento',
+    name: 'Lavorazione in colato',
+    fig: 'Segnaletica orizzontale',
+    desc: 'Realizzazione di segnaletica orizzontale con lavorazione in colato.',
+    specs: [
+      ['Lavorazione', 'colato'],
+      ['Applicazione', 'segnaletica orizzontale'],
+    ],
+    tags: ['colato', 'lavorazione', 'orizzontale'],
+  },
+  {
+    id: 'tacchettato',
+    cat: 'tracciamento',
+    name: 'Lavorazione in tacchettato',
+    fig: 'Segnaletica orizzontale',
+    desc: 'Realizzazione di segnaletica orizzontale con lavorazione in tacchettato.',
+    specs: [
+      ['Lavorazione', 'tacchettato'],
+      ['Applicazione', 'segnaletica orizzontale'],
+    ],
+    tags: ['tacchettato', 'lavorazione', 'orizzontale'],
   },
   {
     id: 'iscrizioni',

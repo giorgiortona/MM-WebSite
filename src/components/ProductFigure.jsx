@@ -195,6 +195,20 @@ const figures = {
       <rect x="57" y="78" width="6" height="18" fill={W} />
     </>
   ),
+  colato: (
+    <>
+      <rect x="10" y="16" width="100" height="88" fill={A} />
+      <path d="M24 76h72" stroke={W} strokeWidth="16" strokeLinecap="round" />
+      <path d="M72 26c0 10-12 17-12 28a12 12 0 0 0 24 0c0-11-12-18-12-28z" fill={Y} />
+    </>
+  ),
+  tacchettato: (
+    <>
+      <rect x="10" y="16" width="100" height="88" fill={A} />
+      <path d="M22 60h76" stroke={W} strokeWidth="7" />
+      <path d="M28 50v20M42 50v20M56 50v20M70 50v20M84 50v20" stroke={Y} strokeWidth="5" strokeLinecap="round" />
+    </>
+  ),
   iscrizioni: (
     <>
       <rect x="10" y="16" width="100" height="88" fill={A} />
