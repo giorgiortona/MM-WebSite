@@ -154,6 +154,12 @@
   line-height: 1.5;
 }
 
+.contact__privacy a {
+  color: var(--sign-blue);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
 @media (max-width: 900px) {
   .contact__grid { grid-template-columns: 1fr; }
 }

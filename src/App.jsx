@@ -11,11 +11,13 @@ import QuoteModal from './components/QuoteModal';
 import Lightbox from './components/Lightbox';
 import Home from './pages/Home';
 import CatalogPage from './pages/CatalogPage';
+import LegalPage from './pages/LegalPage';
 
 function Shell() {
   const navigate = useNavigate();
   const location = useLocation();
   const isHome = location.pathname === '/';
+  const isLegal = location.pathname === '/privacy' || location.pathname === '/cookie-policy';
 
   /* Il caricamento appare a ogni ricarica e quando si entra nel catalogo. */
   const [loading, setLoading] = useState(true);
@@ -110,10 +112,18 @@ function Shell() {
         <Route path="/catalogo" element={<CatalogPage onQuote={openQuote} />} />
         <Route path="/catalogo/:macroId" element={<CatalogPage onQuote={openQuote} />} />
         <Route path="/catalogo/:macroId/:articleId" element={<CatalogPage onQuote={openQuote} />} />
+        <Route
+          path="/privacy"
+          element={<LegalPage type="privacy" onNavigate={goToSection} />}
+        />
+        <Route
+          path="/cookie-policy"
+          element={<LegalPage type="cookie" onNavigate={goToSection} />}
+        />
         <Route path="*" element={<CatalogPage onQuote={openQuote} notFound />} />
       </Routes>
 
-      <QuoteBar onQuote={openQuote} hidden={menuOpen || quote.open || Boolean(photo)} />
+      <QuoteBar onQuote={openQuote} hidden={menuOpen || quote.open || Boolean(photo) || isLegal} />
       <QuoteModal open={quote.open} product={quote.product} onClose={closeQuote} />
       <Lightbox slug={photo} onClose={() => setPhoto(null)} onChange={setPhoto} />
     </>

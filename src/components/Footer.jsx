@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import { Link } from 'react-router-dom';
 import { gsap, useGSAP } from '../lib/gsap';
 import { site, nav, PHONE_TEL } from '../data/site';
 import './Footer.css';
@@ -106,6 +107,10 @@ export default function Footer({ onNavigate, onTop }) {
           <span>
             © {new Date().getFullYear()} {site.legal} — P. IVA e C.F. {site.vat}
           </span>
+          <nav className="footer__legal" aria-label="Informative legali">
+            <Link to="/privacy">Privacy policy</Link>
+            <Link to="/cookie-policy">Cookie policy</Link>
+          </nav>
           <button className="footer__top" onClick={onTop}>
             Torna in cima
             <svg viewBox="0 0 24 24" aria-hidden="true">

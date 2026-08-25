@@ -111,6 +111,24 @@
 .footer__top svg { width: 15px; height: 15px; color: var(--yellow); }
 .footer__top:hover { color: var(--yellow); }
 
+.footer__legal {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem 1rem;
+}
+
+.footer__legal a {
+  color: var(--line-dim);
+  border-bottom: 1px solid var(--line-ghost);
+  transition: color 0.3s var(--ease-out), border-color 0.3s var(--ease-out);
+}
+
+.footer__legal a:hover,
+.footer__legal a:focus-visible {
+  color: var(--yellow);
+  border-color: var(--yellow);
+}
+
 .footer__credit {
   margin-top: clamp(2rem, 4vw, 3rem);
   text-align: center;

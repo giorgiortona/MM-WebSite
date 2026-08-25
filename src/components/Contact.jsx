@@ -1,4 +1,5 @@
 import { useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
 import { gsap, useGSAP, SplitText } from '../lib/gsap';
 import { site, PHONE_TEL, PHONE_WA } from '../data/site';
 import './Contact.css';
@@ -199,7 +200,7 @@ export default function Contact() {
 
           <p className="contact__privacy">
             Nessun dato viene salvato o trasmesso da questa pagina: il messaggio si apre nella tua
-            app e lo invii tu.
+            app e lo invii tu. Consulta la <Link to="/privacy">privacy policy</Link>.
           </p>
         </div>
       </div>
