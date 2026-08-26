@@ -6,13 +6,14 @@
   color: var(--ink-900);
 }
 
-/* --- Raccordo fra l'asfalto e il fondo chiaro ---
-   L'immagine di sfondo è alta il 170% del riquadro: la finestra visibile ne
-   mostra il 58,8%, e la rampa di colore sta al centro. Comunque la si sposti
-   con lo scroll, in alto resta il colore della sezione precedente e in basso
-   quello della successiva: nessun gradino ai due bordi.
-   La rampa segue un passo dolce (variazione nulla agli estremi) e sopra corre
-   un velo di grana che rompe le fasce dei gradienti a 8 bit. */
+/* --- Raccordo fra il blu profondo e il fondo chiaro ---
+   L'immagine di sfondo è alta il 140% del riquadro: la finestra visibile ne
+   mostra il 71,4%, con le due estremità piene e la rampa al centro. Comunque
+   lo scroll la sposti, in alto resta il colore della sezione precedente e in
+   basso quello della successiva: nessun gradino ai due bordi. Le due misure
+   vanno cambiate insieme, altrimenti gli estremi non coprono più la corsa.
+   La rampa segue un passo dolce, a variazione nulla agli estremi, così non si
+   vede dove attacca. */
 .teaser__fade {
   position: relative;
   height: clamp(190px, 32vh, 380px);
@@ -22,88 +23,45 @@
   will-change: background-position;
 }
 
-.teaser__fade::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  opacity: 0.42;
-  mix-blend-mode: overlay;
-  pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.28'/%3E%3C/svg%3E");
-}
-
 .teaser__fade--in {
   background-image: linear-gradient(
     to bottom,
-    #08090B 0%,
-    #08090B 28.57%,
-    rgb(9 10 12) 30.52%,
-    rgb(13 14 16) 32.47%,
-    rgb(20 21 23) 34.42%,
-    rgb(29 29 31) 36.36%,
-    rgb(39 40 41) 38.31%,
-    rgb(51 52 53) 40.26%,
-    rgb(64 65 66) 42.21%,
-    rgb(79 80 80) 44.16%,
-    rgb(94 95 95) 46.10%,
-    rgb(110 111 110) 48.05%,
-    rgb(126 126 126) 50.00%,
-    rgb(142 142 141) 51.95%,
-    rgb(158 158 156) 53.90%,
-    rgb(173 173 171) 55.84%,
-    rgb(188 188 185) 57.79%,
-    rgb(201 201 198) 59.74%,
-    rgb(213 213 210) 61.69%,
-    rgb(223 224 220) 63.64%,
-    rgb(232 232 228) 65.58%,
-    rgb(239 239 235) 67.53%,
-    rgb(243 243 239) 69.48%,
-    #F4F4F0 71.43%,
-    #F4F4F0 100%
+    #0B263D 0%,
+    #0B263D 28.57%,
+    rgb(12 39 62) 30.36%,
+    rgb(16 42 65) 32.14%,
+    rgb(21 47 69) 33.93%,
+    rgb(29 54 75) 35.71%,
+    rgb(38 62 82) 37.50%,
+    rgb(48 71 90) 39.29%,
+    rgb(60 81 99) 41.07%,
+    rgb(73 93 109) 42.86%,
+    rgb(87 105 119) 44.64%,
+    rgb(101 117 130) 46.43%,
+    rgb(116 130 142) 48.21%,
+    rgb(130 144 153) 50.00%,
+    rgb(145 157 164) 51.79%,
+    rgb(160 170 176) 53.57%,
+    rgb(174 182 187) 55.36%,
+    rgb(188 194 197) 57.14%,
+    rgb(201 206 207) 58.93%,
+    rgb(213 216 216) 60.71%,
+    rgb(223 225 224) 62.50%,
+    rgb(232 233 231) 64.29%,
+    rgb(240 240 237) 66.07%,
+    rgb(245 245 241) 67.86%,
+    rgb(249 248 244) 69.64%,
+    #FAF9F5 71.43%,
+    #FAF9F5 100%
   );
 }
 
-.teaser__fade--out {
-  background-image: linear-gradient(
-    to bottom,
-    #F4F4F0 0%,
-    #F4F4F0 28.57%,
-    rgb(243 243 239) 30.52%,
-    rgb(239 239 235) 32.47%,
-    rgb(232 232 229) 34.42%,
-    rgb(224 224 220) 36.36%,
-    rgb(213 213 210) 38.31%,
-    rgb(201 202 199) 40.26%,
-    rgb(188 188 186) 42.21%,
-    rgb(174 174 172) 44.16%,
-    rgb(159 159 157) 46.10%,
-    rgb(143 144 142) 48.05%,
-    rgb(128 128 127) 50.00%,
-    rgb(112 112 112) 51.95%,
-    rgb(96 97 97) 53.90%,
-    rgb(81 82 82) 55.84%,
-    rgb(67 68 68) 57.79%,
-    rgb(54 54 55) 59.74%,
-    rgb(42 43 44) 61.69%,
-    rgb(31 32 34) 63.64%,
-    rgb(23 24 25) 65.58%,
-    rgb(16 17 19) 67.53%,
-    rgb(12 13 15) 69.48%,
-    #0B0C0E 71.43%,
-    #0B0C0E 100%
-  );
-}
-
-/* Il raccordo accompagna il blu del video verso le superfici minerali chiare. */
-.teaser__fade--in {
-  background-image: linear-gradient(to bottom, var(--asphalt-900), var(--paper-100));
-}
-
-.teaser__fade--out {
-  background-image: linear-gradient(to bottom, var(--paper-100), var(--surface-alt));
-}
-
-.teaser__body { padding-block: clamp(1.5rem, 4vw, 3rem) clamp(2.5rem, 6vw, 5rem); }
+/* In basso il salto è fra due chiari quasi uguali (#FAF9F5 -> #EEF2F2):
+   con la banda alta come quella d'ingresso resterebbe solo spazio vuoto. */
+/* La banda in basso è stata tolta: sotto il catalogo c'è il mosaico, dello
+   stesso chiaro. Se un giorno lo si sposta sopra a una sezione scura va
+   rimessa, ricalcolando gli estremi come per quella d'ingresso. */
+.teaser__body { padding-block: clamp(1.5rem, 4vw, 3rem) clamp(3.5rem, 8vw, 6.5rem); }
 
 .teaser__head {
   display: grid;

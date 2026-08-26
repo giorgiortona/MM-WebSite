@@ -3,7 +3,6 @@
 const W = '#F2F3EF';
 const R = '#C8102E';
 const B = '#0B5FA5';
-const G = '#0E7A3C';
 const Y = '#FFD400';
 const K = '#14161A';
 const S = '#8A9099';
@@ -48,18 +47,27 @@ const scenes = {
 
   sicurezza: (
     <>
-      <rect x="18" y="72" width="128" height="26" fill={W} stroke={K} strokeWidth="2" />
-      <path d="M34 72h18L34 98H16z" fill={R} />
-      <path d="M74 72h18L74 98H56z" fill={R} />
-      <path d="M114 72h18l-18 26H96z" fill={R} />
-      <rect x="40" y="98" width="9" height="42" fill={S} />
-      <rect x="116" y="98" width="9" height="42" fill={S} />
-      <rect x="26" y="140" width="36" height="8" rx="3" fill={A} />
-      <rect x="104" y="140" width="36" height="8" rx="3" fill={A} />
+      {/* delineatore normale di margine, con catadiottro */}
+      <rect x="30" y="42" width="26" height="106" rx="4" fill={W} stroke={K} strokeWidth="2" />
+      <rect x="30" y="42" width="26" height="18" rx="4" fill={R} />
+      <rect x="30" y="86" width="26" height="16" fill={R} />
+      <rect x="36" y="66" width="14" height="12" rx="2" fill={Y} />
 
-      <path d="M184 150V96l12-24V50h74v22l12 24v54z" fill={W} stroke={K} strokeWidth="2" />
-      <rect x="196" y="58" width="74" height="14" fill={R} />
-      <rect x="188" y="112" width="90" height="14" fill={R} />
+      {/* delineatore modulare di curva */}
+      <rect x="96" y="58" width="76" height="60" rx="3" fill={W} stroke={K} strokeWidth="2" />
+      <path d="M112 70h20l16 18-16 18h-20l16-18z" fill={K} />
+      <rect x="126" y="118" width="9" height="32" fill={S} />
+      <rect x="112" y="148" width="38" height="8" rx="3" fill={A} />
+
+      {/* delineatore flessibile */}
+      <path d="M212 148V74a12 12 0 0 1 24 0v74z" fill={W} stroke={K} strokeWidth="2" />
+      <rect x="212" y="92" width="24" height="14" fill={R} />
+      <rect x="206" y="148" width="36" height="8" rx="3" fill={A} />
+
+      {/* catadiottro su sostegno basso */}
+      <rect x="266" y="112" width="28" height="20" rx="3" fill={Y} stroke={K} strokeWidth="2" />
+      <rect x="276" y="132" width="8" height="18" fill={S} />
+      <rect x="264" y="148" width="32" height="8" rx="3" fill={A} />
     </>
   ),
 
@@ -69,11 +77,11 @@ const scenes = {
       <path d="M42 70h28l6 18H36z" fill={W} />
       <rect x="4" y="140" width="104" height="14" rx="4" fill={O} />
 
-      <rect x="150" y="30" width="46" height="96" rx="8" fill={A} />
-      <circle cx="173" cy="54" r="12" fill={R} />
-      <circle cx="173" cy="78" r="12" fill={Y} opacity="0.3" />
-      <circle cx="173" cy="102" r="12" fill={G} opacity="0.3" />
-      <rect x="168" y="126" width="10" height="20" fill={S} />
+      <path d="M173 26 214 100h-82z" fill={R} />
+      <path d="M173 42 200 92h-54z" fill={W} />
+      <path d="M164 60h10l3 14h-13zM162 76h18l3 8h-24z" fill={K} />
+      <rect x="169" y="100" width="9" height="46" fill={S} />
+      <rect x="156" y="146" width="34" height="8" rx="3" fill={A} />
 
       <ellipse cx="266" cy="52" rx="26" ry="15" fill={Y} />
       <rect x="240" y="54" width="52" height="32" rx="7" fill={A} />

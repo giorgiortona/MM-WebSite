@@ -142,8 +142,7 @@
   .reel__viewport {
     min-height: 0;
     overflow-x: auto;
-    scroll-snap-type: x proximity;
-    scroll-padding-inline: var(--gutter);
+    overscroll-behavior-x: contain;
     -webkit-overflow-scrolling: touch;
     scrollbar-width: none;
     padding-block: clamp(2rem, 5vh, 3.2rem);
@@ -160,8 +159,6 @@
   .reel__card--wide { width: calc(var(--reel-h) * 1.55); }
   .reel__card--tall { width: calc(var(--reel-h) * 0.74); }
   .reel__intro { align-self: center; }
-  .reel__card,
-  .reel__intro { scroll-snap-align: start; }
   .reel__intro {
     width: min(68vw, 280px);
     padding-right: 0;

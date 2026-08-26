@@ -103,3 +103,27 @@ non vengono pubblicati: le versioni web sono generate con `ffmpeg` e `cwebp`
 watermark della fotocamera, e i filmati del capannone per togliere quello di
 TikTok.
 # MM-WebSite
+
+## Anteprima per il cliente
+
+Il sito è pubblicato su Vercel a un indirizzo non indovinabile, solo per la
+revisione del cliente:
+
+    https://mm-anteprima-5f2e5f9c73.vercel.app
+
+Sull'anteprima Vercel viene aggiunto l'header `X-Robots-Tag: noindex, nofollow,
+noarchive, nosnippet` (vedi `vercel.json`): l'indirizzo non finisce nei motori
+di ricerca né negli archivi web. L'header **non** è nel codice della pagina,
+quindi la cartella `dist/` che consegnerai all'hosting definitivo resta pulita
+e indicizzabile.
+
+Comandi utili:
+
+    vercel deploy --yes          # aggiorna l'anteprima dopo una modifica
+    vercel alias ls              # elenca gli indirizzi attivi
+    vercel alias rm <indirizzo>  # spegne il link
+    vercel project rm mm-anteprima-5f2e5f9c73    # elimina tutto
+
+Il progetto porta lo stesso nome casuale dell'indirizzo: così nessuna delle
+URL generate da Vercel è indovinabile. Gli indirizzi interni di deploy restano
+protetti dall'accesso Vercel: li apri solo tu, da autenticato.

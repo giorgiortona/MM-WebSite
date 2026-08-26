@@ -354,57 +354,6 @@ const figures = {
   ),
 
   /* ---------- barriere ---------- */
-  'barriera-normale': (
-    <>
-      <rect x="10" y="38" width="100" height="24" fill={W} stroke={K} strokeWidth="2" />
-      <path d="M22 38h14L22 62h-12z" fill={R} />
-      <path d="M52 38h14L52 62H38z" fill={R} />
-      <path d="M82 38h14L82 62H68z" fill={R} />
-      <path d="M106 38h4L106 62H94z" fill={R} />
-      <rect x="26" y="62" width="8" height="34" fill={S} />
-      <rect x="86" y="62" width="8" height="34" fill={S} />
-      <rect x="16" y="96" width="28" height="6" rx="2" fill={A} />
-      <rect x="76" y="96" width="28" height="6" rx="2" fill={A} />
-    </>
-  ),
-  'barriera-direzionale': (
-    <>
-      <rect x="8" y="34" width="104" height="34" fill={W} stroke={K} strokeWidth="2" />
-      <path d="M20 34h16L20 68H6z" fill={R} />
-      <path d="M52 34h16L52 68H36z" fill={R} />
-      <path d="M84 34h16L84 68H68z" fill={R} />
-      <path d="M40 84h34m0 0-8-8m8 8-8 8" stroke={K} strokeWidth="4" fill="none" />
-      <rect x="18" y="68" width="7" height="20" fill={S} />
-      <rect x="95" y="68" width="7" height="20" fill={S} />
-    </>
-  ),
-  'new-jersey': (
-    <>
-      <path d="M18 100V62l10-20V26h64v16l10 20v38z" fill={W} stroke={K} strokeWidth="2" />
-      <rect x="28" y="34" width="64" height="12" fill={R} />
-      <rect x="22" y="72" width="76" height="12" fill={R} />
-    </>
-  ),
-  transenne: (
-    <>
-      <rect x="14" y="34" width="92" height="16" fill={W} stroke={K} strokeWidth="2" />
-      <path d="M26 34h12L26 50h-10z" fill={R} />
-      <path d="M56 34h12L56 50H44z" fill={R} />
-      <path d="M86 34h12L86 50H74z" fill={R} />
-      <path d="M22 50v46M98 50v46M22 96h20M78 96h20" stroke={S} strokeWidth="5" fill="none" />
-      <path d="M22 68h76" stroke={S} strokeWidth="4" />
-    </>
-  ),
-  chiusino: (
-    <>
-      <circle cx="60" cy="72" r="20" fill={A} />
-      <rect x="20" y="30" width="80" height="10" fill={W} stroke={K} strokeWidth="2" />
-      <path d="M30 30h10L30 40h-8z" fill={R} />
-      <path d="M56 30h10L56 40H46z" fill={R} />
-      <path d="M82 30h10L82 40H72z" fill={R} />
-      <path d="M24 40v52M96 40v52" stroke={S} strokeWidth="5" />
-    </>
-  ),
 
   /* ---------- cantiere ---------- */
   coni: (
@@ -421,16 +370,6 @@ const figures = {
       <path d="M60 18v10M34 26l7 7M86 26l-7 7" stroke={Y} strokeWidth="4" />
       <rect x="52" y="70" width="16" height="26" fill={S} />
       <rect x="38" y="96" width="44" height="6" rx="2" fill={A} />
-    </>
-  ),
-  semaforico: (
-    <>
-      <rect x="42" y="12" width="36" height="76" rx="6" fill={A} />
-      <circle cx="60" cy="30" r="9" fill={R} />
-      <circle cx="60" cy="50" r="9" fill={Y} opacity="0.35" />
-      <circle cx="60" cy="70" r="9" fill={G} opacity="0.35" />
-      <rect x="56" y="88" width="8" height="14" fill={S} />
-      <rect x="40" y="102" width="40" height="6" rx="2" fill={A} />
     </>
   ),
   cavalletti: (

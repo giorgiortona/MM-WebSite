@@ -6,7 +6,7 @@ import './Contact.css';
 const SUBJECTS = [
   'Segnaletica orizzontale',
   'Segnaletica verticale',
-  'Barriere e cantiere',
+  'Segnaletica di cantiere',
   'Fornitura da catalogo',
   'Altro',
 ];

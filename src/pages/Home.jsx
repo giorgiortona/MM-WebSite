@@ -31,9 +31,9 @@ export default function Home({ ready, onQuote, onOpenPhoto, onNavigate, onTop })
           <Intro />
           <ServicesList />
           <HorizontalReel onOpenPhoto={onOpenPhoto} />
+          <CatalogTeaser />
           <BentoMosaic onOpenPhoto={onOpenPhoto} />
           <Showreel />
-          <CatalogTeaser />
           <Quality />
           <Contact />
         </main>

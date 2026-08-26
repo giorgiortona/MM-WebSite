@@ -1,5 +1,6 @@
 import { useRef, useEffect, useState } from 'react';
 import { gsap, useGSAP } from '../lib/gsap';
+import { useAutoScroll } from '../hooks/useAutoScroll';
 import { clips } from '../data/gallery';
 import './Showreel.css';
 
@@ -58,6 +59,9 @@ function ClipCard({ clip, index }) {
 
 export default function Showreel() {
   const root = useRef(null);
+  const strip = useRef(null);
+
+  useAutoScroll(strip, { speed: 24 });
 
   useGSAP(
     () => {
@@ -103,7 +107,7 @@ export default function Showreel() {
         </div>
       </div>
 
-      <div className="showreel__strip">
+      <div className="showreel__strip" ref={strip}>
         {vertical.map((c, i) => (
           <ClipCard clip={c} index={i} key={c.slug} />
         ))}

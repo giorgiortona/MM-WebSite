@@ -52,13 +52,15 @@
 
   .intro__shot--a { aspect-ratio: 4 / 3; }
 
-  /* Niente sovrapposizione sul telefono: coprirebbe la didascalia
-     della foto grande. */
+  /* Sul telefono le due foto stanno una sopra l'altra a tutta larghezza:
+     rientrata a destra lasciava una fascia vuota sul fianco sinistro.
+     Resta position:relative perché la sua immagine è posizionata in assoluto. */
   .intro__shot--b {
-    position: static;
-    width: 62%;
-    margin: 0.7rem 0 0 auto;
-    aspect-ratio: 4 / 3;
+    position: relative;
+    inset: auto;
+    width: 100%;
+    margin-top: 0.55rem;
+    aspect-ratio: 16 / 9;
     border: none;
   }
 

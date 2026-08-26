@@ -7,6 +7,14 @@ import './BentoMosaic.css';
 /* Quarta componente fotografica: un mosaico a celle disuguali in cui ogni
    riquadro sale a velocità diversa. Due celle sono di testo, così la griglia
    racconta la rifrangenza invece di limitarsi a mostrarla. */
+/* Le tre classi di pellicola previste, con la resa sotto i fari:
+   e' l'unica cosa che davvero le distingue, quindi la si mostra. */
+const CLASSES = [
+  { n: 'Classe 1', use: 'Strade urbane e complementari', lum: 0.3 },
+  { n: 'Classe 2', use: 'Extraurbane e alta visibilità', lum: 0.62 },
+  { n: 'Classe 3', use: 'Autostrade e punti critici', lum: 1 },
+];
+
 const cells = [
   { type: 'photo', slug: 'bari-notturna', area: 'a', speed: 0.95 },
   { type: 'photo', slug: 'cerignola-notte', area: 'b', speed: 1.05 },
@@ -32,13 +40,14 @@ export default function BentoMosaic({ onOpenPhoto }) {
         scrollTrigger: { trigger: q('.bento__grid'), start: 'top 80%' },
       });
 
-      gsap.from(q('.bento__bar'), {
-        scaleX: 0,
-        transformOrigin: '0 50%',
-        duration: 1.1,
-        ease: 'brake',
+      gsap.from(q('.bento__class'), {
+        opacity: 0,
+        x: -18,
+        duration: 0.8,
+        ease: 'panel',
         stagger: 0.12,
-        scrollTrigger: { trigger: q('.bento__classes'), start: 'top 85%' },
+        clearProps: 'all',
+        scrollTrigger: { trigger: q('.bento__classes')[0], start: 'top 85%' },
       });
     },
     { scope: root }
@@ -100,19 +109,13 @@ export default function BentoMosaic({ onOpenPhoto }) {
             return (
               <div className={`bento__cell bento__cell--${cell.area} bento__classes`} key={cell.area}>
                 <span className="bento__classes-label">Classi di pellicola</span>
-                {[
-                  { n: 'cl. 1', use: 'Strade urbane e complementari', w: 34 },
-                  { n: 'cl. 2', use: 'Extraurbane e alta visibilità', w: 68 },
-                  { n: 'cl. 3', use: 'Autostrade e punti critici', w: 100 },
-                ].map((c) => (
+                {CLASSES.map((c) => (
                   <div className="bento__class" key={c.n}>
-                    <div className="bento__class-top">
-                      <strong>{c.n}</strong>
-                      <span>{c.use}</span>
-                    </div>
-                    <div className="bento__track">
-                      <div className="bento__bar" style={{ width: `${c.w}%` }} />
-                    </div>
+                    <span className="lum" style={{ '--l': c.lum }} aria-hidden="true">
+                      <span className="lum__sign" />
+                    </span>
+                    <span className="bento__class-name">{c.n}</span>
+                    <span className="bento__class-use">{c.use}</span>
                   </div>
                 ))}
               </div>

@@ -19,14 +19,14 @@ export const macros = [
   },
   {
     id: 'sicurezza',
-    name: 'Delineatori e barriere',
-    blurb: 'Guida ottica, delimitazione e protezione lungo la carreggiata.',
+    name: 'Delineatori e guida ottica',
+    blurb: 'Dispositivi di margine, catadiottri e delineatori di curva lungo la carreggiata.',
     photo: 'rotatoria-frecce',
   },
   {
     id: 'cantiere',
     name: 'Cantiere',
-    blurb: 'Segnaletica temporanea, impianti semaforici e attrezzatura per il cantiere mobile.',
+    blurb: 'Segnali temporanei, coni, lampeggianti e attrezzatura per il cantiere mobile.',
     photo: 'casello-autostradale',
   },
   {
@@ -45,7 +45,6 @@ export const families = [
   { id: 'vernici', macro: 'orizzontale', label: 'Vernici e diluenti' },
   { id: 'pellicole', macro: 'orizzontale', label: 'Pellicole e adesivi' },
   { id: 'delineatori', macro: 'sicurezza', label: 'Delineatori e margine' },
-  { id: 'barriere', macro: 'sicurezza', label: 'Barriere e transenne' },
   { id: 'cantiere', macro: 'cantiere', label: 'Cantiere e sicurezza' },
   { id: 'sostegni', macro: 'sostegni', label: 'Sostegni e fissaggi' },
   { id: 'urbano', macro: 'sostegni', label: 'Arredo urbano e specchi' },
@@ -419,7 +418,7 @@ export const products = [
     desc: 'Catadiottri trapezoidali bianco/rosso per guard-rail e bordo fluo per pannelli.',
     specs: [
       ['Tipo', 'catadiottro trapezoidale B/R'],
-      ['Applicazione', 'guard-rail e barriere'],
+      ['Applicazione', 'su guard-rail esistente'],
       ['Bordo fluo', 'profilo perimetrale ad alta visibilità'],
       ['Fissaggio', 'a scatto o con viti'],
     ],
@@ -440,77 +439,6 @@ export const products = [
     tags: ['flessibile', 'marker'],
   },
 
-  /* ---------------- BARRIERE ---------------- */
-  {
-    id: 'barriera-normale',
-    cat: 'barriere',
-    name: 'Barriera normale B/R',
-    fig: 'CdS fig. 392',
-    desc: 'Barriera normale bianco/rossa completa, con traversa e piede disponibili anche separatamente.',
-    specs: [
-      ['Materiale', 'Ferro 10/10'],
-      ['Dimensioni', '150×20 cm'],
-      ['Pellicola', 'classe 1 · 2'],
-      ['Componenti', 'barriera completa · traversa · piede'],
-    ],
-    tags: ['cantiere', 'delimitazione'],
-  },
-  {
-    id: 'barriera-direzionale',
-    cat: 'barriere',
-    name: 'Barriera direzionale B/R',
-    fig: 'CdS fig. 393/a',
-    desc: 'Barriera direzionale per deviazioni e restringimenti di carreggiata.',
-    specs: [
-      ['Materiale', 'Alluminio 10/10 · Ferro 10/10'],
-      ['Dimensioni', '240×60 cm · 360×90 cm'],
-      ['Pellicola', 'classe 1 · 2'],
-      ['Rinforzi', '2 rinforzi'],
-    ],
-    tags: ['deviazione', 'direzionale'],
-  },
-  {
-    id: 'new-jersey',
-    cat: 'barriere',
-    name: 'New jersey B/R in PVC',
-    fig: 'Delimitazione modulare',
-    desc: 'Barriera new jersey in PVC con giunti, riempibile per l’appesantimento in opera.',
-    specs: [
-      ['Materiale', 'PVC con giunti'],
-      ['Dimensioni', '100×45×70 cm'],
-      ['Colori', 'bianco/rosso'],
-      ['Uso', 'canalizzazione e delimitazione'],
-    ],
-    tags: ['new jersey', 'pvc'],
-  },
-  {
-    id: 'transenne',
-    cat: 'barriere',
-    name: 'Transenne',
-    fig: 'Zincate e in PVC',
-    desc: 'Transenne mobili zincate a gambe fisse e transenne in plastica con banda catarifrangente.',
-    specs: [
-      ['Dimensioni', '200×110 cm · 250×110 cm'],
-      ['Materiale', 'acciaio zincato · plastica'],
-      ['Pannello', 'B/R lamiera piana zincata 150×20 cm'],
-      ['Accessori', '2 ganci di aggancio'],
-    ],
-    tags: ['transenna', 'eventi'],
-  },
-  {
-    id: 'chiusino',
-    cat: 'barriere',
-    name: 'Barriera di recinzione per chiusino',
-    fig: 'CdS fig. 402',
-    desc: 'Barriera di recinzione per la protezione di chiusini e pozzetti aperti.',
-    specs: [
-      ['Materiale', 'Ferro'],
-      ['Dimensioni', '100×100 cm'],
-      ['Pellicola', 'classe 1'],
-      ['Uso', 'protezione chiusini'],
-    ],
-    tags: ['chiusino', 'pozzetto'],
-  },
 
   /* ---------------- CANTIERE ---------------- */
   {
@@ -540,20 +468,6 @@ export const products = [
       ['Conformità', 'L6 / L7'],
     ],
     tags: ['lampeggiante', 'notturno'],
-  },
-  {
-    id: 'semaforico',
-    cat: 'cantiere',
-    name: 'Impianto semaforico LED',
-    fig: 'Senso unico alternato',
-    desc: 'Impianto semaforico a LED per senso unico alternato, con centraline al quarzo e alimentatori di rete.',
-    specs: [
-      ['Impianto', 'coppia semafori con centraline al quarzo'],
-      ['Centraline', 'coppia centraline al quarzo'],
-      ['Alimentatori', 'coppia per rete 12V / 220V'],
-      ['Batterie', 'non incluse nell’impianto base'],
-    ],
-    tags: ['semaforo', 'senso unico alternato'],
   },
   {
     id: 'cavalletti',

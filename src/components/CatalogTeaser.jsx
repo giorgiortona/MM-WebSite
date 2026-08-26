@@ -86,7 +86,6 @@ export default function CatalogTeaser() {
         </div>
       </div>
 
-      <div className="teaser__fade teaser__fade--out" aria-hidden="true" />
     </section>
   );
 }

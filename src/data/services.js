@@ -20,44 +20,26 @@ export const services = [
     photo: 'a27-belluno',
   },
   {
-    id: 'barriere',
-    n: '03',
-    title: 'Barriere e protezioni',
-    excerpt:
-      'Barriere normali e direzionali, new jersey, transenne, delineatori e dispositivi di margine per la messa in sicurezza del traffico.',
-    bullets: ['Barriere CdS fig. 392 e 393/a', 'New jersey e transenne', 'Delineatori e catadiottri'],
-    photo: 'rotatoria-frecce',
-  },
-  {
     id: 'cantieri',
-    n: '04',
+    n: '03',
     title: 'Cantieri stradali',
     excerpt:
-      'Allestimento e noleggio di segnaletica temporanea: coni, lampeggianti, cavalletti, impianti semaforici per senso unico alternato.',
-    bullets: ['Noleggio segnaletica di cantiere', 'Impianti semaforici LED', 'Assistenza tecnica in cantiere'],
+      'Allestimento e noleggio di segnaletica temporanea: segnali di cantiere, coni, lampeggianti, cavalletti e delimitazione delle deviazioni.',
+    bullets: ['Noleggio segnaletica di cantiere', 'Deviazioni e restringimenti', 'Assistenza tecnica in cantiere'],
     photo: 'casello-autostradale',
   },
   {
-    id: 'impianti',
-    n: '05',
-    title: 'Impianti luminosi e semaforici',
-    excerpt:
-      'Fornitura, posa e manutenzione sistematica di impianti semaforici, segnaletica luminosa, pubblica illuminazione e sistemi di rilevazione.',
-    bullets: ['Semaforica e segnaletica luminosa', 'Pubblica illuminazione', 'Rilevazione elettronica infrazioni'],
-    photo: 'cerignola-notte',
-  },
-  {
     id: 'urbano',
-    n: '06',
-    title: 'Arredo urbano e verde',
+    n: '04',
+    title: 'Arredo urbano',
     excerpt:
-      'Dissuasori, paletti parapedonali, specchi, arredo urbano e verde pubblico, con manutenzione programmata del patrimonio.',
+      'Dissuasori, paletti parapedonali e specchi parabolici, con manutenzione programmata del patrimonio installato.',
     bullets: ['Dissuasori e paletti parapedonali', 'Specchi parabolici e INOX', 'Manutenzione del patrimonio'],
     photo: 'corsia-ciclabile',
   },
   {
     id: 'strade',
-    n: '07',
+    n: '05',
     title: 'Costruzione e manutenzione strade',
     excerpt:
       'Costruzione e manutenzione di strade pubbliche e private, lavori edili connessi, scavi, movimento terra e pavimentazioni.',
@@ -66,7 +48,7 @@ export const services = [
   },
   {
     id: 'tecnici',
-    n: '08',
+    n: '06',
     title: 'Servizi tecnici',
     excerpt:
       'Consulenza tecnica, progettazione, direzione lavori, conduzione di cantiere e collaudi per tutte le attività di segnaletica.',
