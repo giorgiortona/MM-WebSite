@@ -7,14 +7,6 @@ import './BentoMosaic.css';
 /* Quarta componente fotografica: un mosaico a celle disuguali in cui ogni
    riquadro sale a velocità diversa. Due celle sono di testo, così la griglia
    racconta la rifrangenza invece di limitarsi a mostrarla. */
-/* Le tre classi di pellicola previste, con la resa sotto i fari:
-   e' l'unica cosa che davvero le distingue, quindi la si mostra. */
-const CLASSES = [
-  { n: 'Classe 1', use: 'Strade urbane e complementari', lum: 0.3 },
-  { n: 'Classe 2', use: 'Extraurbane e alta visibilità', lum: 0.62 },
-  { n: 'Classe 3', use: 'Autostrade e punti critici', lum: 1 },
-];
-
 const cells = [
   { type: 'photo', slug: 'bari-notturna', area: 'a', speed: 0.95 },
   { type: 'photo', slug: 'cerignola-notte', area: 'b', speed: 1.05 },
@@ -42,12 +34,11 @@ export default function BentoMosaic({ onOpenPhoto }) {
 
       gsap.from(q('.bento__class'), {
         opacity: 0,
-        x: -18,
-        duration: 0.8,
+        y: 20,
+        duration: 0.75,
         ease: 'panel',
-        stagger: 0.12,
-        clearProps: 'all',
-        scrollTrigger: { trigger: q('.bento__classes')[0], start: 'top 85%' },
+        stagger: 0.09,
+        scrollTrigger: { trigger: q('.bento__classes'), start: 'top 85%' },
       });
     },
     { scope: root }
@@ -109,15 +100,16 @@ export default function BentoMosaic({ onOpenPhoto }) {
             return (
               <div className={`bento__cell bento__cell--${cell.area} bento__classes`} key={cell.area}>
                 <span className="bento__classes-label">Classi di pellicola</span>
-                {CLASSES.map((c) => (
-                  <div className="bento__class" key={c.n}>
-                    <span className="lum" style={{ '--l': c.lum }} aria-hidden="true">
-                      <span className="lum__sign" />
-                    </span>
-                    <span className="bento__class-name">{c.n}</span>
-                    <span className="bento__class-use">{c.use}</span>
-                  </div>
-                ))}
+                <div className="bento__class-grid">
+                  {['1', '2', '3'].map((classNumber) => (
+                    <div className="bento__class" key={classNumber}>
+                      <span className="bento__film" aria-hidden="true">
+                        <span className="bento__film-core" />
+                      </span>
+                      <strong>Cl. {classNumber}</strong>
+                    </div>
+                  ))}
+                </div>
               </div>
             );
           })}
