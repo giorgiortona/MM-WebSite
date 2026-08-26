@@ -49,8 +49,8 @@ export const nav = [
   { id: 'lavori', label: 'Lavori' },
   { id: 'servizi', label: 'Servizi' },
   { id: 'cantieri', label: 'Cantieri' },
-  { id: 'showreel', label: 'In opera' },
   { id: 'catalogo', label: 'Catalogo' },
+  { id: 'showreel', label: 'In opera' },
   { id: 'qualita', label: 'Qualità' },
   { id: 'contatti', label: 'Contatti' },
 ];

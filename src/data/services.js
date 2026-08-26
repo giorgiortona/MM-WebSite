@@ -27,35 +27,17 @@ export const services = [
     photo: 'a27-belluno',
   },
   {
-    id: 'barriere',
-    n: '03',
-    title: 'Barriere e protezioni',
-    excerpt:
-      'Barriere normali e direzionali, new jersey, transenne, delineatori e dispositivi di margine per la messa in sicurezza del traffico.',
-    bullets: ['Barriere CdS fig. 392 e 393/a', 'New jersey e transenne', 'Delineatori e catadiottri'],
-    photo: 'rotatoria-frecce',
-  },
-  {
     id: 'cantieri',
-    n: '04',
+    n: '03',
     title: 'Cantieri stradali',
     excerpt:
-      'Allestimento e noleggio di segnaletica temporanea: coni, lampeggianti, cavalletti, impianti semaforici per senso unico alternato.',
-    bullets: ['Noleggio segnaletica di cantiere', 'Impianti semaforici LED', 'Assistenza tecnica in cantiere'],
+      'Allestimento e noleggio di segnaletica temporanea: segnali di cantiere, coni, lampeggianti, cavalletti e delimitazione delle deviazioni.',
+    bullets: ['Noleggio segnaletica di cantiere', 'Deviazioni e restringimenti', 'Assistenza tecnica in cantiere'],
     photo: 'casello-autostradale',
   },
   {
-    id: 'impianti',
-    n: '05',
-    title: 'Impianti luminosi e semaforici',
-    excerpt:
-      'Fornitura, posa e manutenzione sistematica di impianti semaforici, segnaletica luminosa, pubblica illuminazione e sistemi di rilevazione.',
-    bullets: ['Semaforica e segnaletica luminosa', 'Pubblica illuminazione', 'Rilevazione elettronica infrazioni'],
-    photo: 'cerignola-notte',
-  },
-  {
     id: 'tecnici',
-    n: '08',
+    n: '04',
     title: 'Servizi tecnici',
     excerpt:
       'Consulenza tecnica, progettazione, direzione lavori, conduzione di cantiere e collaudi per tutte le attività di segnaletica.',

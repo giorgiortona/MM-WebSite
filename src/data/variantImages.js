@@ -189,7 +189,6 @@ export const variantImages = {
   'serie-direzione::Direzione extraurbana': '/media/catalog/signs/187-direzione-extraurbana.webp', // p24 r1 c2
   'serie-direzione::Corsia con funzione di direzione': '/media/catalog/signs/188-corsia-con-funzione-di-direzione.webp', // p24 r2 c1
   'serie-direzione::Corsia con modalità di utilizzo': '/media/catalog/signs/189-corsia-con-modalita-di-utilizzo.webp', // p24 r3 c1
-  'serie-direzione::Direzione alta con lanterne semaforiche': '/media/catalog/signs/190-direzione-alta-con-lanterne-semaforiche.webp', // p24 r1 c1
   'serie-direzione::Gruppo segnaletico urbano monofilare': '/media/catalog/signs/191-gruppo-segnaletico-urbano-monofilare.webp', // p25 r1 c1
   'serie-direzione::Gruppo segnaletico urbano bifilare': '/media/catalog/signs/192-gruppo-segnaletico-urbano-bifilare.webp', // p25 r1 c3
   'serie-direzione::Gruppo segnaletico extraurbano': '/media/catalog/signs/193-gruppo-segnaletico-extraurbano.webp', // p25 r1 c2
@@ -465,9 +464,7 @@ export const variantImages = {
   'serie-temporanei::Corsie a larghezza ridotta': '/media/catalog/signs/463-corsie-a-larghezza-ridotta.webp', // p57 r3 c1
   'serie-temporanei::Incidente': '/media/catalog/signs/464-incidente.webp', // p57 r2 c2
   'serie-temporanei::Uscita obbligatoria': '/media/catalog/signs/465-uscita-obbligatoria.webp', // p57 r2 c3
-  'serie-temporanei::Barriera normale': '/media/catalog/signs/466-barriera-normale.webp', // p57 r3 c2
   'serie-temporanei::Lampada da cantiere': '/media/catalog/signs/467-lampada-da-cantiere.webp', // p57 r3 c3
-  'serie-temporanei::Barriera direzionale': '/media/catalog/signs/468-barriera-direzionale.webp', // p58 r1 c3
   'serie-temporanei::Cono': '/media/catalog/signs/469-cono.webp', // p58 r3 c1
   'serie-temporanei::Delineatore flessibile': '/media/catalog/signs/470-delineatore-flessibile.webp', // p58 r2 c2
   'serie-temporanei::Paletto di delimitazione': '/media/catalog/signs/471-paletto-di-delimitazione.webp', // p58 r2 c1
@@ -477,9 +474,7 @@ export const variantImages = {
   'serie-temporanei::Segnale mobile di preavviso': '/media/catalog/signs/475-segnale-mobile-di-preavviso.webp', // p59 r1 c2
   'serie-temporanei::Segnale mobile di protezione': '/media/catalog/signs/476-segnale-mobile-di-protezione.webp', // p59 r2 c1
   'serie-temporanei::Passaggio obbligatorio per veicoli operativi': '/media/catalog/signs/477-passaggio-obbligatorio-per-veicoli-operativi.webp', // p59 r1 c1
-  'serie-temporanei::Barriera di recinzione per chiusini': '/media/catalog/signs/478-barriera-di-recinzione-per-chiusini.webp', // p59 r3 c2
   'serie-temporanei::Paletta per transito alternato': '/media/catalog/signs/479-paletta-per-transito-alternato.webp', // p60 r1 c1
-  'serie-temporanei::Semaforo temporaneo': '/media/catalog/signs/480-semaforo-temporaneo.webp', // p60 r1 c2
   'serie-temporanei::Preavviso di deviazione': '/media/catalog/signs/481-preavviso-di-deviazione.webp', // p60 r1 c3
   'serie-temporanei::Preavviso deviazione con limite di massa': '/media/catalog/signs/482-preavviso-deviazione-con-limite-di-massa.webp', // p60 r2 c3
   'serie-temporanei::Preavviso deviazione autocarri consigliata': '/media/catalog/signs/483-preavviso-deviazione-autocarri-consigliata.webp', // p60 r3 c3

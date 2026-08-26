@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 import { gsap, useGSAP } from '../lib/gsap';
+import { useAutoScroll } from '../hooks/useAutoScroll';
 import { cantieriReel, photos } from '../data/gallery';
 import Figure from './Figure';
 import './HorizontalReel.css';
@@ -9,6 +10,11 @@ import './HorizontalReel.css';
    il blocco viene disattivato e resta uno scorrimento a scatti nativo. */
 export default function HorizontalReel({ onOpenPhoto }) {
   const root = useRef(null);
+  const viewport = useRef(null);
+
+  /* Su desktop la sezione è bloccata e il riquadro non scorre: il movimento
+     autonomo si accorge da solo che non c'è nulla da scorrere e resta fermo. */
+  useAutoScroll(viewport, { speed: 26 });
 
   useGSAP(
     () => {
@@ -56,7 +62,7 @@ export default function HorizontalReel({ onOpenPhoto }) {
 
   return (
     <section className="reel" id="cantieri" ref={root}>
-      <div className="reel__viewport">
+      <div className="reel__viewport" ref={viewport}>
         <div className="reel__track">
           <div className="reel__intro">
             <h2 className="section-title">Lavori<br />consegnati</h2>

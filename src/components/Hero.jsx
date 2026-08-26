@@ -78,7 +78,7 @@ export default function Hero({ onQuote, onExplore }) {
         <div className="hero__rule" aria-hidden="true" />
 
         <p className="hero__lead">
-          Orizzontale e verticale, barriere e protezioni, cantieri e impianti semaforici.
+          Orizzontale e verticale, segnaletica di cantiere e delineatori.
           Produzione conforme alla norma <strong>EN 12899-1:2007</strong> con marcatura CE su
           ogni fornitura.
         </p>

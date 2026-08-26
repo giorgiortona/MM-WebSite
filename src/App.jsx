@@ -1,9 +1,8 @@
-import { useState, useCallback, useEffect, useLayoutEffect, useRef } from 'react';
+import { useState, useCallback, useLayoutEffect, useRef } from 'react';
 import { HashRouter, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { ScrollSmoother } from './lib/gsap';
 import { scrollToSection } from './hooks/useSmoother';
 
-import Preloader from './components/Preloader';
 import Header from './components/Header';
 import NavOverlay from './components/NavOverlay';
 import QuoteBar from './components/QuoteBar';
@@ -19,27 +18,17 @@ function Shell() {
   const isHome = location.pathname === '/';
   const isLegal = location.pathname === '/privacy' || location.pathname === '/cookie-policy';
 
-  /* Il caricamento appare a ogni ricarica e quando si entra nel catalogo. */
-  const [loading, setLoading] = useState(true);
   const [menuOpen, setMenuOpen] = useState(false);
   const [quote, setQuote] = useState({ open: false, product: null });
   const [photo, setPhoto] = useState(null);
   const previousPath = useRef(location.pathname);
 
   useLayoutEffect(() => {
-    const wasCatalog = previousPath.current.startsWith('/catalogo');
-    const entersCatalog = location.pathname.startsWith('/catalogo') && !wasCatalog;
+    const entersCatalog =
+      location.pathname.startsWith('/catalogo') && !previousPath.current.startsWith('/catalogo');
     previousPath.current = location.pathname;
-
-    if (entersCatalog) {
-      setMenuOpen(false);
-      setLoading(true);
-    }
+    if (entersCatalog) setMenuOpen(false);
   }, [location.pathname]);
-
-  useEffect(() => {
-    document.body.classList.toggle('is-locked', loading);
-  }, [loading]);
 
   /* Le navigazioni provenienti da una pagina interna arrivano alla sezione
      richiesta prima del nuovo fotogramma, senza mostrare lo scorrimento. */
@@ -77,17 +66,12 @@ function Shell() {
 
   const onLogoClick = useCallback(() => {
     setMenuOpen(false);
-    setLoading(true);
     if (isHome) scrollToSection('top');
     else navigate('/');
   }, [isHome, navigate]);
 
   return (
     <>
-      {loading && (
-        <Preloader onDone={() => setLoading(false)} />
-      )}
-
       <Header
         menuOpen={menuOpen}
         onToggleMenu={() => setMenuOpen((v) => !v)}
@@ -101,7 +85,7 @@ function Shell() {
           path="/"
           element={
             <Home
-              ready={!loading}
+              ready
               onQuote={() => openQuote()}
               onOpenPhoto={setPhoto}
               onNavigate={goToSection}

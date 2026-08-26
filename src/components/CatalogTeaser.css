@@ -5,68 +5,72 @@
   color: var(--ink-900);
 }
 
-/* --- Raccordo fra l'asfalto e il fondo chiaro --- */
+/* --- Raccordo fra il blu profondo e il fondo chiaro ---
+   L'immagine di sfondo è alta il 140% del riquadro: la finestra visibile ne
+   mostra il 71,4%, con le due estremità piene e la rampa al centro. Comunque
+   lo scroll la sposti, in alto resta il colore della sezione precedente e in
+   basso quello della successiva: nessun gradino ai due bordi. Le due misure
+   vanno cambiate insieme, altrimenti gli estremi non coprono più la corsa.
+   La rampa segue un passo dolce, a variazione nulla agli estremi, così non si
+   vede dove attacca. */
 .teaser__fade {
   position: relative;
-  height: clamp(160px, 26vh, 300px);
+  height: clamp(190px, 32vh, 380px);
   width: 100%;
-  background-size: 100% 100%;
+  background-size: 100% 140%;
   background-repeat: no-repeat;
-}
-
-.teaser__fade::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  opacity: 0.26;
-  mix-blend-mode: overlay;
-  -webkit-mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);
-  mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);
-  pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2'/%3E%3C/filter%3E%3Crect width='120' height='120' filter='url(%23n)' opacity='0.28'/%3E%3C/svg%3E");
+  will-change: background-position;
 }
 
 .teaser__fade--in {
-  background-image: linear-gradient(to bottom, var(--asphalt-900), var(--paper-100));
   background-image: linear-gradient(
     to bottom,
-    var(--asphalt-900) 0%,
-    color-mix(in srgb, var(--asphalt-900) 82%, var(--paper-100)) 22%,
-    color-mix(in srgb, var(--asphalt-900) 58%, var(--paper-100)) 48%,
-    color-mix(in srgb, var(--asphalt-900) 28%, var(--paper-100)) 73%,
-    color-mix(in srgb, var(--asphalt-900) 8%, var(--paper-100)) 91%,
-    var(--paper-100) 100%
+    #0B263D 0%,
+    #0B263D 28.57%,
+    rgb(12 39 62) 30.36%,
+    rgb(16 42 65) 32.14%,
+    rgb(21 47 69) 33.93%,
+    rgb(29 54 75) 35.71%,
+    rgb(38 62 82) 37.50%,
+    rgb(48 71 90) 39.29%,
+    rgb(60 81 99) 41.07%,
+    rgb(73 93 109) 42.86%,
+    rgb(87 105 119) 44.64%,
+    rgb(101 117 130) 46.43%,
+    rgb(116 130 142) 48.21%,
+    rgb(130 144 153) 50.00%,
+    rgb(145 157 164) 51.79%,
+    rgb(160 170 176) 53.57%,
+    rgb(174 182 187) 55.36%,
+    rgb(188 194 197) 57.14%,
+    rgb(201 206 207) 58.93%,
+    rgb(213 216 216) 60.71%,
+    rgb(223 225 224) 62.50%,
+    rgb(232 233 231) 64.29%,
+    rgb(240 240 237) 66.07%,
+    rgb(245 245 241) 67.86%,
+    rgb(249 248 244) 69.64%,
+    #FAF9F5 71.43%,
+    #FAF9F5 100%
   );
 }
 
-.teaser__fade--out {
-  background-image: linear-gradient(to bottom, var(--paper-100), var(--surface-alt));
-}
-
+/* In basso il salto è fra due chiari quasi uguali (#FAF9F5 -> #EEF2F2):
+   con la banda alta come quella d'ingresso resterebbe solo spazio vuoto. */
+/* La banda in basso è stata tolta: sotto il catalogo c'è il mosaico, dello
+   stesso chiaro. Se un giorno lo si sposta sopra a una sezione scura va
+   rimessa, ricalcolando gli estremi come per quella d'ingresso. */
 .teaser__body {
   position: relative;
   isolation: isolate;
-  padding-block: clamp(1.5rem, 4vw, 3rem) clamp(2.5rem, 6vw, 5rem);
-}
-
-/* La velatura invade entrambe le sezioni e nasconde il punto di giunzione. */
-.teaser__body::before {
-  content: '';
-  position: absolute;
-  z-index: 0;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: clamp(62px, 8vw, 112px);
-  transform: translateY(-50%);
-  background: linear-gradient(to bottom, transparent 0%, var(--paper-100) 52%, var(--paper-100) 100%);
-  pointer-events: none;
+  padding-block: clamp(1.5rem, 4vw, 3rem) clamp(3.5rem, 8vw, 6.5rem);
 }
 
 .teaser__body > .shell {
   position: relative;
   z-index: 1;
 }
+
 
 .teaser__head {
   display: grid;

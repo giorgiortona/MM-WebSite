@@ -1,13 +1,13 @@
 import { useRef } from 'react';
 import { Link } from 'react-router-dom';
-import { gsap, useGSAP } from '../lib/gsap';
+import { gsap, useGSAP, prefersReducedMotion } from '../lib/gsap';
 import { macros, productsOfMacro, countCatalogItems, catalogItemCount } from '../data/catalog';
 import MacroFigure from './MacroFigure';
 import './CatalogTeaser.css';
 
-/* Anteprima del catalogo sulla home: le quattro aree, ognuna porta alla
-   pagina dedicata. La sfumatura che porta dal fondo scuro a quello chiaro
-   scorre insieme alla pagina. */
+/* Anteprima del catalogo sulla home: ogni area porta alla pagina dedicata.
+   La sfumatura che passa dal fondo scuro a quello chiaro scorre insieme alla
+   pagina, così il cambio di colore segue il movimento invece di restare fermo. */
 export default function CatalogTeaser() {
   const root = useRef(null);
 
@@ -25,6 +25,27 @@ export default function CatalogTeaser() {
         scrollTrigger: { trigger: q('.macro-grid')[0], start: 'top 84%' },
       });
 
+      if (prefersReducedMotion()) return;
+
+      /* L'immagine di sfondo della banda è più alta del riquadro: lo scroll la
+         fa scorrere, con le estremità piene che restano agganciate ai colori
+         delle sezioni vicine. */
+      q('.teaser__fade').forEach((band) => {
+        gsap.fromTo(
+          band,
+          { backgroundPositionY: '0%' },
+          {
+            backgroundPositionY: '100%',
+            ease: 'none',
+            scrollTrigger: {
+              trigger: band,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: 0.4,
+            },
+          }
+        );
+      });
     },
     { scope: root }
   );
@@ -65,7 +86,6 @@ export default function CatalogTeaser() {
         </div>
       </div>
 
-      <div className="teaser__fade teaser__fade--out" aria-hidden="true" />
     </section>
   );
 }
