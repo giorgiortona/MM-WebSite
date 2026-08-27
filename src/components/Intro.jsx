@@ -74,9 +74,9 @@ export default function Intro() {
         <div className="intro__copy intro__copy--primary" data-reveal>
           <p className="section-lead" data-reveal>
             M.M. Group costruisce, fornisce, posa e mantiene segnaletica stradale orizzontale e
-            verticale, delineatori e segnaletica di cantiere. Dalla vernice spartitraffico al
-            pannello di preavviso, dalla targa al cantiere temporaneo: un solo interlocutore per
-            l’intera opera.
+            verticale, delineatori e segnaletica di cantiere. Dalla vernice spartitraffico alle
+            lavorazioni in bicomponente e termo-spruzzato, dal pannello di preavviso al cantiere
+            temporaneo: un solo interlocutore per l’intera opera.
           </p>
           <span className="intro__road-rule" aria-hidden="true" />
         </div>

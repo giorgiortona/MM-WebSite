@@ -8,12 +8,13 @@ export const services = [
     excerpt:
       'Tracciamento e rifacimento su strade urbane, extraurbane e autostrade: mezzerie, margini, frecce direzionali, attraversamenti, isole e zebrature.',
     bullets: [
-      'Vernice spartitraffico rifrangente e non',
+      'Applicazione airless, spartitraffico e all’acqua',
+      'Formulazioni acriliche e alchidiche',
+      'Post-spruzzata con microsfere di vetro',
+      'Bicomponente rifrangente e non rifrangente',
+      'Lavorazione in termo-spruzzato',
       'Premiscelati e non',
-      'Colato a freddo',
-      'Colato a caldo',
-      'Bicomponente',
-      'Gocciato',
+      'Colato a freddo e a caldo · gocciato',
     ],
     photo: 'napoli-autostrada',
   },
