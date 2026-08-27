@@ -104,26 +104,19 @@ watermark della fotocamera, e i filmati del capannone per togliere quello di
 TikTok.
 # MM-WebSite
 
-## Anteprima per il cliente
+## Pubblicazione
 
-Il sito è pubblicato su Vercel a un indirizzo non indovinabile, solo per la
-revisione del cliente:
+Il sito di produzione è pubblicato gratuitamente con Cloudflare Pages:
 
-    https://mm-anteprima-5f2e5f9c73.vercel.app
+    https://mmgroupsegnaletica.it
 
-Sull'anteprima Vercel viene aggiunto l'header `X-Robots-Tag: noindex, nofollow,
-noarchive, nosnippet` (vedi `vercel.json`): l'indirizzo non finisce nei motori
-di ricerca né negli archivi web. L'header **non** è nel codice della pagina,
-quindi la cartella `dist/` che consegnerai all'hosting definitivo resta pulita
-e indicizzabile.
+Cloudflare è collegato al repository GitHub e pubblica automaticamente ogni
+push sul branch `main`. Configurazione della build:
 
-Comandi utili:
+    Framework preset: Vite
+    Build command: npm run build
+    Build output directory: dist
+    Root directory: /
 
-    vercel deploy --yes          # aggiorna l'anteprima dopo una modifica
-    vercel alias ls              # elenca gli indirizzi attivi
-    vercel alias rm <indirizzo>  # spegne il link
-    vercel project rm mm-anteprima-5f2e5f9c73    # elimina tutto
-
-Il progetto porta lo stesso nome casuale dell'indirizzo: così nessuna delle
-URL generate da Vercel è indovinabile. Gli indirizzi interni di deploy restano
-protetti dall'accesso Vercel: li apri solo tu, da autenticato.
+Il dominio resta registrato su Register.it; la zona DNS e il certificato HTTPS
+sono gestiti da Cloudflare.
