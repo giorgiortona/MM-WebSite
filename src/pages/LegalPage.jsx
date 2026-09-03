@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { site } from '../data/site';
 import Footer from '../components/Footer';
+import Seo from '../components/Seo';
 import './LegalPage.css';
 
 const LAST_UPDATED = '25 agosto 2026';
@@ -309,25 +309,26 @@ function CookieContent() {
 }
 
 export default function LegalPage({ type, onNavigate }) {
-  useEffect(() => {
-    const previousTitle = document.title;
-    document.title = `${type === 'privacy' ? 'Privacy policy' : 'Cookie policy'} — ${site.legal}`;
-    return () => {
-      document.title = previousTitle;
-    };
-  }, [type]);
-
   const scrollToTop = () => window.scrollTo(0, 0);
+  const isPrivacy = type === 'privacy';
 
   return (
-    <div className="legal">
-      <main>{type === 'privacy' ? <PrivacyContent /> : <CookieContent />}</main>
-      <div className="legal__bottom-action">
-        <div className="shell">
-          <BackToSite />
+    <>
+      <Seo
+        title={`${isPrivacy ? 'Privacy policy' : 'Cookie policy'} — ${site.legal}`}
+        description={`Informativa ${isPrivacy ? 'privacy' : 'cookie'} del sito M.M. Group S.r.l.`}
+        path={isPrivacy ? '/privacy' : '/cookie-policy'}
+        robots="noindex,follow"
+      />
+      <div className="legal">
+        <main>{isPrivacy ? <PrivacyContent /> : <CookieContent />}</main>
+        <div className="legal__bottom-action">
+          <div className="shell">
+            <BackToSite />
+          </div>
         </div>
+        <Footer onNavigate={onNavigate} onTop={scrollToTop} />
       </div>
-      <Footer onNavigate={onNavigate} onTop={scrollToTop} />
-    </div>
+    </>
   );
 }

@@ -1,5 +1,5 @@
 import { useState, useCallback, useLayoutEffect, useRef } from 'react';
-import { HashRouter, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useNavigate, useLocation } from 'react-router-dom';
 import { ScrollSmoother } from './lib/gsap';
 import { scrollToSection } from './hooks/useSmoother';
 
@@ -22,6 +22,14 @@ function Shell() {
   const [quote, setQuote] = useState({ open: false, product: null });
   const [photo, setPhoto] = useState(null);
   const previousPath = useRef(location.pathname);
+
+  /* Conserva i vecchi link /#/catalogo dopo il passaggio agli URL puliti. */
+  useLayoutEffect(() => {
+    const legacyPath = window.location.hash.startsWith('#/')
+      ? window.location.hash.slice(1)
+      : null;
+    if (legacyPath) navigate(legacyPath, { replace: true });
+  }, [navigate]);
 
   useLayoutEffect(() => {
     const entersCatalog =
@@ -116,8 +124,8 @@ function Shell() {
 
 export default function App() {
   return (
-    <HashRouter>
+    <BrowserRouter>
       <Shell />
-    </HashRouter>
+    </BrowserRouter>
   );
 }

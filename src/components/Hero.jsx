@@ -69,6 +69,7 @@ export default function Hero({ onQuote, onExplore }) {
 
         <h1 className="hero__title">
           <span>M.M. Group</span>
+          <span className="visually-hidden"> — Segnaletica stradale orizzontale e verticale</span>
         </h1>
 
         <p className="hero__subtitle">

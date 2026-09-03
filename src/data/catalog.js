@@ -1,4 +1,4 @@
-import { signSeriesFamilies, signSeriesProducts } from './signSeries';
+import { signSeriesFamilies, signSeriesProducts } from './signSeries.js';
 
 /* Catalogo su tre livelli: macro area -> famiglia -> articolo.
    Nessun prezzo esposto: dimensioni, materiali e classi di pellicola

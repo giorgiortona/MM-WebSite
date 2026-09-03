@@ -37,14 +37,13 @@ Il catalogo è una pagina a sé, raggiungibile anche da un collegamento diretto:
 | Indirizzo | Cosa mostra |
 |---|---|
 | `/` | la home |
-| `/#/catalogo` | le quattro aree |
-| `/#/catalogo/verticale` | famiglie e articoli di un'area |
-| `/#/catalogo/verticale/disco` | la scheda di un articolo |
+| `/catalogo` | le quattro aree |
+| `/catalogo/verticale` | famiglie e articoli di un'area |
+| `/catalogo/verticale/disco` | la scheda di un articolo |
 
-La navigazione usa il **cancelletto** (`HashRouter`): i collegamenti diretti
-funzionano su qualsiasi hosting, anche su un semplice spazio FTP, senza
-regole di riscrittura lato server. Il tasto «indietro» del browser funziona
-normalmente.
+La navigazione usa URL puliti (`BrowserRouter`). L'hosting deve quindi
+restituire `index.html` anche sulle rotte interne; Cloudflare è già configurato
+come applicazione a pagina singola. Il tasto «indietro» del browser funziona normalmente.
 
 ## Dove si modificano i contenuti
 

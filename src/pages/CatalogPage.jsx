@@ -16,7 +16,25 @@ import ProductFigure from '../components/ProductFigure';
 import VariantFigure from '../components/VariantFigure';
 import MacroFigure from '../components/MacroFigure';
 import Footer from '../components/Footer';
+import Seo from '../components/Seo';
 import './CatalogPage.css';
+
+const SITE_URL = 'https://mmgroupsegnaletica.it';
+
+const compactDescription = (value, maxLength = 158) => {
+  if (value.length <= maxLength) return value;
+  return `${value.slice(0, maxLength - 1).replace(/\s+\S*$/, '')}…`;
+};
+
+const breadcrumbSchema = (items) => ({
+  '@type': 'BreadcrumbList',
+  itemListElement: items.map((item, index) => ({
+    '@type': 'ListItem',
+    position: index + 1,
+    name: item.name,
+    item: `${SITE_URL}${item.path}`,
+  })),
+});
 
 const normalizeSearch = (value = '') =>
   value
@@ -228,8 +246,122 @@ export default function CatalogPage({ onQuote, notFound }) {
 
   const items = family ? productsOfFamily(family) : [];
 
+  const articleFamily = article ? findFamily(article.cat) : null;
+  const articleMacro = articleFamily ? findMacro(articleFamily.macro) : null;
+  const invalidRoute = Boolean(
+    notFound ||
+      (macroId && !macro) ||
+      (articleId && (!article || !macro || articleMacro?.id !== macro.id))
+  );
+
+  let seoTitle = 'Catalogo segnaletica stradale | M.M. Group';
+  let seoDescription = `${catalogItemCount} segnali e articoli per segnaletica verticale, orizzontale, cantieri e delineatori. Specifiche tecniche e preventivi su richiesta.`;
+  let seoPath = '/catalogo';
+  let seoImage = '/media/photos/rotatoria-aerea-1800.webp';
+  let seoSchema = {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'CollectionPage',
+        '@id': `${SITE_URL}/catalogo#webpage`,
+        url: `${SITE_URL}/catalogo`,
+        name: seoTitle,
+        description: seoDescription,
+        isPartOf: { '@id': `${SITE_URL}/#website` },
+      },
+      breadcrumbSchema([
+        { name: 'Home', path: '/' },
+        { name: 'Catalogo', path: '/catalogo' },
+      ]),
+    ],
+  };
+
+  if (macro && !articleId) {
+    seoTitle = `${macro.name}: catalogo e forniture | M.M. Group`;
+    seoDescription = compactDescription(
+      `${macro.blurb} Consulta articoli e specifiche tecniche e richiedi un preventivo a M.M. Group.`
+    );
+    seoPath = `/catalogo/${macro.id}`;
+    seoImage = `/media/photos/${macro.photo}-1800.webp`;
+    seoSchema = {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'CollectionPage',
+          '@id': `${SITE_URL}${seoPath}#webpage`,
+          url: `${SITE_URL}${seoPath}`,
+          name: seoTitle,
+          description: seoDescription,
+          isPartOf: { '@id': `${SITE_URL}/#website` },
+        },
+        breadcrumbSchema([
+          { name: 'Home', path: '/' },
+          { name: 'Catalogo', path: '/catalogo' },
+          { name: macro.name, path: seoPath },
+        ]),
+      ],
+    };
+  }
+
+  if (macro && article && !invalidRoute) {
+    seoTitle = `${article.name} | Catalogo M.M. Group`;
+    seoDescription = compactDescription(
+      `${article.desc} Consulta materiali e misure e richiedi un preventivo.`
+    );
+    seoPath = `/catalogo/${macro.id}/${article.id}`;
+    seoImage = `/media/photos/${macro.photo}-1800.webp`;
+    seoSchema = {
+      '@context': 'https://schema.org',
+      '@graph': [
+        {
+          '@type': 'Product',
+          '@id': `${SITE_URL}${seoPath}#product`,
+          url: `${SITE_URL}${seoPath}`,
+          name: article.name,
+          description: article.desc,
+          sku: article.fig || article.id,
+          category: macro.name,
+          brand: { '@type': 'Brand', name: 'M.M. Group' },
+          additionalProperty: article.specs.map(([name, value]) => ({
+            '@type': 'PropertyValue',
+            name,
+            value,
+          })),
+        },
+        breadcrumbSchema([
+          { name: 'Home', path: '/' },
+          { name: 'Catalogo', path: '/catalogo' },
+          { name: macro.name, path: `/catalogo/${macro.id}` },
+          { name: article.name, path: seoPath },
+        ]),
+      ],
+    };
+  }
+
+  if (invalidRoute) {
+    seoTitle = 'Pagina non trovata | M.M. Group';
+    seoDescription = 'La pagina richiesta non è disponibile. Consulta il catalogo M.M. Group.';
+    seoPath = location.pathname;
+    seoSchema = null;
+  }
+
   return (
-    <div className="catpage" ref={root}>
+    <>
+      <Seo
+        title={seoTitle}
+        description={seoDescription}
+        path={seoPath}
+        image={seoImage}
+        imageAlt={macro ? `${macro.name} — M.M. Group` : 'Catalogo M.M. Group'}
+        type={article && !invalidRoute ? 'product' : 'website'}
+        robots={
+          invalidRoute
+            ? 'noindex,follow'
+            : 'index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1'
+        }
+        structuredData={seoSchema}
+      />
+      <div className="catpage" ref={root}>
       {/* --- barra di sezione: sempre visibile, per cambiare area --- */}
       <div className="catbar">
         <div className="catbar__inner">
@@ -456,12 +588,13 @@ export default function CatalogPage({ onQuote, notFound }) {
         </div>
       </main>
 
-      <Footer
-        onNavigate={(id) => {
-          navigate('/', { state: { instantSection: id } });
-        }}
-        onTop={() => navigate('/')}
-      />
-    </div>
+        <Footer
+          onNavigate={(id) => {
+            navigate('/', { state: { instantSection: id } });
+          }}
+          onTop={() => navigate('/')}
+        />
+      </div>
+    </>
   );
 }
