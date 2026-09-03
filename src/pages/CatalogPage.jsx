@@ -314,19 +314,24 @@ export default function CatalogPage({ onQuote, notFound }) {
       '@context': 'https://schema.org',
       '@graph': [
         {
-          '@type': 'Product',
-          '@id': `${SITE_URL}${seoPath}#product`,
+          '@type': 'ItemPage',
+          '@id': `${SITE_URL}${seoPath}#webpage`,
           url: `${SITE_URL}${seoPath}`,
           name: article.name,
           description: article.desc,
-          sku: article.fig || article.id,
-          category: macro.name,
-          brand: { '@type': 'Brand', name: 'M.M. Group' },
-          additionalProperty: article.specs.map(([name, value]) => ({
-            '@type': 'PropertyValue',
-            name,
-            value,
-          })),
+          isPartOf: { '@id': `${SITE_URL}/#website` },
+          about: {
+            '@type': 'Thing',
+            name: article.name,
+            description: article.desc,
+            identifier: article.fig || article.id,
+            category: macro.name,
+            additionalProperty: article.specs.map(([name, value]) => ({
+              '@type': 'PropertyValue',
+              name,
+              value,
+            })),
+          },
         },
         breadcrumbSchema([
           { name: 'Home', path: '/' },
