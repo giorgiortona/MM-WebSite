@@ -60,7 +60,7 @@ export default function CatalogTeaser() {
             <h2 className="teaser__title">Catalogo</h2>
             <p className="teaser__sub">
               {catalogItemCount} segnali e articoli in quattro aree, con materiali, misure e classi di
-              pellicola. Il prezzo dipende da quantità, finitura e posa: si concorda per telefono.
+              pellicola. Il prezzo dipende da quantità, finitura e posa.
             </p>
           </header>
 

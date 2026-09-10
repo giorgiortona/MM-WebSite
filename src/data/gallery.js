@@ -85,7 +85,7 @@ export const photos = {
     height: 1350,
     ratio: 2000 / 1500,
     alt: 'Autostrada A27 verso Belluno con iscrizioni di preselezione e mezzo di scorta',
-    caption: 'Preselezione con mezzo di protezione a seguire',
+    caption: 'Corsia di preselezione',
     place: 'A27 · Belluno',
   },
 };
