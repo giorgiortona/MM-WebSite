@@ -292,7 +292,8 @@
   align-items: start;
 }
 
-.fam-rail { min-width: 0; }
+.fam-rail { min-width: 0; position: relative; }
+.fam-rail__arrow { display: none; }
 .fam-rail ul { list-style: none; padding: 0; margin: 0; display: grid; gap: 2px; }
 
 .fam-rail__item {
@@ -386,6 +387,93 @@
 
 .art-card__fig { font-size: 0.74rem; color: var(--ink-500); line-height: 1.4; }
 
+/* --- Cartelle della segnaletica luminosa: tre prodotti in anteprima --- */
+.art-card__shot:has(.folder-figure),
+.sheet__shot:has(.folder-figure) {
+  position: relative;
+  background:
+    radial-gradient(120% 95% at 50% 0%, rgba(255, 255, 255, 0.55) 0%, rgba(255, 255, 255, 0) 62%),
+    var(--paper-300);
+}
+
+.art-card__shot:has(.folder-figure) {
+  align-content: end;
+  min-height: 0;
+  padding: 3rem 1rem 1.4rem;
+}
+
+.folder-figure {
+  display: block;
+  width: 100%;
+}
+
+.folder-figure__tab {
+  position: absolute;
+  top: 0;
+  left: 1rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.38rem 0.8rem 0.42rem;
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ink-700, var(--ink-900));
+  background: rgba(20, 22, 26, 0.08);
+  border-radius: 0 0 9px 9px;
+}
+
+.art-card__shot .folder-figure__tab svg,
+.sheet__shot .folder-figure__tab svg {
+  width: 13px;
+  height: 13px;
+  max-width: none;
+  flex: none;
+  opacity: 0.7;
+}
+
+.folder-figure__row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  align-items: end;
+  gap: 0.4rem;
+}
+
+.folder-figure__item {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  transition: transform 0.4s var(--ease-out);
+}
+
+.folder-figure__item--photo img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  mix-blend-mode: multiply;
+}
+
+.art-card__shot .folder-figure__item svg,
+.sheet__shot .folder-figure__item svg {
+  width: 100%;
+  max-width: 96px;
+  height: auto;
+  flex: none;
+  transform: none;
+  filter: drop-shadow(0 7px 6px rgba(20, 22, 26, 0.16));
+}
+
+.sheet__shot .folder-figure__item svg { max-width: 132px; }
+
+.sheet__shot:has(.folder-figure) { padding-top: clamp(2.8rem, 5vw, 3.6rem); }
+
+.art-card:hover .folder-figure__item { transform: translateY(-4px); }
+.art-card:hover .art-card__shot .folder-figure__item svg { transform: none; }
+.art-card:hover .folder-figure__item:nth-child(2) { transition-delay: 0.04s; }
+.art-card:hover .folder-figure__item:nth-child(3) { transition-delay: 0.08s; }
+
 /* --- Scheda articolo --- */
 .sheet {
   display: grid;
@@ -444,6 +532,125 @@
 }
 
 .sheet__specs dd { margin: 0; font-size: 0.92rem; }
+
+/* --- Esempi di impiego (segnaletica luminosa) --- */
+.sheet__examples {
+  margin-top: clamp(2.5rem, 6vw, 4.5rem);
+  padding-top: clamp(1.4rem, 3vw, 2.2rem);
+  border-top: 1px solid rgba(20, 22, 26, 0.16);
+}
+
+.sheet__examples-head { margin-bottom: 1.1rem; }
+
+.sheet__examples-head h2 {
+  font-size: clamp(1.35rem, 2.4vw, 1.85rem);
+  color: var(--ink-900);
+}
+
+.sheet__examples-head p {
+  margin-top: 0.35rem;
+  color: var(--ink-500);
+  font-size: 0.95rem;
+}
+
+.sheet__examples-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 0.7rem;
+}
+
+.example-card {
+  display: grid;
+  align-content: start;
+  gap: 0.45rem;
+  padding: 1rem 1.05rem 1.1rem;
+  background: var(--paper-200);
+  border-top: 3px solid var(--yellow);
+}
+
+.example-card__icon {
+  width: 44px;
+  height: 44px;
+  margin-bottom: 0.2rem;
+}
+
+.example-card h3 {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  line-height: 1.1;
+  text-transform: uppercase;
+  color: var(--ink-900);
+}
+
+.example-card p {
+  color: var(--ink-700);
+  font-size: 0.86rem;
+  line-height: 1.5;
+}
+
+.example-messages {
+  display: grid;
+  grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.4fr);
+  gap: 1.2rem 1.6rem;
+  align-items: center;
+  margin-top: 0.9rem;
+  padding: 1.2rem;
+  background: var(--paper-200);
+  border-left: 3px solid var(--yellow);
+}
+
+.example-messages__copy h3 {
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  text-transform: uppercase;
+  color: var(--ink-900);
+}
+
+.example-messages__copy p {
+  margin-top: 0.4rem;
+  color: var(--ink-700);
+  font-size: 0.86rem;
+  line-height: 1.5;
+}
+
+.example-messages__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(118px, 1fr));
+  gap: 0.5rem;
+}
+
+.led-panel {
+  position: relative;
+  display: grid;
+  place-content: center;
+  gap: 0.1rem;
+  min-height: 62px;
+  padding: 0.5rem 0.4rem;
+  font-family: var(--font-display);
+  font-size: 1.02rem;
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: 0.06em;
+  text-align: center;
+  text-transform: uppercase;
+  color: #ffc247;
+  text-shadow: 0 0 6px rgba(255, 150, 20, 0.75);
+  background: #0b0b0c;
+  border: 2px solid #2a2d33;
+  border-radius: 4px;
+}
+
+.led-panel::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle, transparent 38%, rgba(0, 0, 0, 0.5) 42%) 0 0 / 3px 3px;
+  pointer-events: none;
+}
+
+@media (max-width: 800px) {
+  .example-messages { grid-template-columns: minmax(0, 1fr); }
+}
 
 .sheet__variants {
   margin-top: clamp(2.5rem, 6vw, 4.5rem);
@@ -648,6 +855,32 @@
     white-space: nowrap;
   }
   .fam-rail__item.is-active { border-left: none; border-bottom-color: var(--ink-900); }
+  .fam-rail {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .fam-rail ul { flex: 1 1 auto; min-width: 0; }
+  .fam-rail__arrow {
+    flex: none;
+    display: grid;
+    place-items: center;
+    width: 34px;
+    height: 34px;
+    padding: 0;
+    color: #fff;
+    background: var(--ink-900);
+    border-radius: 50%;
+    box-shadow: 0 3px 10px rgba(20, 22, 26, 0.22);
+    cursor: pointer;
+  }
+  .fam-rail__arrow[hidden] { display: none; }
+  .fam-rail__arrow svg { width: 18px; height: 18px; }
+  .fam-rail__arrow--next svg { animation: fam-rail-nudge 1.6s ease-in-out 3; }
+  @keyframes fam-rail-nudge {
+    0%, 100% { transform: translateX(0); }
+    50% { transform: translateX(3px); }
+  }
   .sheet { grid-template-columns: minmax(0, 1fr); }
   .sheet__variants-list { grid-template-columns: minmax(0, 1fr); }
   .sheet__variant { grid-template-columns: 92px minmax(0, 1fr); }

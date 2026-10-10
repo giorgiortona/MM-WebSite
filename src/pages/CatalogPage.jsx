@@ -13,6 +13,10 @@ import {
   findFamily,
 } from '../data/catalog';
 import ProductFigure from '../components/ProductFigure';
+import FolderFigure from '../components/FolderFigure';
+import { variantImages } from '../data/variantImages';
+import FamilyRail from '../components/FamilyRail';
+import ExampleSection from '../components/ExampleSection';
 import VariantFigure from '../components/VariantFigure';
 import MacroFigure from '../components/MacroFigure';
 import Footer from '../components/Footer';
@@ -162,6 +166,24 @@ function CatalogSearch({ currentMacroId }) {
     </form>
   );
 }
+
+/* Ogni serie con più varianti è una cartella: mostra tre elementi insieme. */
+const previewSources = (p) => {
+  const sources = (p.variants || [])
+    .map((variant) => variantImages[`${p.id}::${variant.name}`])
+    .filter(Boolean);
+  if (sources.length < 3) return null;
+  return [sources[0], sources[Math.floor((sources.length - 1) / 2)], sources[sources.length - 1]];
+};
+
+const productShot = (p) => {
+  if (p.preview) return <FolderFigure keys={p.preview} count={p.variants.length} />;
+
+  const sources = previewSources(p);
+  if (sources) return <FolderFigure sources={sources} count={p.variants.length} label="varianti" />;
+
+  return <ProductFigure id={p.visual || p.id} />;
+};
 
 export default function CatalogPage({ onQuote, notFound }) {
   const { macroId, articleId } = useParams();
@@ -441,21 +463,12 @@ export default function CatalogPage({ onQuote, notFound }) {
               </header>
 
               <div className="catpage__grid">
-                <aside className="fam-rail" data-enter>
-                  <ul>
-                    {famList.map((f) => (
-                      <li key={f.id}>
-                        <button
-                          className={`fam-rail__item ${f.id === family ? 'is-active' : ''}`}
-                          onClick={() => pickFamily(f.id)}
-                        >
-                          <span>{f.label}</span>
-                          <em>{countCatalogItems(productsOfFamily(f.id))}</em>
-                        </button>
-                      </li>
-                    ))}
-                  </ul>
-                </aside>
+                <FamilyRail
+                  families={famList}
+                  active={family}
+                  onPick={pickFamily}
+                  countOf={(id) => countCatalogItems(productsOfFamily(id))}
+                />
 
                 <div className="art-grid" ref={grid} data-enter>
                   {items.map((p) => (
@@ -472,7 +485,7 @@ export default function CatalogPage({ onQuote, notFound }) {
                       }}
                     >
                       <span className="art-card__shot">
-                        <ProductFigure id={p.visual || p.id} />
+                        {productShot(p)}
                       </span>
                       <span className="art-card__body">
                         <span className="art-card__name">{p.name}</span>
@@ -500,7 +513,7 @@ export default function CatalogPage({ onQuote, notFound }) {
 
               <article className="sheet">
                 <div className="sheet__shot" data-enter>
-                  <ProductFigure id={article.visual || article.id} />
+                  {productShot(article)}
                 </div>
 
                 <div className="sheet__body" data-enter>
@@ -537,6 +550,8 @@ export default function CatalogPage({ onQuote, notFound }) {
                   </div>
                 </div>
               </article>
+
+              <ExampleSection examples={article.examples} />
 
               {article.variants?.length > 0 && (
                 <section className="sheet__variants" aria-labelledby="varianti-title" data-enter>
@@ -580,7 +595,7 @@ export default function CatalogPage({ onQuote, notFound }) {
                         state={{ catalogScrollY: location.state?.catalogScrollY ?? 0 }}
                       >
                         <span className="art-card__shot">
-                          <ProductFigure id={p.visual || p.id} />
+                          {productShot(p)}
                         </span>
                         <span className="art-card__body">
                           <span className="art-card__name">{p.name}</span>
