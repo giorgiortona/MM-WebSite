@@ -255,7 +255,7 @@ export default function CatalogPage({ onQuote, notFound }) {
   );
 
   let seoTitle = 'Catalogo segnaletica stradale | M.M. Group';
-  let seoDescription = `${catalogItemCount} segnali e articoli per segnaletica verticale, orizzontale, cantieri e delineatori. Specifiche tecniche e preventivi su richiesta.`;
+  let seoDescription = `${catalogItemCount} segnali e articoli per segnaletica verticale, orizzontale, luminosa e di cantiere. Specifiche tecniche e preventivi su richiesta.`;
   let seoPath = '/catalogo';
   let seoImage = '/media/photos/rotatoria-aerea-1800.webp';
   let seoSchema = {
@@ -541,7 +541,9 @@ export default function CatalogPage({ onQuote, notFound }) {
               {article.variants?.length > 0 && (
                 <section className="sheet__variants" aria-labelledby="varianti-title" data-enter>
                   <div className="sheet__variants-head">
-                    <h2 id="varianti-title">Segnali disponibili</h2>
+                    <h2 id="varianti-title">
+                      {macro.id === 'luminosa' ? 'Prodotti disponibili' : 'Segnali disponibili'}
+                    </h2>
                     <span>{article.variants.length} varianti</span>
                   </div>
                   <div className="sheet__variants-list">

@@ -1,4 +1,5 @@
 import { signSeriesFamilies, signSeriesProducts } from './signSeries.js';
+import { lightSeriesFamilies, lightSeriesProducts } from './lightSeries.js';
 
 /* Catalogo su tre livelli: macro area -> famiglia -> articolo.
    Nessun prezzo esposto: dimensioni, materiali e classi di pellicola
@@ -18,14 +19,14 @@ export const macros = [
     photo: 'napoli-autostrada',
   },
   {
-    id: 'sicurezza',
-    name: 'Delineatori e guida ottica',
-    blurb: 'Dispositivi di margine, catadiottri e delineatori di curva lungo la carreggiata.',
+    id: 'luminosa',
+    name: 'Segnaletica luminosa',
+    blurb: 'Proiettori, marker, radar, segnali LED e dispositivi luminosi per strada, cantiere e automezzi.',
     photo: 'rotatoria-frecce',
   },
   {
     id: 'cantiere',
-    name: 'Cantiere',
+    name: 'Segnaletica di cantiere',
     blurb: 'Segnali temporanei, coni, lampeggianti e attrezzatura per il cantiere mobile.',
     photo: 'casello-autostradale',
   },
@@ -38,15 +39,17 @@ export const families = [
   { id: 'pellicole', macro: 'verticale', label: 'Pellicole e adesivi' },
   { id: 'tracciamento', macro: 'orizzontale', label: 'Tracciamento' },
   { id: 'vernici', macro: 'orizzontale', label: 'Vernici e diluenti' },
-  { id: 'delineatori', macro: 'sicurezza', label: 'Delineatori e margine' },
-  { id: 'cantiere', macro: 'cantiere', label: 'Cantiere e sicurezza' },
+  { id: 'delineatori', macro: 'verticale', label: 'Delineatori e guida ottica' },
+  { id: 'cantiere', macro: 'cantiere', label: 'Attrezzatura di cantiere' },
   { id: 'sostegni', macro: 'verticale', label: 'Sostegni e fissaggi' },
   { id: 'urbano', macro: 'verticale', label: 'Arredo urbano e specchi' },
   ...signSeriesFamilies,
+  ...lightSeriesFamilies,
 ];
 
 export const products = [
   ...signSeriesProducts,
+  ...lightSeriesProducts,
   /* ---------------- SEGNALI ---------------- */
   {
     id: 'triangolo',

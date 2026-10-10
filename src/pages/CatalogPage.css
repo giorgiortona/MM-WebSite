@@ -498,7 +498,8 @@
   border: 1px solid rgba(20, 22, 26, 0.08);
 }
 
-.sheet__variant-shot img {
+.sheet__variant-shot img,
+.sheet__variant-shot svg {
   width: 100%;
   max-width: 96px;
   height: auto;
@@ -507,7 +508,8 @@
   transition: transform 0.4s var(--ease-out);
 }
 
-.sheet__variant:hover .sheet__variant-shot img { transform: scale(1.06); }
+.sheet__variant:hover .sheet__variant-shot img,
+.sheet__variant:hover .sheet__variant-shot svg { transform: scale(1.06); }
 
 .sheet__variant-copy { min-width: 0; }
 
@@ -650,7 +652,8 @@
   .sheet__variants-list { grid-template-columns: minmax(0, 1fr); }
   .sheet__variant { grid-template-columns: 92px minmax(0, 1fr); }
   .sheet__variant-shot { min-height: 106px; }
-  .sheet__variant-shot img { max-width: 78px; max-height: 92px; }
+  .sheet__variant-shot img,
+  .sheet__variant-shot svg { max-width: 78px; max-height: 92px; }
 }
 
 @media (max-width: 520px) {
@@ -660,6 +663,7 @@
     padding: 0.7rem;
   }
   .sheet__variant-shot { min-height: 88px; padding: 0.35rem; }
-  .sheet__variant-shot img { max-width: 68px; max-height: 78px; }
+  .sheet__variant-shot img,
+  .sheet__variant-shot svg { max-width: 68px; max-height: 78px; }
   .sheet__variant p { font-size: 0.78rem; }
 }

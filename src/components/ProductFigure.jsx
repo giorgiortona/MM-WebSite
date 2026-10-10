@@ -1,6 +1,8 @@
 /* Figure di catalogo disegnate a mano in SVG, una per articolo.
    Le sagome ricalcano le figure del Codice della Strada: restano nitide a
    qualsiasi dimensione e non portano vincoli di licenza. */
+import LavoriSign from './LavoriSign';
+
 const W = '#F2F3EF';
 const R = '#C8102E';
 const B = '#0B5FA5';
@@ -367,9 +369,137 @@ const figures = {
     </>
   ),
 
+  /* ---------- segnaletica luminosa ---------- */
+  'lum-proiettori': (
+    <>
+      {pole(60, 80)}
+      <circle cx="60" cy="50" r="32" fill={R} />
+      <circle cx="60" cy="50" r="26" fill={A} />
+      <circle cx="60" cy="50" r="21" fill={K} />
+      <circle cx="60" cy="50" r="3.6" fill={W} />
+      <circle cx="71" cy="50" r="3.6" fill={Y} />
+      <circle cx="65.5" cy="59.5" r="3.6" fill={Y} />
+      <circle cx="54.5" cy="59.5" r="3.6" fill={Y} />
+      <circle cx="49" cy="50" r="3.6" fill={Y} />
+      <circle cx="54.5" cy="40.5" r="3.6" fill={Y} />
+      <circle cx="65.5" cy="40.5" r="3.6" fill={Y} />
+      <path d="M33 23 26 16M60 12V2M87 23l7-7" stroke={Y} strokeWidth="4" strokeLinecap="round" />
+    </>
+  ),
+  'lum-impianti': (
+    <>
+      <rect x="57" y="56" width="6" height="28" fill={S} />
+      <path d="M18 56 40 16h64L82 56z" fill={B} stroke={W} strokeWidth="2" strokeLinejoin="round" />
+      <path d="M61 16 39 56M83 16 61 56M29 36h64" stroke={W} strokeWidth="1.5" />
+      <rect x="40" y="78" width="10" height="5" rx="1" fill={S} />
+      <rect x="70" y="78" width="10" height="5" rx="1" fill={S} />
+      <rect x="30" y="82" width="60" height="22" rx="4" fill={A} />
+      <path d="M62 85 54 95h6l-2 8 8-11h-6z" fill={Y} />
+    </>
+  ),
+  'lum-marker': (
+    <>
+      <rect x="6" y="70" width="108" height="34" rx="3" fill={A} />
+      <rect x="14" y="90" width="20" height="5" fill={W} />
+      <rect x="50" y="90" width="20" height="5" fill={W} />
+      <rect x="86" y="90" width="20" height="5" fill={W} />
+      <rect x="34" y="67" width="52" height="6" rx="2" fill="#B7BDC4" />
+      <path d="M38 68a22 16 0 0 1 44 0z" fill={S} />
+      <path d="M46 68a14 10 0 0 1 28 0z" fill={Y} />
+      <path d="M60 44V32M37 50l-8-8M83 50l8-8" stroke={Y} strokeWidth="4" strokeLinecap="round" />
+    </>
+  ),
+  'lum-radar': (
+    <>
+      {pole(60, 78)}
+      <rect x="24" y="12" width="72" height="66" rx="7" fill={K} />
+      <circle cx="60" cy="42" r="22" fill="none" stroke={R} strokeWidth="5" />
+      <text x="60" y="51" textAnchor="middle" fontFamily="Barlow Condensed, sans-serif" fontWeight="700" fontSize="26" fill={Y}>50</text>
+      <circle cx="33" cy="21" r="2.6" fill={Y} />
+      <circle cx="87" cy="21" r="2.6" fill={Y} />
+      <circle cx="33" cy="69" r="2.6" fill={Y} />
+      <circle cx="87" cy="69" r="2.6" fill={Y} />
+    </>
+  ),
+  'lum-sicurezza': (
+    <>
+      {pole(60, 78)}
+      <rect x="22" y="22" width="76" height="56" rx="3" fill={B} stroke={W} strokeWidth="3" />
+      <path d="M60 30 82 72H38z" fill={W} />
+      <circle cx="60" cy="47" r="3.4" fill={K} />
+      <path d="M60 52v10M53 56h14M60 62l-5 8M60 62l5 8" stroke={K} strokeWidth="3" strokeLinecap="round" fill="none" />
+      <circle cx="30" cy="12" r="7" fill={Y} />
+      <circle cx="90" cy="12" r="7" fill={Y} />
+      <path d="M19 8 13 4M101 8l6-4" stroke={Y} strokeWidth="3.5" strokeLinecap="round" />
+    </>
+  ),
+  'lum-segnali': (
+    <>
+      {pole(60, 82)}
+      <path d="M60 12 102 82H18z" fill={R} />
+      <path d="M60 28 88 74H32z" fill={W} />
+      <rect x="56" y="42" width="8" height="18" rx="3" fill={K} />
+      <circle cx="60" cy="67" r="4" fill={K} />
+      <circle cx="60" cy="20" r="2.6" fill={Y} />
+      <circle cx="51.5" cy="34" r="2.6" fill={Y} />
+      <circle cx="68.5" cy="34" r="2.6" fill={Y} />
+      <circle cx="42" cy="50" r="2.6" fill={Y} />
+      <circle cx="78" cy="50" r="2.6" fill={Y} />
+      <circle cx="32.5" cy="66" r="2.6" fill={Y} />
+      <circle cx="87.5" cy="66" r="2.6" fill={Y} />
+      <circle cx="36" cy="78" r="2.6" fill={Y} />
+      <circle cx="60" cy="78" r="2.6" fill={Y} />
+      <circle cx="84" cy="78" r="2.6" fill={Y} />
+    </>
+  ),
+  'lum-cantiere': (
+    <>
+      {pole(60, 80)}
+      <rect x="40" y="8" width="40" height="76" rx="9" fill={K} />
+      <circle cx="60" cy="26" r="14" fill={R} opacity="0.25" />
+      <circle cx="60" cy="26" r="9" fill={R} />
+      <circle cx="60" cy="46" r="9" fill={Y} opacity="0.35" />
+      <circle cx="60" cy="66" r="9" fill={G} opacity="0.6" />
+    </>
+  ),
+  'lum-emergenza': (
+    <>
+      <path d="M18 46 2 30v54l16-16z" fill={Y} opacity="0.35" />
+      <path d="M22 40l22 6v22l-22 6z" fill={S} />
+      <ellipse cx="22" cy="57" rx="5" ry="17" fill={Y} />
+      <rect x="44" y="46" width="56" height="22" rx="4" fill={A} />
+      <rect x="58" y="46" width="3" height="22" fill={K} />
+      <rect x="64" y="46" width="3" height="22" fill={K} />
+      <rect x="70" y="40" width="12" height="7" rx="3" fill={R} />
+      <rect x="100" y="49" width="8" height="16" rx="3" fill={S} />
+    </>
+  ),
+  'lum-veicoli': (
+    <>
+      <path d="M8 104V86c0-6 4-10 10-12l12-14c3-4 6-6 12-6h36c6 0 9 2 12 6l12 14c6 2 10 6 10 12v18z" fill={W} stroke={K} strokeWidth="2" strokeLinejoin="round" />
+      <path d="M34 72l8-12h36l8 12z" fill={A} />
+      <rect x="40" y="48" width="5" height="6" fill={S} />
+      <rect x="75" y="48" width="5" height="6" fill={S} />
+      <rect x="30" y="36" width="60" height="12" rx="6" fill={K} />
+      <rect x="36" y="39" width="22" height="6" rx="3" fill={Y} />
+      <rect x="62" y="39" width="22" height="6" rx="3" fill={Y} />
+      <path d="M24 34l-8-6M60 30V20M96 34l8-6" stroke={Y} strokeWidth="4" strokeLinecap="round" />
+      <circle cx="30" cy="102" r="10" fill={K} />
+      <circle cx="30" cy="102" r="4" fill={S} />
+      <circle cx="90" cy="102" r="10" fill={K} />
+      <circle cx="90" cy="102" r="4" fill={S} />
+    </>
+  ),
+
   /* ---------- barriere ---------- */
 
   /* ---------- cantiere ---------- */
+  'temp-lavori': (
+    <>
+      {pole(60, 82)}
+      <LavoriSign cx={60} top={8} width={92} />
+    </>
+  ),
   coni: (
     <>
       <path d="M60 16 88 92H32z" fill={O} />
